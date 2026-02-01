@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>___TOSO</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+
+body{
+  font-family: Helvetica, Arial, sans-serif;
+  height:100vh;
+  overflow:hidden;
+}
+
+/* ===== LAYOUT ===== */
+.wrapper{
+  display:flex;
+  width:100vw;
+  height:100vh;
+}
+
+/* ===== MENU ===== */
+.nav{
+  width:35%;
+  padding:56px;
+  position:relative;
+}
+
+.gray{background:#d2d2d2;color:#000}
+.white{background:#fff;color:#000}
+
+/* LOGO */
+.logo{
+  position:absolute;
+  top:25vh;
+  left:56px;
+
+  font-family: Geneva, Helvetica, Arial, sans-serif;
+  font-weight:700;
+  font-size:clamp(56px,6vw,96px);
+  letter-spacing:.04em;
+  line-height:1;
+  white-space:nowrap;
+}
+
+/* MENU LINKS */
+.menu{
+  margin-top:calc(25vh + 96px);
+}
+
+.menu a{
+  display:block;
+  font-size:14px;
+  margin-bottom:14px;
+  opacity:.45;
+  cursor:pointer;
+}
+.menu a.active,
+.menu a:hover{opacity:1}
+
+/* ===== CONTENT ===== */
+.content{
+  width:65%;
+  padding:56px;
+  overflow:hidden;
+}
+
+.theme-gray{background:#d2d2d2;color:#000}
+.theme-white{background:#fff;color:#000}
+
+/* ===== PAGES ===== */
+.page{display:none;height:100%}
+.page.active{display:block}
+
+/* ===== HOME ===== */
+.home{
+  width:100%;
+  height:100%;
+  position:relative;
+}
+.home img{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:contain;
+  opacity:0;
+  transition:opacity .8s ease;
+}
+.home img.active{opacity:1}
+
+/* ===== SECTION (2 / 3 / 4) ===== */
+.section{
+  height:100%;
+  display:flex;
+  flex-direction:column;
+}
+
+.section-text{
+  min-height:120px;
+  font-size:14px;
+  line-height:1.6;
+  opacity:.7;
+  margin-bottom:32px;
+}
+
+.project-list{
+  flex:1;
+  overflow-y:auto;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:32px;
+}
+.project-list img{
+  width:100%;
+  cursor:pointer;
+}
+
+/* ===== GALLERY ===== */
+.gallery{
+  height:100%;
+  display:flex;
+  flex-direction:column;
+}
+
+.viewer{
+  flex:1;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+.viewer img{
+  max-width:100%;
+  max-height:100%;
+  object-fit:contain;
+}
+
+.gallery-thumbs{
+  margin-top:32px;
+  max-height:240px;
+  overflow-y:auto;
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(120px,1fr));
+  gap:18px;
+}
+.gallery-thumbs img{
+  width:100%;
+  cursor:pointer;
+  opacity:.5;
+}
+.gallery-thumbs img.active{opacity:1}
+
+/* TEXT */
+.text{
+  max-width:640px;
+  font-size:15px;
+  line-height:1.75;
+}
+</style>
+</head>
+
+<body>
+
+<div class="wrapper">
+
+<nav id="nav" class="nav gray">
+  <div class="logo">___TOSO</div>
+
+  <div class="menu">
+    <a class="active" onclick="go('home')">home</a>
+    <a onclick="go('ads')">advertising</a>
+    <a onclick="go('people')">people & fashion</a>
+    <a onclick="go('personal')">personal work</a>
+    <a onclick="go('bio')">bio</a>
+    <a onclick="go('contact')">contact</a>
+  </div>
+</nav>
+
+<main id="content" class="content theme-gray">
+
+<!-- HOME -->
+<section id="home" class="page active">
+  <div class="home">
+    <img src="https://picsum.photos/1400/900?1" class="active">
+    <img src="https://picsum.photos/1400/900?2">
+    <img src="https://picsum.photos/1400/900?3">
+  </div>
+</section>
+
+<!-- ADS -->
+<section id="ads" class="page">
+  <div class="section">
+    <div class="section-text">Melissa · Nike · Adidas · Zara</div>
+    <div class="project-list">
+      <img src="https://picsum.photos/600/400?4" onclick="openGallery()">
+    </div>
+  </div>
+</section>
+
+<!-- PEOPLE -->
+<section id="people" class="page">
+  <div class="section">
+    <div class="section-text">Vogue · GQ · Harper’s Bazaar</div>
+    <div class="project-list">
+      <img src="https://picsum.photos/600/400?5" onclick="openGallery()">
+    </div>
+  </div>
+</section>
+
+<!-- PERSONAL -->
+<section id="personal" class="page">
+  <div class="section">
+    <div class="section-text">Personal projects</div>
+    <div class="project-list">
+      <img src="https://picsum.photos/600/400?6" onclick="openGallery()">
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section id="gallery" class="page">
+  <div class="gallery">
+    <div class="viewer">
+      <img id="mainImage" src="https://picsum.photos/1400/900?7">
+    </div>
+    <div class="gallery-thumbs">
+      <img src="https://picsum.photos/400/300?7" class="active" onclick="swap(this)">
+      <img src="https://picsum.photos/400/300?8" onclick="swap(this)">
+      <img src="https://picsum.photos/400/300?9" onclick="swap(this)">
+    </div>
+  </div>
+</section>
+
+<section id="bio" class="page"><div class="text">Bio text</div></section>
+<section id="contact" class="page"><div class="text">studio@toso.com</div></section>
+
+</main>
+</div>
+
+<script>
+const pages=['home','ads','people','personal','gallery','bio','contact'];
+
+function show(id){
+  pages.forEach(p=>document.getElementById(p).classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+}
+
+function go(w){
+  document.querySelectorAll('.menu a').forEach(a=>a.classList.remove('active'));
+  event.target.classList.add('active');
+
+  if(w==='home'){
+    nav.className='nav gray';
+    content.className='content theme-gray';
+  }
+  if(['ads','people','personal','bio'].includes(w)){
+    nav.className='nav white';
+    content.className='content theme-white';
+  }
+  if(w==='contact'){
+    nav.className='nav gray';
+    content.className='content theme-gray';
+  }
+  show(w);
+}
+
+function openGallery(){ show('gallery'); }
+
+function swap(el){
+  document.querySelectorAll('.gallery-thumbs img').forEach(i=>i.classList.remove('active'));
+  el.classList.add('active');
+  mainImage.src = el.src.replace('400/300','1400/900');
+}
+
+/* home slideshow */
+let i=0;
+const slides=document.querySelectorAll('.home img');
+setInterval(()=>{
+  slides[i].classList.remove('active');
+  i=(i+1)%slides.length;
+  slides[i].classList.add('active');
+},5000);
+</script>
+
+</body>
+</html>
