@@ -99,9 +99,20 @@ body{
 }
 .section-text{
   min-height:120px;
-  font-size:14px;
-  opacity:.7;
-  margin-bottom:32px;
+  font-size:13.5px;
+  line-height:1.7;
+  letter-spacing:.02em;
+  opacity:.6;
+  margin-bottom:40px;  
+}
+.section-text::after{
+  content:'';
+  display:block;
+  margin-top:24px;
+}
+#bio .text{
+  font-size:15px;
+  line-height:1.85;
 }
 .project-list{
   flex:1;
@@ -144,6 +155,7 @@ body{
 
 .text{
   max-width:640px;
-  font-size:15px;
-  line-height:1.75;
+  font-size:14.5px;
+  line-height:1.8;
+  letter-spacing:.01em;
 }
