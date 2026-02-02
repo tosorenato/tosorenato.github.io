@@ -1,96 +1,126 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
   <title>___TOSO</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <link rel="stylesheet" href="assets/css/style.css">
+  <!-- CSS -->
+  <link rel="stylesheet" href="/assets/css/style.css">
+
 </head>
-
 <body>
-  <div class="wrapper">
-    <nav id="nav" class="nav gray" aria-label="Primary">
-      <div class="logo">___TOSO</div>
 
-      <div class="menu" role="navigation">
-        <a href="#home" data-route="home" class="active">home</a>
-        <a href="#ads" data-route="ads">products & advertising</a>
-        <a href="#people" data-route="people">people & fashion</a>
-        <a href="#personal" data-route="personal">personal work</a>
-        <a href="#bio" data-route="bio">bio</a>
-        <a href="#contact" data-route="contact">contact</a>
+<div class="wrapper">
+
+  <!-- MENU -->
+  <nav id="nav" class="nav gray">
+    <div class="logo">___TOSO</div>
+
+    <div class="menu">
+      <a data-route="home" class="active">home</a>
+      <a data-route="ads">products & advertising</a>
+      <a data-route="people">people & fashion</a>
+      <a data-route="personal">personal work</a>
+      <a data-route="bio">bio</a>
+      <a data-route="contact">contact</a>
+    </div>
+  </nav>
+
+  <!-- CONTENT -->
+  <main id="content" class="content theme-gray">
+
+    <!-- HOME -->
+    <section id="home" class="page active">
+      <div class="home" aria-label="Home slideshow">
+        <img src="/assets/img/home/home01.jpg" class="active" alt="">
+        <img src="/assets/img/home/home02.jpg" alt="">
+        <img src="/assets/img/home/home03.jpg" alt="">
+        <img src="/assets/img/home/home04.jpg" alt="">
       </div>
-    </nav>
+    </section>
 
-    <main id="content" class="content theme-gray">
-      <!-- HOME -->
-      <section id="home" class="page active" data-page>
-        <div class="home" aria-label="Home slideshow">
-          <img src="/assets/img/home/home01.jpg" class="active">
-          <img src="/assets/img/home/home02.jpg">
-          <img src="/assets/img/home/home03.jpg">
-          <img src="/assets/img/home/home04.jpg">
+    <!-- PRODUCTS & ADVERTISING -->
+    <section id="ads" class="page">
+      <div class="section">
+        <div class="section-text">
+          The Ordinary · Advertising
         </div>
-      </section>
 
-      <!-- ADS -->
-      <section id="ads" class="page" data-page>
-        <div class="section">
-          <div class="section-text">Melissa · Nike · Adidas · Zara</div>
-          <div class="project-list">
-            <img src="/assets/img/ads/theordinary1.jpg" data-open="gallery">
+        <div class="project-list">
+          <img
+            src="/assets/img/ads/ads-theordinary-1.jpg"
+            data-project="ads-theordinary"
+            alt="The Ordinary — Advertising">
+        </div>
+      </div>
+    </section>
+
+    <!-- PEOPLE & FASHION -->
+    <section id="people" class="page">
+      <div class="section">
+        <div class="section-text">
+          People & Fashion
+        </div>
+
+        <div class="project-list">
+          <!-- pronto para futuros projetos -->
+        </div>
+      </div>
+    </section>
+
+    <!-- PERSONAL WORK -->
+    <section id="personal" class="page">
+      <div class="section">
+        <div class="section-text">
+          Personal work
+        </div>
+
+        <div class="project-list">
+          <!-- pronto para futuros projetos -->
+        </div>
+      </div>
+    </section>
+
+    <!-- GALLERY -->
+    <section id="gallery" class="page">
+      <div class="gallery">
+
+        <div class="viewer">
+          <img id="mainImage" src="" alt="Project image">
+
+          <div class="gallery-nav">
+            <button class="prev" aria-label="Previous image">‹</button>
+            <button class="next" aria-label="Next image">›</button>
           </div>
         </div>
-      </section>
 
-      <!-- PEOPLE -->
-      <section id="people" class="page" data-page>
-        <div class="section">
-          <div class="section-text">Vogue · GQ · Harper’s Bazaar</div>
-          <div class="project-list">
-            <img src="https://picsum.photos/600/400?5" alt="" data-open="gallery">
-          </div>
-        </div>
-      </section>
+        <div class="gallery-thumbs" id="galleryThumbs"></div>
 
-      <!-- PERSONAL -->
-      <section id="personal" class="page" data-page>
-        <div class="section">
-          <div class="section-text">Personal projects</div>
-          <div class="project-list">
-            <img src="https://picsum.photos/600/400?6" alt="" data-open="gallery">
-          </div>
-        </div>
-      </section>
+      </div>
+    </section>
 
-      <!-- GALLERY -->
-      <section id="gallery" class="page" data-page>
-        <div class="gallery">
-          <div class="viewer">
-            <img id="mainImage" src="/assets/img/ads/theordinary1.jpg">
-          </div>
+    <!-- BIO -->
+    <section id="bio" class="page">
+      <div class="text">
+        Bio text goes here.  
+        Short, editorial, minimal.
+      </div>
+    </section>
 
-          <div class="gallery-thumbs" aria-label="Gallery thumbnails">
-            <img src="/assets/img/ads/theordinary1.jpg" class="active" data-swap>
-            <img src="https://picsum.photos/400/300?8" alt="" data-swap>
-            <img src="https://picsum.photos/400/300?9" alt="" data-swap>
-          </div>
-        </div>
-      </section>
+    <!-- CONTACT -->
+    <section id="contact" class="page">
+      <div class="text">
+        studio@toso.studio
+      </div>
+    </section>
 
-      <!-- BIO -->
-      <section id="bio" class="page" data-page>
-        <div class="text">Bio text</div>
-      </section>
+  </main>
 
-      <!-- CONTACT -->
-      <section id="contact" class="page" data-page>
-        <div class="text">studio@toso.com</div>
-      </section>
-    </main>
-  </div>
+</div>
 
-  <script src="/assets/js/main.js" defer></script>
+<!-- JS -->
+<script src="/assets/js/main.js"></script>
+
 </body>
 </html>
