@@ -50,6 +50,7 @@ body{
 }
 
 .menu a:hover{opacity:.7}
+
 .menu a.active{
   opacity:1;
   font-weight:500;
@@ -120,7 +121,13 @@ body{
   align-content:start;
 }
 
-.project-list img{
+/* PROJETOS: mostrar só 1 thumb por projeto */
+.project img{
+  display:none;
+}
+
+.project img:first-child{
+  display:block;
   width:100%;
   height:auto;
   object-fit:contain;
@@ -152,6 +159,7 @@ body{
 
 /* GALLERY THUMBS */
 .gallery-thumbs{
+  margin-top:32px; /* respiro entre imagem grande e thumbs */
   max-height:180px;
   display:grid;
   grid-template-columns:repeat(auto-fill, minmax(90px,1fr));
