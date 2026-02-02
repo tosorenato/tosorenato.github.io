@@ -42,11 +42,22 @@ body{
   display:block;
   font-size:14px;
   margin-bottom:14px;
-  opacity:.45;
   cursor:pointer;
+
+  text-decoration:none;
+  color:inherit;
+
+  opacity:.4;
+  transition:opacity .2s ease;
 }
-.menu a.active,
-.menu a:hover{opacity:1}
+
+.menu a:hover{
+  opacity:.7;
+}
+
+.menu a.active{
+  opacity:1;
+}
 
 /* CONTENT */
 .content{
