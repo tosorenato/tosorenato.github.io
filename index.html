@@ -5,9 +5,7 @@
   <title>___TOSO</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- CSS -->
   <link rel="stylesheet" href="/assets/css/style.css">
-
 </head>
 <body>
 
@@ -32,7 +30,7 @@
 
     <!-- HOME -->
     <section id="home" class="page active">
-      <div class="home" aria-label="Home slideshow">
+      <div class="home">
         <img src="/assets/img/home/home01.jpg" class="active" alt="">
         <img src="/assets/img/home/home02.jpg" alt="">
         <img src="/assets/img/home/home03.jpg" alt="">
@@ -40,45 +38,40 @@
       </div>
     </section>
 
-    <!-- PRODUCTS & ADVERTISING -->
-<section id="ads" class="page">
-  <div class="section">
-    <div class="section-text">
-      The Ordinary · Advertising
-    </div>
-
-    <div class="project-list">
-      <img src="/assets/img/ads/ads-theordinary-1.jpg" alt="">
-      <img src="/assets/img/ads/ads-theordinary-2.jpg" alt="">
-      <img src="/assets/img/ads/ads-theordinary-3.jpg" alt="">
-      <img src="/assets/img/ads/ads-theordinary-4.jpg" alt="">
-      <img src="/assets/img/ads/ads-theordinary-5.jpg" alt="">
-    </div>
-  </div>
-</section>
-
-    <!-- PEOPLE & FASHION -->
-    <section id="people" class="page">
+    <!-- ADS -->
+    <section id="ads" class="page">
       <div class="section">
+
         <div class="section-text">
-          People & Fashion
+          Products & Advertising
         </div>
 
         <div class="project-list">
-          <!-- pronto para futuros projetos -->
-        </div>
-      </div>
-    </section>
 
-    <!-- PERSONAL WORK -->
-    <section id="personal" class="page">
-      <div class="section">
-        <div class="section-text">
-          Personal work
-        </div>
+          <!-- PROJETO 1 -->
+          <div class="project" data-project="theordinary" data-title="The Ordinary · Advertising">
+            <img src="/assets/img/ads/ads-theordinary-1.jpg" alt="">
+            <img src="/assets/img/ads/ads-theordinary-2.jpg" alt="">
+            <img src="/assets/img/ads/ads-theordinary-3.jpg" alt="">
+            <img src="/assets/img/ads/ads-theordinary-4.jpg" alt="">
+            <img src="/assets/img/ads/ads-theordinary-5.jpg" alt="">
+          </div>
 
-        <div class="project-list">
-          <!-- pronto para futuros projetos -->
+          <!-- PROJETO 2 -->
+          <div class="project" data-project="perfumes" data-title="Perfumaria · Vogue">
+            <img src="/assets/img/ads/ads-perfumes-1.jpg" alt="">
+            <img src="/assets/img/ads/ads-perfumes-2.jpg" alt="">
+            <img src="/assets/img/ads/ads-perfumes-3.jpg" alt="">
+            <img src="/assets/img/ads/ads-perfumes-4.jpg" alt="">
+            <img src="/assets/img/ads/ads-perfumes-5.jpg" alt="">
+            <img src="/assets/img/ads/ads-perfumes-6.jpg" alt="">
+            <img src="/assets/img/ads/ads-perfumes-7.jpg" alt="">
+            <img src="/assets/img/ads/ads-perfumes-8.jpg" alt="">
+            <img src="/assets/img/ads/ads-perfumes-9.jpg" alt="">
+            <img src="/assets/img/ads/ads-perfumes-10.jpg" alt="">
+            <img src="/assets/img/ads/ads-perfumes-11.jpg" alt="">
+          </div>
+
         </div>
       </div>
     </section>
@@ -88,12 +81,9 @@
       <div class="gallery">
 
         <div class="viewer">
-          <img id="mainImage" src="" alt="Project image">
-
-          <div class="gallery-nav">
-            <button class="prev" aria-label="Previous image">‹</button>
-            <button class="next" aria-label="Next image">›</button>
-          </div>
+          <button class="nav-arrow prev">‹</button>
+          <img id="mainImage" src="" alt="">
+          <button class="nav-arrow next">›</button>
         </div>
 
         <div class="gallery-thumbs" id="galleryThumbs"></div>
@@ -101,27 +91,35 @@
       </div>
     </section>
 
+    <!-- PEOPLE -->
+    <section id="people" class="page">
+      <div class="section">
+        <div class="section-text">People & Fashion</div>
+        <div class="project-list"></div>
+      </div>
+    </section>
+
+    <!-- PERSONAL -->
+    <section id="personal" class="page">
+      <div class="section">
+        <div class="section-text">Personal work</div>
+        <div class="project-list"></div>
+      </div>
+    </section>
+
     <!-- BIO -->
     <section id="bio" class="page">
-      <div class="text">
-        Bio text goes here.  
-        Short, editorial, minimal.
-      </div>
+      <div class="text">Bio text goes here.</div>
     </section>
 
     <!-- CONTACT -->
     <section id="contact" class="page">
-      <div class="text">
-        studio@toso.studio
-      </div>
+      <div class="text">studio@toso.studio</div>
     </section>
 
   </main>
-
 </div>
 
-<!-- JS -->
 <script src="/assets/js/main.js"></script>
-
 </body>
 </html>
