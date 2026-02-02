@@ -48,6 +48,8 @@ body{
   margin-bottom:14px;
   opacity:.45;
   cursor:pointer;
+  text-decoration:none;
+  color:inherit;
 }
 .menu a.active,
 .menu a:hover{opacity:1}
