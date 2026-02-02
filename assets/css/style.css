@@ -1,0 +1,135 @@
+*{box-sizing:border-box;margin:0;padding:0}
+
+body{
+  font-family: Helvetica, Arial, sans-serif;
+  height:100vh;
+  overflow:hidden;
+}
+
+.wrapper{
+  display:flex;
+  width:100vw;
+  height:100vh;
+}
+
+/* MENU */
+.nav{
+  width:35%;
+  padding:56px;
+  position:relative;
+}
+
+.gray{background:#d2d2d2;color:#000}
+.white{background:#fff;color:#000}
+
+.logo{
+  position:absolute;
+  top:25vh;
+  left:56px;
+  font-family: Geneva, Helvetica, Arial, sans-serif;
+  font-weight:700;
+  font-size:clamp(56px,6vw,96px);
+  letter-spacing:.04em;
+  line-height:1;
+  white-space:nowrap;
+}
+
+.menu{
+  margin-top:calc(25vh + 96px);
+}
+
+.menu a{
+  display:block;
+  font-size:14px;
+  margin-bottom:14px;
+  opacity:.45;
+  cursor:pointer;
+}
+.menu a.active,
+.menu a:hover{opacity:1}
+
+/* CONTENT */
+.content{
+  width:65%;
+  padding:56px;
+  overflow:hidden;
+}
+
+.theme-gray{background:#d2d2d2;color:#000}
+.theme-white{background:#fff;color:#000}
+
+.page{display:none;height:100%}
+.page.active{display:block}
+
+/* HOME */
+.home{
+  width:100%;
+  height:100%;
+  position:relative;
+}
+.home img{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:contain;
+  opacity:0;
+  transition:opacity .8s ease;
+}
+.home img.active{opacity:1}
+
+/* SECTIONS */
+.section{
+  height:100%;
+  display:flex;
+  flex-direction:column;
+}
+.section-text{
+  min-height:120px;
+  font-size:14px;
+  opacity:.7;
+  margin-bottom:32px;
+}
+.project-list{
+  flex:1;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:32px;
+  overflow-y:auto;
+}
+
+/* GALLERY */
+.gallery{
+  height:100%;
+  display:flex;
+  flex-direction:column;
+}
+.viewer{
+  flex:1;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+.viewer img{
+  max-width:100%;
+  max-height:100%;
+  object-fit:contain;
+}
+.gallery-thumbs{
+  max-height:240px;
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(120px,1fr));
+  gap:18px;
+  overflow-y:auto;
+}
+.gallery-thumbs img{
+  opacity:.5;
+  cursor:pointer;
+}
+.gallery-thumbs img.active{opacity:1}
+
+.text{
+  max-width:640px;
+  font-size:15px;
+  line-height:1.75;
+}
