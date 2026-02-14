@@ -85,6 +85,37 @@
     if(e.target.classList.contains('prev')) prev();
   });
 
+  // AUTO-DISCOVERY: probe for images in data-prefix projects
+  function initProjects(){
+    document.querySelectorAll('.project[data-prefix]').forEach(proj => {
+      const prefix = proj.dataset.prefix;
+      const path = proj.dataset.path;
+      const ext = proj.dataset.ext || 'jpeg';
+
+      function probe(n){
+        const img = new Image();
+        img.onload = function(){
+          const el = document.createElement('img');
+          el.src = img.src;
+          el.alt = '';
+          proj.appendChild(el);
+          probe(n + 1);
+        };
+        img.onerror = function(){
+          // No more images — hide project if empty
+          if(proj.querySelectorAll('img').length === 0){
+            proj.style.display = 'none';
+          }
+        };
+        img.src = path + prefix + '_' + n + '.' + ext;
+      }
+
+      probe(1);
+    });
+  }
+
+  initProjects();
+
   // HOME SLIDESHOW
   let i = 0;
   const slides = document.querySelectorAll('.home img');

@@ -134,6 +134,9 @@ body{
   cursor:pointer;
 }
 
+/* Ocultar projetos vazios (sem imagens carregadas) */
+.project:empty{display:none}
+
 /* GALLERY */
 .gallery{
   height:100%;
