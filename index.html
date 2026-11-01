@@ -2,7 +2,12 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <title>___TOSO</title>
+  <title>___TOSO — Renato Toso, fotografia</title>
+  <meta name="description" content="Renato Toso — fotógrafo em São Paulo. Still life, produto, publicidade, moda e retrato.">
+  <meta property="og:title" content="___TOSO — Renato Toso">
+  <meta property="og:description" content="Fotografia de still life, produto, publicidade, moda e retrato. São Paulo, Brasil.">
+  <meta property="og:image" content="https://www.toso.studio/assets/img/home/home01.jpg">
+  <meta property="og:type" content="website">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 
   <link rel="stylesheet" href="/assets/css/style.css">
@@ -22,12 +27,12 @@
     </button>
 
     <div class="menu">
-      <a data-route="home" class="active">home</a>
-      <a data-route="ads">products & advertising</a>
-      <a data-route="people">people & fashion</a>
-      <a data-route="personal">personal work</a>
-      <a data-route="bio">bio</a>
-      <a data-route="contact">contact</a>
+      <a href="#home" data-route="home" class="active">home</a>
+      <a href="#ads" data-route="ads">products & advertising</a>
+      <a href="#people" data-route="people">people & fashion</a>
+      <a href="#personal" data-route="personal">personal work</a>
+      <a href="#bio" data-route="bio">bio</a>
+      <a href="#contact" data-route="contact">contact</a>
     </div>
   </nav>
 
@@ -38,9 +43,9 @@
     <section id="home" class="page active">
       <div class="home">
         <img src="/assets/img/home/home01.jpg" class="active" alt="">
-        <img src="/assets/img/home/home02.jpg" alt="">
-        <img src="/assets/img/home/home03.jpg" alt="">
-        <img src="/assets/img/home/home04.jpg" alt="">
+        <img data-src="/assets/img/home/home02.jpg" alt="">
+        <img data-src="/assets/img/home/home03.jpg" alt="">
+        <img data-src="/assets/img/home/home04.jpg" alt="">
       </div>
     </section>
 
@@ -55,28 +60,12 @@
         <div class="project-list">
 
           <!-- PROJETO 1 -->
-          <div class="project" data-project="theordinary" data-title="The Ordinary · Advertising">
-            <img src="/assets/img/ads/ads-theordinary-1.jpg" alt="">
-            <img src="/assets/img/ads/ads-theordinary-2.jpg" alt="">
-            <img src="/assets/img/ads/ads-theordinary-3.jpg" alt="">
-            <img src="/assets/img/ads/ads-theordinary-4.jpg" alt="">
-            <img src="/assets/img/ads/ads-theordinary-5.jpg" alt="">
-          </div>
+          <div class="project" data-project="theordinary" data-title="The Ordinary · Advertising"
+               data-images="/assets/img/ads/ads-theordinary-1.jpg,/assets/img/ads/ads-theordinary-2.jpg,/assets/img/ads/ads-theordinary-3.jpg,/assets/img/ads/ads-theordinary-4.jpg,/assets/img/ads/ads-theordinary-5.jpg"></div>
 
           <!-- PROJETO 2 -->
-          <div class="project" data-project="perfumes" data-title="Perfumaria · Vogue">
-            <img src="/assets/img/ads/ads-perfumes-1.jpg" alt="">
-            <img src="/assets/img/ads/ads-perfumes-2.jpg" alt="">
-            <img src="/assets/img/ads/ads-perfumes-3.jpg" alt="">
-            <img src="/assets/img/ads/ads-perfumes-4.jpg" alt="">
-            <img src="/assets/img/ads/ads-perfumes-5.jpg" alt="">
-            <img src="/assets/img/ads/ads-perfumes-6.jpg" alt="">
-            <img src="/assets/img/ads/ads-perfumes-7.jpg" alt="">
-            <img src="/assets/img/ads/ads-perfumes-8.jpg" alt="">
-            <img src="/assets/img/ads/ads-perfumes-9.jpg" alt="">
-            <img src="/assets/img/ads/ads-perfumes-10.jpg" alt="">
-            <img src="/assets/img/ads/ads-perfumes-11.jpg" alt="">
-          </div>
+          <div class="project" data-project="perfumes" data-title="Perfumaria · Vogue"
+               data-images="/assets/img/ads/ads-perfumes-1.jpg,/assets/img/ads/ads-perfumes-2.jpg,/assets/img/ads/ads-perfumes-3.jpg,/assets/img/ads/ads-perfumes-4.jpg,/assets/img/ads/ads-perfumes-5.jpg,/assets/img/ads/ads-perfumes-6.jpg,/assets/img/ads/ads-perfumes-7.jpg,/assets/img/ads/ads-perfumes-8.jpg,/assets/img/ads/ads-perfumes-9.jpg,/assets/img/ads/ads-perfumes-10.jpg,/assets/img/ads/ads-perfumes-11.jpg"></div>
 
           <!-- NOVOS PROJETOS ADS (auto-discovery) -->
           <div class="project" data-prefix="ads_a" data-path="/assets/img/ads/ads_a/" data-ext="jpeg"></div>
