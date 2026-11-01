@@ -6,7 +6,7 @@
   <meta name="description" content="Renato Toso — fotógrafo em São Paulo. Still life, produto, publicidade, moda e retrato.">
   <meta property="og:title" content="___TOSO — Renato Toso">
   <meta property="og:description" content="Fotografia de still life, produto, publicidade, moda e retrato. São Paulo, Brasil.">
-  <meta property="og:image" content="https://www.toso.studio/assets/img/home/home01.jpg">
+  <meta property="og:image" content="https://www.toso.studio/assets/img/home/01-l.jpg">
   <meta property="og:type" content="website">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 
@@ -29,8 +29,11 @@
     <div class="menu">
       <a href="#home" data-route="home" class="active">home</a>
       <a href="#ads" data-route="ads">products & advertising</a>
+      <div class="submenu" data-section="ads"></div>
       <a href="#people" data-route="people">people & fashion</a>
+      <div class="submenu" data-section="people"></div>
       <a href="#personal" data-route="personal">personal work</a>
+      <div class="submenu" data-section="personal"></div>
       <a href="#bio" data-route="bio">bio</a>
       <a href="#contact" data-route="contact">contact</a>
     </div>
@@ -41,12 +44,7 @@
 
     <!-- HOME -->
     <section id="home" class="page active">
-      <div class="home">
-        <img src="/assets/img/home/home01.jpg" class="active" alt="">
-        <img data-src="/assets/img/home/home02.jpg" alt="">
-        <img data-src="/assets/img/home/home03.jpg" alt="">
-        <img data-src="/assets/img/home/home04.jpg" alt="">
-      </div>
+      <div class="home" id="homeSlides"></div>
     </section>
 
     <!-- ADS -->
@@ -57,27 +55,7 @@
           Products & Advertising
         </div>
 
-        <div class="project-list">
-
-          <!-- PROJETO 1 -->
-          <div class="project" data-project="theordinary" data-title="The Ordinary · Advertising"
-               data-images="/assets/img/ads/ads-theordinary-1.jpg,/assets/img/ads/ads-theordinary-2.jpg,/assets/img/ads/ads-theordinary-3.jpg,/assets/img/ads/ads-theordinary-4.jpg,/assets/img/ads/ads-theordinary-5.jpg"></div>
-
-          <!-- PROJETO 2 -->
-          <div class="project" data-project="perfumes" data-title="Perfumaria · Vogue"
-               data-images="/assets/img/ads/ads-perfumes-1.jpg,/assets/img/ads/ads-perfumes-2.jpg,/assets/img/ads/ads-perfumes-3.jpg,/assets/img/ads/ads-perfumes-4.jpg,/assets/img/ads/ads-perfumes-5.jpg,/assets/img/ads/ads-perfumes-6.jpg,/assets/img/ads/ads-perfumes-7.jpg,/assets/img/ads/ads-perfumes-8.jpg,/assets/img/ads/ads-perfumes-9.jpg,/assets/img/ads/ads-perfumes-10.jpg,/assets/img/ads/ads-perfumes-11.jpg"></div>
-
-          <!-- NOVOS PROJETOS ADS (auto-discovery) -->
-          <div class="project" data-prefix="ads_a" data-path="/assets/img/ads/ads_a/" data-ext="jpeg"></div>
-          <div class="project" data-prefix="ads_b" data-path="/assets/img/ads/ads_b/" data-ext="jpeg"></div>
-          <div class="project" data-prefix="ads_c" data-path="/assets/img/ads/ads_c/" data-ext="jpeg"></div>
-          <div class="project" data-prefix="ads_d" data-path="/assets/img/ads/ads_d/" data-ext="jpeg"></div>
-          <div class="project" data-prefix="ads_e" data-path="/assets/img/ads/ads_e/" data-ext="jpeg"></div>
-          <div class="project" data-prefix="ads_f" data-path="/assets/img/ads/ads_f/" data-ext="jpeg"></div>
-          <div class="project" data-prefix="ads_g" data-path="/assets/img/ads/ads_g/" data-ext="jpeg"></div>
-          <div class="project" data-prefix="ads_h" data-path="/assets/img/ads/ads_h/" data-ext="jpeg"></div>
-
-        </div>
+        <div class="project-list" data-section="ads"></div>
       </div>
     </section>
 
@@ -85,7 +63,11 @@
     <section id="gallery" class="page">
       <div class="gallery">
 
-        <button class="back-btn" id="backBtn">&larr; voltar</button>
+        <div class="gallery-head">
+          <button class="back-btn" id="backBtn">&larr; voltar</button>
+          <span class="gallery-title" id="galleryTitle"></span>
+          <span class="gallery-count" id="galleryCount"></span>
+        </div>
 
         <div class="viewer">
           <button class="nav-arrow prev">&lsaquo;</button>
@@ -102,18 +84,7 @@
     <section id="people" class="page">
       <div class="section">
         <div class="section-text">People & Fashion</div>
-        <div class="project-list">
-          <div class="project" data-prefix="ppl_a" data-path="/assets/img/ppl/ppl_a/" data-ext="jpeg"></div>
-          <div class="project" data-prefix="ppl_b" data-path="/assets/img/ppl/ppl_b/" data-ext="jpeg"></div>
-          <div class="project" data-prefix="ppl_c" data-path="/assets/img/ppl/ppl_c/" data-ext="jpeg"></div>
-          <div class="project" data-prefix="ppl_d" data-path="/assets/img/ppl/ppl_d/" data-ext="jpeg"></div>
-          <div class="project" data-prefix="ppl_e" data-path="/assets/img/ppl/ppl_e/" data-ext="jpeg"></div>
-          <div class="project" data-prefix="ppl_f" data-path="/assets/img/ppl/ppl_f/" data-ext="jpeg"></div>
-          <div class="project" data-prefix="ppl_g" data-path="/assets/img/ppl/ppl_g/" data-ext="jpeg"></div>
-          <div class="project" data-prefix="ppl_h" data-path="/assets/img/ppl/ppl_h/" data-ext="jpeg"></div>
-          <div class="project" data-prefix="ppl_i" data-path="/assets/img/ppl/ppl_i/" data-ext="jpeg"></div>
-          <div class="project" data-prefix="ppl_j" data-path="/assets/img/ppl/ppl_j/" data-ext="jpeg"></div>
-        </div>
+        <div class="project-list" data-section="people"></div>
       </div>
     </section>
 
@@ -121,14 +92,7 @@
     <section id="personal" class="page">
       <div class="section">
         <div class="section-text">Personal work</div>
-        <div class="project-list">
-          <div class="project" data-prefix="pers_a" data-path="/assets/img/pers/pers_a/" data-ext="jpeg"></div>
-          <div class="project" data-prefix="pers_b" data-path="/assets/img/pers/pers_b/" data-ext="jpeg"></div>
-          <div class="project" data-prefix="pers_c" data-path="/assets/img/pers/pers_c/" data-ext="jpeg"></div>
-          <div class="project" data-prefix="pers_d" data-path="/assets/img/pers/pers_d/" data-ext="jpeg"></div>
-          <div class="project" data-prefix="pers_e" data-path="/assets/img/pers/pers_e/" data-ext="jpeg"></div>
-          <div class="project" data-prefix="pers_f" data-path="/assets/img/pers/pers_f/" data-ext="jpeg"></div>
-        </div>
+        <div class="project-list" data-section="personal"></div>
       </div>
     </section>
 
