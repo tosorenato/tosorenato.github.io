@@ -130,24 +130,6 @@ body{
 
 @keyframes fade{from{opacity:0}to{opacity:1}}
 
-/* Moldura de área constante (mantida para uso futuro) */
-.fit{
-  --s:80cqmin;
-  display:block;
-  position:relative;
-  aspect-ratio:var(--r, 1);
-  width:min(calc(var(--s) * var(--sr, 1)), 100cqw, calc(100cqh * var(--r, 1)));
-}
-
-.fit img{
-  display:block;
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  user-select:none;
-  -webkit-user-drag:none;
-}
-
 /* ─── HOME: foto cobre o painel inteiro ─── */
 .home{
   position:relative;
@@ -156,18 +138,27 @@ body{
   overflow:hidden;
 }
 
-.home .fit{
+.slide{
   position:absolute;
   inset:0;
-  width:100%;
-  height:100%;
-  aspect-ratio:auto;
+  display:block;
   opacity:0;
+  pointer-events:none;          /* só o slide visível recebe o clique */
+  cursor:pointer;
   transition:opacity 1.2s var(--ease);
 }
 
-.home .fit{pointer-events:none;cursor:pointer}
-.home .fit.active{opacity:1;pointer-events:auto}
+.slide.active{opacity:1;pointer-events:auto}
+
+.slide img,
+.frame img{
+  display:block;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  user-select:none;
+  -webkit-user-drag:none;
+}
 
 /* ─── FAIXA LATERAL (abas e galeria) ─── */
 .section,
@@ -221,6 +212,9 @@ body{
 .project,
 .gallery-thumbs .cell{
   display:block;
+  padding:0;
+  border:0;
+  background:none;
   flex-shrink:0;
   aspect-ratio:4/5;
   overflow:hidden;
@@ -258,6 +252,8 @@ body{
   color:#fff;
   text-decoration:none;
 }
+
+.stage:not([data-key]){visibility:hidden}
 
 .stage img{
   position:absolute;
@@ -333,15 +329,12 @@ body{
   touch-action:pan-y pinch-zoom;
 }
 
-#mainFit{
+.frame{
   position:absolute;
   inset:0;
-  width:100%;
-  height:100%;
-  aspect-ratio:auto;
 }
 
-#mainFit.landscape img{object-fit:contain}
+.frame.landscape img{object-fit:contain}   /* horizontais: inteiras */
 
 /* Setas brancas, finas, sobre a foto */
 .nav-arrow{
@@ -509,8 +502,7 @@ body{
   }
 
   /* ─── HOME: capa em 4:5, de borda a borda na largura, como nas abas ─── */
-  .home .fit{
-    inset:0;
+  .slide{
     margin:auto;
     width:100%;
     height:auto;
@@ -592,10 +584,7 @@ body{
 
   .gallery-thumbs .cell{height:100%;width:auto}
 
-  /* foto ocupa toda a área que sobra (sangria total); horizontais seguem
-     a regra do desktop: inteiras, de borda a borda na largura */
-  #mainFit img{object-fit:cover}
-  #mainFit.landscape img{object-fit:contain}
+  /* a foto ocupa toda a área que sobra; horizontais inteiras (regra .frame) */
 
   .nav-arrow::before{border-color:var(--ink);filter:none;opacity:.3;width:10px;height:10px}
   .nav-arrow.prev::before{left:10px}

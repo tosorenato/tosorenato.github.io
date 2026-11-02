@@ -2,14 +2,17 @@
   const PAGES = ['home','ads','people','personal','gallery','bio','contact'];
   const MENU_ROUTES = ['home','ads','people','personal','bio','contact'];
   const SECTIONS = ['ads','people','personal'];
+  const MOBILE = matchMedia('(max-width: 768px)');   // mesmo breakpoint do CSS
   const $ = id => document.getElementById(id);
   const nav = $('nav'), content = $('content'), hamburger = $('hamburger');
-  const mainImage = $('mainImage'), thumbs = $('galleryThumbs');
+  const mainImage = $('mainImage'), mainFrame = $('mainFrame'), thumbs = $('galleryThumbs');
   const gTitle = $('galleryTitle'), gCount = $('galleryCount');
 
-  // Manifest gerado por tools/publish.py:
-  // { sizes:{l,m,s}, home:[{src,w,h}], sections:{ads:[{slug,title,date,images:[{src,w,h}]}]} }
+  // Manifest gerado por tools/publish.py (assets/projects.json):
+  // { sizes:{l,m,s}, sections:{ads:[{slug,title,date,images:[{src,w,h}]}], people:[…], personal:[…]} }
   // Cada imagem existe em src-l.jpg (2560), src-m.jpg (1280) e src-s.jpg (480).
+  // A primeira imagem de cada projeto é a capa (abas e home).
+  // (O campo "home" do manifest vem da pasta _home e não é mais usado.)
   let SIZES = {l:2560, m:1280, s:480};
   const projects = {};          // "ads/slug" -> projeto
   let current = null, currentIndex = 0, lastSection = 'ads';
@@ -29,22 +32,6 @@
     el.decoding = 'async';
     if(!eager) el.loading = 'lazy';
     return el;
-  }
-
-  // Moldura de área constante: a imagem ganha --r (proporção) e --sr (raiz da
-  // proporção). O CSS calcula largura = S·√r e altura = S/√r, então vertical,
-  // horizontal e quadrada ocupam a mesma área, sem corte.
-  function setRatio(box, img){
-    const r = img.w / img.h;
-    box.style.setProperty('--r', r.toFixed(4));
-    box.style.setProperty('--sr', Math.sqrt(r).toFixed(4));
-  }
-  function fit(img, child){
-    const box = document.createElement('span');
-    box.className = 'fit';
-    setRatio(box, img);
-    box.appendChild(child);
-    return box;
   }
 
   const ready = fetch('/assets/projects.json', {cache:'no-cache'})
@@ -75,7 +62,7 @@
       el.decoding = 'async';
       el._set = () => { if(!el.srcset){ el.srcset = srcset(img, ['m','l']); el.src = url(img,'l'); } };
       const f = document.createElement('a');
-      f.className = 'fit';
+      f.className = 'slide';
       f.href = `#${key}/1`;
       f.dataset.key = key;
       f.appendChild(el);
@@ -121,7 +108,7 @@
       name.className = 'project-name';          // visível só no celular
       name.textContent = p.title;
       card.append(cover, name);
-      cover.addEventListener('load', () => edgeTone(cover, card), {once:true});
+      if(MOBILE.matches) cover.addEventListener('load', () => edgeTone(cover, card), {once:true});
       card.addEventListener('mouseenter', () => showStage(stage, projects[key]));
       card.addEventListener('focus', () => showStage(stage, projects[key]));
       grid.appendChild(card);
@@ -220,8 +207,10 @@
         t.alt = '';
         t.loading = 'lazy';
         t.decoding = 'async';
-        const cell = document.createElement('span');
+        const cell = document.createElement('button');
         cell.className = 'cell';
+        cell.type = 'button';
+        cell.setAttribute('aria-label', `foto ${i + 1}`);
         cell.appendChild(t);
         cell.onclick = () => go(i);
         thumbs.appendChild(cell);
@@ -236,9 +225,8 @@
     currentIndex = index;
     const img = current.images[index];
     mainImage.removeAttribute('srcset');
-    setRatio($('mainFit'), img);
     // horizontais: sem corte (encostam nas laterais); verticais: sangria total
-    $('mainFit').classList.toggle('landscape', img.w / img.h > 1.05);
+    mainFrame.classList.toggle('landscape', img.w / img.h > 1.05);
     mainImage.sizes = '(max-width: 768px) 100vw, 55vw';
     mainImage.srcset = srcset(img, ['m','l']);
     mainImage.src = url(img, 'l');
