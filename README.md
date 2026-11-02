@@ -12,9 +12,13 @@ As fotos **não** são editadas aqui. A fonte é a pasta do Dropbox `_website/`:
 
 `tools/publish.py` roda no Mac e gera:
 
-- `assets/img/work/<slug>/NN-{l,m,s}.jpg`: lado maior com 2560, 1280 e 480 px, JPEG sRGB
-- `assets/img/og.jpg`: 1200 px
-- `assets/projects.json`: `{ sizes, work: [{slug, title, date, images: [{src, w, h}]}] }`
+- `assets/img/work/<slug>/<slug>-NN-{l,m,s}.webp`: lado maior com 2560, 1280 e 480 px, WebP sRGB
+- `assets/img/og/<slug>.jpg` e `assets/img/og.jpg`: 1200 px, JPEG (preview de WhatsApp e Instagram)
+- `assets/projects.json`: `{ ext, sizes, work: [{slug, title, titulo, date, lastmod, desc, cat, og, images: [{src, w, h}]}] }`
+
+Textos opcionais ficam em `_build/textos.json` (Dropbox): chave = nome da pasta, valor `{"titulo", "descricao", "categoria"}`.
+
+Depois do publish, **rode `python3 tools/build_pages.py`** (gera as páginas, o sitemap e o robots) e `python3 tools/build_pages.py --check` (confere o HTML sem JavaScript). Commite as páginas geradas junto.
 
 Regras:
 - nome da pasta = título do trabalho, exibido como está (ex.: `2026_luiza_barcelos`);
@@ -28,12 +32,13 @@ Nunca edite `assets/img/` ou `projects.json` à mão. Rode o publish de novo.
 
 | Arquivo | O que faz |
 |---|---|
-| `index.html` | esqueleto: menu (`selected work` com a lista de trabalhos, `contact`), home, feed e contato. O conteúdo vem do JS |
-| `assets/js/main.js` | lê o manifest → `buildFeed` (posts, carrosséis, submenu) → `buildHome` (capas sorteadas) → rotas por hash → foco do feed, deslizes, clique, teclado |
+| `index.html` | molde e página inicial: menu (`selected work` com a lista de trabalhos, `contact`), home, feed e contato. O conteúdo vem do JS. As regiões `<!--seo:head-->` e `<!--seo:body-->` são geradas |
+| `tools/build_pages.py` | gera `/trabalhos/`, `/trabalhos/<slug>/` (um por trabalho), `/contato/`, `404.html`, `sitemap.xml`, `robots.txt` e `.nojekyll`, com title, description, canonical, Open Graph, JSON-LD, H1 e fotos com alt no HTML |
+| `assets/js/main.js` | lê o manifest → `buildFeed` (posts, carrosséis, submenu) → `buildHome` (capas sorteadas) → rotas por caminho → foco do feed, deslizes, clique, teclado |
 | `assets/css/style.css` | desktop (menu 30% \| conteúdo 70%) e um único layout para celular e tablet em pé (`MOBILE` no JS, mesma media query) |
 | `assets/fonts/` | Bodoni Moda (SIL OFL): nome dos trabalhos |
 
-Rotas: (vazio) home · `#work` feed · `#work/<slug>/<n>` trabalho na foto n · `#contact`. Links antigos (`#ads/...`, `#people`, `#bio`..., ou slug sem o ano, como `#work/melissa/2`) são redirecionados.
+Rotas (cada uma existe como página estática, com o mesmo JS): `/` home · `/trabalhos/` feed · `/trabalhos/<slug>/` trabalho (foto n em `#n`) · `/contato/`. Links antigos com `#` (`#work`, `#work/<slug>/<n>`, `#ads/...`, `#contact`, `#people`, `#bio`..., ou slug sem o ano, como `#work/melissa/2`) são levados ao caminho novo. O slug é a URL pública do trabalho: não renomeie pastas depois de indexadas.
 
 Peças principais:
 - `.fit`: a foto na proporção exata dentro de uma caixa 4x5 horizontal (5:4) centralizada no conteúdo. Verticais têm a altura toda, horizontais têm a largura da caixa, e nada é cortado. Vale para a home (`.slide`) e para o feed (`.frame`). No celular também não há corte: a home mostra a capa na proporção exata, e cada post do feed tem a proporção da capa (`--pr`), com todas as fotos inteiras (`contain`).
@@ -45,6 +50,7 @@ Peças principais:
 ## Testar antes de publicar
 
 ```
+python3 tools/build_pages.py --check
 python3 -m http.server 8000
 ```
 Testar com Playwright em 1918×932, 1440×900, 1280×800 e 390×844: zero erros no console e zero 404. Conferir rolagem, clique, teclado, menu, voltar do navegador e links diretos.
