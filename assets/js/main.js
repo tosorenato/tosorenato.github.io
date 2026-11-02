@@ -31,6 +31,22 @@
     return el;
   }
 
+  // Moldura de área constante: a imagem ganha --r (proporção) e --sr (raiz da
+  // proporção). O CSS calcula largura = S·√r e altura = S/√r, então vertical,
+  // horizontal e quadrada ocupam a mesma área, sem corte.
+  function setRatio(box, img){
+    const r = img.w / img.h;
+    box.style.setProperty('--r', r.toFixed(4));
+    box.style.setProperty('--sr', Math.sqrt(r).toFixed(4));
+  }
+  function fit(img, child){
+    const box = document.createElement('span');
+    box.className = 'fit';
+    setRatio(box, img);
+    box.appendChild(child);
+    return box;
+  }
+
   const ready = fetch('/assets/projects.json', {cache:'no-cache'})
     .then(r => r.json())
     .then(m => {
@@ -51,22 +67,24 @@
       el.alt = '';
       el.decoding = 'async';
       el._set = () => { if(!el.srcset){ el.srcset = srcset(img, ['m','l']); el.src = url(img,'l'); } };
-      if(i === 0){ el._set(); el.classList.add('active'); el.fetchPriority = 'high'; }
-      box.appendChild(el);
-      return el;
+      const f = fit(img, el);
+      f._img = el;
+      if(i === 0){ el._set(); f.classList.add('active'); el.fetchPriority = 'high'; }
+      box.appendChild(f);
+      return f;
     });
-    if(slides[1]) window.addEventListener('load', () => slides[1]._set());
+    if(slides[1]) window.addEventListener('load', () => slides[1]._img._set());
   }
 
   let si = 0;
   setInterval(() => {
     if(slides.length < 2 || !$('home').classList.contains('active') || document.hidden) return;
-    const nxt = slides[(si + 1) % slides.length];
+    const nxt = slides[(si + 1) % slides.length]._img;
     if(!nxt.srcset || !nxt.complete){ nxt._set(); return; }
     slides[si].classList.remove('active');
     si = (si + 1) % slides.length;
     slides[si].classList.add('active');
-    slides[(si + 1) % slides.length]._set();
+    slides[(si + 1) % slides.length]._img._set();
   }, 5000);
 
   // ─── SEÇÕES ───
@@ -83,13 +101,18 @@
       card.className = 'project';
       card.href = `#${key}/1`;
       card.dataset.key = key;
-      const cover = picture(p.images[0], ['s','m','l'],
-        '(max-width: 768px) 50vw, 30vw', i < 2);
+      const cover = picture(p.images[0], ['s','m'],
+        '(max-width: 768px) 45vw, 22vw', i < 3);
       cover.alt = p.title;
+      const box = fit(p.images[0], cover);
       const cap = document.createElement('span');
       cap.className = 'project-title';
       cap.textContent = p.title;
-      card.append(cover, cap);
+      box.appendChild(cap);
+      const cell = document.createElement('span');
+      cell.className = 'cell';
+      cell.appendChild(box);
+      card.appendChild(cell);
       grid.appendChild(card);
 
       const a = document.createElement('a');
@@ -152,8 +175,11 @@
         t.alt = '';
         t.loading = 'lazy';
         t.decoding = 'async';
-        t.onclick = () => go(i);
-        thumbs.appendChild(t);
+        const cell = document.createElement('span');
+        cell.className = 'cell';
+        cell.appendChild(fit(img, t));
+        cell.onclick = () => go(i);
+        thumbs.appendChild(cell);
       });
       gTitle.textContent = p.title;
     }
@@ -165,7 +191,7 @@
     currentIndex = index;
     const img = current.images[index];
     mainImage.removeAttribute('srcset');
-    mainImage.width = img.w; mainImage.height = img.h;
+    setRatio($('mainFit'), img);
     mainImage.sizes = '(max-width: 768px) 100vw, 65vw';
     mainImage.srcset = srcset(img, ['m','l']);
     mainImage.src = url(img, 'l');
