@@ -23,8 +23,10 @@ Regras
   sem metadados, com nome legível: work/<slug>/<slug>-NN-<tamanho>.webp.
   A foto de compartilhamento (og.jpg, 1200 px) continua JPEG, por compatibilidade
   com o preview de WhatsApp e Instagram.
+- Cada trabalho também gera og/<slug>.jpg (capa, 1200 px, JPEG) para o preview de links.
 - Textos opcionais: <saida>/textos.json, chave = nome da pasta,
-  {"descricao": "...", "categoria": "..."}. Entram no manifest como desc e cat.
+  {"titulo": "...", "descricao": "...", "categoria": "..."}. Entram no manifest
+  como titulo, desc e cat (titulo troca o nome exibido nas páginas de SEO).
 - lastmod de cada trabalho = data do arquivo de origem mais recente (para o sitemap).
 - Cache incremental: só reprocessa o que mudou (caminho + tamanho + data).
 
@@ -158,9 +160,13 @@ def main():
                 w, h = build(f, rel, [(f"{rel}-{k}.{EXT}", e, q) for k, (e, q) in SIZES.items()])
                 images.append({"src": f"/assets/img/{rel}", "w": w, "h": h})
             tx = textos.get(d.name, {})
+            # imagem de compartilhamento do trabalho (capa, 1200 px, JPEG)
+            build(files[0], f"og/{slug}", [(f"og/{slug}.jpg", *OG)])
             work = {
                 "slug": slug,
                 "title": d.name.strip().lower(),
+                "titulo": tx.get("titulo", ""),
+                "og": f"/assets/img/og/{slug}.jpg",
                 "date": order[okey],
                 "lastmod": date.fromtimestamp(max(f.stat().st_mtime for f in files)).isoformat(),
                 "desc": tx.get("descricao", ""),

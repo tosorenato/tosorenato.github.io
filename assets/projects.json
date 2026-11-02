@@ -9,6 +9,8 @@
   {
    "slug": "personal-flowers",
    "title": "_personal_flowers",
+   "titulo": "",
+   "og": "/assets/img/og/personal-flowers.jpg",
    "date": "2026-09-15",
    "lastmod": "2026-09-15",
    "desc": "",
@@ -54,6 +56,8 @@
   {
    "slug": "personal-portraits",
    "title": "_personal_portraits",
+   "titulo": "",
+   "og": "/assets/img/og/personal-portraits.jpg",
    "date": "2026-10-05",
    "lastmod": "2026-11-02",
    "desc": "",
@@ -129,6 +133,8 @@
   {
    "slug": "2026-roberto-strongoli",
    "title": "2026_roberto_strongoli",
+   "titulo": "",
+   "og": "/assets/img/og/2026-roberto-strongoli.jpg",
    "date": "2026-11-01",
    "lastmod": "2026-11-01",
    "desc": "",
@@ -149,6 +155,8 @@
   {
    "slug": "2026-vogue-selected-stills",
    "title": "2026_vogue_selected_stills",
+   "titulo": "",
+   "og": "/assets/img/og/2026-vogue-selected-stills.jpg",
    "date": "2026-10-19",
    "lastmod": "2026-10-19",
    "desc": "",
@@ -184,6 +192,8 @@
   {
    "slug": "2026-vogue-perfumes",
    "title": "2026_vogue_perfumes",
+   "titulo": "",
+   "og": "/assets/img/og/2026-vogue-perfumes.jpg",
    "date": "2026-09-15",
    "lastmod": "2026-09-15",
    "desc": "",
@@ -259,6 +269,8 @@
   {
    "slug": "2026-page9",
    "title": "2026_page9",
+   "titulo": "",
+   "og": "/assets/img/og/2026-page9.jpg",
    "date": "2026-08-04",
    "lastmod": "2026-08-04",
    "desc": "",
@@ -299,6 +311,8 @@
   {
    "slug": "2026-luiza-barcelos",
    "title": "2026_luiza_barcelos",
+   "titulo": "",
+   "og": "/assets/img/og/2026-luiza-barcelos.jpg",
    "date": "2026-07-20",
    "lastmod": "2026-07-20",
    "desc": "",
@@ -344,6 +358,8 @@
   {
    "slug": "2026-mizuno-budweiser",
    "title": "2026_mizuno+budweiser",
+   "titulo": "",
+   "og": "/assets/img/og/2026-mizuno-budweiser.jpg",
    "date": "2026-05-10",
    "lastmod": "2026-05-10",
    "desc": "",
@@ -384,6 +400,8 @@
   {
    "slug": "2026-gq-cassio",
    "title": "2026_gq_cassio",
+   "titulo": "",
+   "og": "/assets/img/og/2026-gq-cassio.jpg",
    "date": "2026-04-21",
    "lastmod": "2026-04-21",
    "desc": "",
@@ -409,6 +427,8 @@
   {
    "slug": "2026-notorious-fish",
    "title": "2026_notorious_fish",
+   "titulo": "",
+   "og": "/assets/img/og/2026-notorious-fish.jpg",
    "date": "2026-04-03",
    "lastmod": "2026-04-03",
    "desc": "",
@@ -454,6 +474,8 @@
   {
    "slug": "2026-melissa",
    "title": "2026_melissa",
+   "titulo": "",
+   "og": "/assets/img/og/2026-melissa.jpg",
    "date": "2025-12-10",
    "lastmod": "2025-12-10",
    "desc": "",
@@ -509,6 +531,8 @@
   {
    "slug": "2025-vogue-hstern",
    "title": "2025_vogue+hstern",
+   "titulo": "",
+   "og": "/assets/img/og/2025-vogue-hstern.jpg",
    "date": "2025-10-15",
    "lastmod": "2025-10-15",
    "desc": "",
@@ -569,6 +593,8 @@
   {
    "slug": "2025-vogue-perfumes",
    "title": "2025_vogue_perfumes",
+   "titulo": "",
+   "og": "/assets/img/og/2025-vogue-perfumes.jpg",
    "date": "2025-10-08",
    "lastmod": "2025-10-08",
    "desc": "",
@@ -634,6 +660,8 @@
   {
    "slug": "2025-vogue-theordinary",
    "title": "2025_vogue+theordinary",
+   "titulo": "",
+   "og": "/assets/img/og/2025-vogue-theordinary.jpg",
    "date": "2025-08-01",
    "lastmod": "2025-08-01",
    "desc": "",
