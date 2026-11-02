@@ -17,10 +17,10 @@ As fotos **não** são editadas aqui. A fonte é a pasta do Dropbox `_website/`:
 - `assets/projects.json`: `{ sizes, work: [{slug, title, date, images: [{src, w, h}]}] }`
 
 Regras:
-- nome da pasta = título do trabalho;
-- ordem natural dos arquivos = ordem das fotos;
-- a primeira foto é a capa (feed e home);
-- trabalhos do mais recente para o mais antigo, com a data registrada em `_build/order.json`.
+- nome da pasta = título do trabalho, exibido como está (ex.: `2026_luiza_barcelos`);
+- ordem natural dos arquivos = ordem das fotos; a primeira foto é a capa (feed e home);
+- ordem dos trabalhos: pastas que começam com `_` ficam fixadas no topo (ordem do Finder); depois, por ano do início do nome (`2026_`, `2025_`), do mais novo para o mais antigo; dentro do ano, mais recente primeiro, com a data registrada em `_build/order.json`;
+- para tirar um trabalho do site, mova a pasta para `_arquivo/`.
 
 Nunca edite `assets/img/` ou `projects.json` à mão. Rode o publish de novo.
 
@@ -33,7 +33,7 @@ Nunca edite `assets/img/` ou `projects.json` à mão. Rode o publish de novo.
 | `assets/css/style.css` | desktop (menu 30% \| conteúdo 70%) e um único layout para celular e tablet em pé (`MOBILE` no JS, mesma media query) |
 | `assets/fonts/` | Bodoni Moda (SIL OFL): nome dos trabalhos |
 
-Rotas: (vazio) home · `#work` feed · `#work/<slug>/<n>` trabalho na foto n · `#contact`. Links antigos (`#ads/...`, `#people`, `#bio`...) são redirecionados.
+Rotas: (vazio) home · `#work` feed · `#work/<slug>/<n>` trabalho na foto n · `#contact`. Links antigos (`#ads/...`, `#people`, `#bio`..., ou slug sem o ano, como `#work/melissa/2`) são redirecionados.
 
 Peças principais:
 - `.fit`: a foto na proporção exata dentro de uma caixa 4x5 horizontal (5:4) centralizada no conteúdo. Verticais têm a altura toda, horizontais têm a largura da caixa, e nada é cortado. Vale para a home (`.slide`) e para o feed (`.frame`).
