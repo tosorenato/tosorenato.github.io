@@ -7,6 +7,7 @@
   const nav = $('nav'), content = $('content'), hamburger = $('hamburger');
   const mainImage = $('mainImage'), mainFrame = $('mainFrame'), thumbs = $('galleryThumbs');
   const gTitle = $('galleryTitle'), gCount = $('galleryCount');
+  const viewer = document.querySelector('.viewer');
 
   // Manifest gerado por tools/publish.py (assets/projects.json):
   // { sizes:{l,m,s}, sections:{ads:[{slug,title,date,images:[{src,w,h}]}], people:[…], personal:[…]} }
@@ -18,6 +19,8 @@
   let current = null, currentIndex = 0, lastSection = 'ads';
 
   const url = (img, k) => `${img.src}-${k}.jpg`;
+  // proporção da foto → o CSS dimensiona a moldura no tamanho exato (sem corte)
+  const setRatio = (el, img) => el.style.setProperty('--r', (img.w / img.h).toFixed(4));
   function srcset(img, keys){
     const long = Math.max(img.w, img.h);
     return keys.map(k => `${url(img,k)} ${Math.round(img.w * Math.min(1, SIZES[k] / long))}w`).join(', ');
@@ -81,6 +84,7 @@
       f.className = 'slide';
       f.href = `#${key}/1`;
       f.dataset.key = key;
+      setRatio(f, img);
       f.appendChild(el);
       f._img = el;
       if(i === 0){ el._set(); f.classList.add('active'); el.fetchPriority = 'high'; }
@@ -161,6 +165,7 @@
     stage.href = `#${p.key}/1`;
     const img = stage.querySelector('img');
     const cover = p.images[0];
+    setRatio(stage, cover);
     img.sizes = '(max-width: 768px) 100vw, 55vw';
     img.srcset = srcset(cover, ['m','l']);
     img.src = url(cover, 'l');
@@ -243,6 +248,7 @@
     mainImage.removeAttribute('srcset');
     // horizontais: sem corte (encostam nas laterais); verticais: sangria total
     mainFrame.classList.toggle('landscape', img.w / img.h > 1.05);
+    setRatio(viewer, img);
     mainImage.sizes = '(max-width: 768px) 100vw, 55vw';
     mainImage.srcset = srcset(img, ['m','l']);
     mainImage.src = url(img, 'l');
@@ -303,7 +309,6 @@
 
   // ─── SWIPE ───
   let sx = 0, sy = 0, swiping = false;
-  const viewer = document.querySelector('.viewer');
   viewer?.addEventListener('touchstart', e => {
     if(e.touches.length === 1){ sx = e.touches[0].clientX; sy = e.touches[0].clientY; swiping = true; }
   }, {passive:true});
