@@ -25,8 +25,9 @@ Regras
   com o preview de WhatsApp e Instagram.
 - Cada trabalho também gera og/<slug>.jpg (capa, 1200 px, JPEG) para o preview de links.
 - Textos opcionais: <saida>/textos.json, chave = nome da pasta,
-  {"titulo": "...", "descricao": "...", "categoria": "..."}. Entram no manifest
-  como titulo, desc e cat (titulo troca o nome exibido nas páginas de SEO).
+  {"titulo": "...", "descricao": "...", "categoria": "...", "fotos": ["alt da foto 1", ...]}.
+  Entram no manifest como titulo, desc, cat e alt de cada foto (titulo troca o nome
+  exibido nas páginas de SEO; fotos segue a ordem das imagens).
 - lastmod de cada trabalho = data do arquivo de origem mais recente (para o sitemap).
 - Cache incremental: só reprocessa o que mudou (caminho + tamanho + data).
 
@@ -154,12 +155,18 @@ def main():
             if okey not in order:
                 newest = max(f.stat().st_mtime for f in files)
                 order[okey] = date.fromtimestamp(newest).isoformat()
+            tx = textos.get(d.name, {})
+            alts = tx.get("fotos") or []   # alt por foto, na ordem das fotos
+            if alts and len(alts) != len(files):
+                print(f"AVISO: {d.name} tem {len(files)} fotos e {len(alts)} textos em 'fotos'")
             images = []
             for i, f in enumerate(files, 1):
                 rel = f"work/{slug}/{slug}-{i:02d}"
                 w, h = build(f, rel, [(f"{rel}-{k}.{EXT}", e, q) for k, (e, q) in SIZES.items()])
-                images.append({"src": f"/assets/img/{rel}", "w": w, "h": h})
-            tx = textos.get(d.name, {})
+                im = {"src": f"/assets/img/{rel}", "w": w, "h": h}
+                if i <= len(alts) and alts[i - 1]:
+                    im["alt"] = alts[i - 1]
+                images.append(im)
             # imagem de compartilhamento do trabalho (capa, 1200 px, JPEG)
             build(files[0], f"og/{slug}", [(f"og/{slug}.jpg", *OG)])
             work = {
