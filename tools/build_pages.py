@@ -8,6 +8,7 @@ este script faz é dar uma URL real, com conteúdo no HTML, a cada página:
     /trabalhos/            selected work (feed)
     /trabalhos/<slug>/     um trabalho
     /contato/              contato
+    /sobre/                sobre (a bio fica no index.html, em #about)
     /404.html              página não encontrada (noindex)
     /sitemap.xml           páginas + <image:image> de cada foto
     /robots.txt
@@ -113,7 +114,7 @@ def build_pages(m):
             person]},
         "text": (f"<h1>{NAME}, {ROLE}</h1>\n<p>{esc(HOME_DESC)}</p>\n"
                  f'<nav aria-label="Trabalhos"><ul>{home_nav}</ul>\n'
-                 f'<p>{link("/trabalhos/", "Trabalhos selecionados")} {link("/contato/", "Contato")}</p></nav>'),
+                 f'<p>{link("/trabalhos/", "Trabalhos selecionados")} {link("/contato/", "Contato")} {link("/sobre/", "Sobre")}</p></nav>'),
         "gallery": "".join(
             f'<a href="{wpath(w)}" tabindex="-1">{img_tag(w["images"][0], ext, sizes, alt_of(w, 0))}</a>'
             for w in works),
@@ -136,7 +137,7 @@ def build_pages(m):
                 {"@type": "ListItem", "position": 2, "name": "Trabalhos selecionados"}]}]},
         "text": (f"<h1>Trabalhos selecionados</h1>\n<p>{esc(desc)}</p>\n"
                  f'<nav aria-label="Trabalhos"><ul>{home_nav}</ul>\n'
-                 f'<p>{link("/", "Início")} {link("/contato/", "Contato")}</p></nav>'),
+                 f'<p>{link("/", "Início")} {link("/contato/", "Contato")} {link("/sobre/", "Sobre")}</p></nav>'),
         "gallery": "".join(
             f'<a href="{wpath(w)}" tabindex="-1">{img_tag(w["images"][0], ext, sizes, alt_of(w, 0))}</a>'
             for w in works),
@@ -167,7 +168,7 @@ def build_pages(m):
             "ld": {"@context": "https://schema.org", "@graph": [gallery, crumbs]},
             "text": (f"<h1>{esc(nm)}</h1>\n<p>{esc(d)}</p>\n"
                      f'<nav aria-label="Navegação"><ul><li>{link("/", "Início")}</li>'
-                     f'<li>{link("/trabalhos/", "Trabalhos selecionados")}</li>{nav}</ul></nav>'),
+                     f'<li>{link("/trabalhos/", "Trabalhos selecionados")}</li><li>{link("/sobre/", "Sobre")}</li>{nav}</ul></nav>'),
             "gallery": "".join(
                 f'<figure>{img_tag(im, ext, sizes, alt_of(w, k))}<figcaption>{esc(alt_of(w, k))}</figcaption></figure>'
                 for k, im in enumerate(w["images"])),
@@ -179,7 +180,7 @@ def build_pages(m):
     pages.append({
         "path": "/contato/", "kind": "contact", "file": ROOT / "contato/index.html",
         "title": f"Contato — {NAME}, {ROLE}", "desc": cdesc, "og": OG_HOME,
-        "og_alt": f"Contato de {NAME}", "h1_in_shell": True,
+        "og_alt": f"Contato de {NAME}", "h1_in_shell": "Contato",
         "ld": {"@context": "https://schema.org", "@graph": [
             {"@type": "ProfessionalService", "@id": BASE + "/contato/#service", "name": f"{NAME} — fotografia",
              "url": BASE + "/contato/", "image": BASE + OG_HOME, "email": EMAIL, "telephone": PHONE,
@@ -191,7 +192,25 @@ def build_pages(m):
                 {"@type": "ListItem", "position": 2, "name": "Contato"}]}]},
         "text": (f"<p>{NAME} é {ROLE}. {esc(CONTACT_NOTE)}</p>\n"
                  f'<nav aria-label="Navegação"><ul><li>{link("/", "Início")}</li>'
-                 f'<li>{link("/trabalhos/", "Trabalhos selecionados")}</li></ul></nav>'),
+                 f'<li>{link("/trabalhos/", "Trabalhos selecionados")}</li><li>{link("/sobre/", "Sobre")}</li></ul></nav>'),
+        "gallery": "",
+    })
+
+    # sobre (a bio é o texto visível da seção #about do index.html)
+    adesc = f"{NAME} nasceu em São Paulo e trabalha com fotografia desde 2011. Moda, produto, retrato e projetos autorais."
+    pages.append({
+        "path": "/sobre/", "kind": "about", "file": ROOT / "sobre/index.html",
+        "title": f"Sobre — {NAME}, {ROLE}", "desc": adesc, "og": OG_HOME,
+        "og_alt": f"Sobre {NAME}", "h1_in_shell": "Sobre",
+        "ld": {"@context": "https://schema.org", "@graph": [
+            {"@type": "AboutPage", "@id": BASE + "/sobre/#page", "url": BASE + "/sobre/", "name": f"Sobre {NAME}",
+             "inLanguage": "pt-BR", "mainEntity": {"@id": BASE + "/#person"}},
+            person,
+            {"@type": "BreadcrumbList", "itemListElement": [
+                {"@type": "ListItem", "position": 1, "name": "Início", "item": BASE + "/"},
+                {"@type": "ListItem", "position": 2, "name": "Sobre"}]}]},
+        "text": (f'<nav aria-label="Navegação"><ul><li>{link("/", "Início")}</li>'
+                 f'<li>{link("/trabalhos/", "Trabalhos selecionados")}</li><li>{link("/contato/", "Contato")}</li></ul></nav>'),
         "gallery": "",
     })
     return pages
@@ -285,7 +304,8 @@ def generate():
         t = region(tpl, "head", head_html(p, titles))
         t = region(t, "body", body_html(p))
         if p.get("h1_in_shell"):
-            t = t.replace('<h2 class="contact-heading">Contato</h2>', '<h1 class="contact-heading">Contato</h1>')
+            h = p["h1_in_shell"]
+            t = t.replace(f'<h2 class="contact-heading">{h}</h2>', f'<h1 class="contact-heading">{h}</h1>')
         p["html"] = t
     slugs = {p["work"]["slug"] for p in pages if p.get("work")}
     tdir = ROOT / "trabalhos"

@@ -5,7 +5,7 @@
   const MOBILE = matchMedia('(max-width: 768px), (max-width: 1100px) and (orientation: portrait)');
   const HOVER = matchMedia('(hover: hover)');
   const REDUCED = matchMedia('(prefers-reduced-motion: reduce)');
-  const PAGES = ['home', 'work', 'contact'];
+  const PAGES = ['home', 'work', 'contact', 'about'];
   const $ = id => document.getElementById(id);
   const root = document.documentElement;
   const nav = $('nav'), content = $('content'), feed = $('feed');
@@ -26,7 +26,7 @@
   // /  ·  /trabalhos/  ·  /trabalhos/<trabalho>/ (foto n no hash: #n)  ·  /contato/
   // Cada caminho existe como página estática (tools/build_pages.py), com o mesmo JS.
   const WORK = '/trabalhos/';
-  const ROUTE_PATH = {work: WORK, contact: '/contato/'};
+  const ROUTE_PATH = {work: WORK, contact: '/contato/', about: '/sobre/'};
   const pathOf = slug => slug ? `${WORK}${slug}/` : WORK;
   const here = () => location.pathname + location.hash;
   let TITLES = {};
@@ -468,15 +468,17 @@
 
   // ─── ROTAS: / · /trabalhos/ · /trabalhos/<trabalho>/#<foto> · /contato/ ───
   // Links antigos com # (#work, #work/<trabalho>/<foto>, #ads/..., #contact, #home,
-  // #people, #personal, #bio) são levados ao caminho novo (migrate).
+  // #people, #personal) são levados ao caminho novo (migrate); #bio vai para /sobre/.
   function parse(){
     const p = location.pathname.replace(/index\.html$/, '');
     const m = p.match(/^\/trabalhos\/(?:([^/]+)\/?)?$/);
     if(m) return {route: 'work', slug: m[1] || '', n: parseInt(location.hash.slice(1), 10) || 1};
     if(/^\/contato\/?$/.test(p)) return {route: 'contact'};
+    if(/^\/sobre\/?$/.test(p)) return {route: 'about'};
     const [r = '', slug = '', n = ''] = location.hash.replace(/^#\/?/, '').split('/');
     if(r === 'work' || r === 'ads') return {route: 'work', slug, n: parseInt(n, 10) || 1, legacy: true};
     if(r === 'contact') return {route: 'contact', legacy: true};
+    if(r === 'bio') return {route: 'about', legacy: true};
     return {route: 'home', legacy: r !== ''};
   }
 
@@ -485,7 +487,7 @@
 
   function migrate({route, slug, n}){
     if(route === 'home') return location.replace('/');
-    if(route === 'contact') return location.replace(ROUTE_PATH.contact);
+    if(route === 'contact' || route === 'about') return location.replace(ROUTE_PATH[route]);
     if(!slug) return location.replace(WORK);
     ready.then(() => {
       const w = findWork(slug);

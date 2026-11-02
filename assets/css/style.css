@@ -365,7 +365,8 @@ img.instant{transition:none}
   letter-spacing:.005em;
 }
 
-#contact .text{
+#contact .text,
+#about .text{
   overflow-y:auto;
   height:100%;
   -webkit-overflow-scrolling:touch;
@@ -382,6 +383,9 @@ img.instant{transition:none}
 }
 
 .contact-info{margin-bottom:32px}
+
+.bio-text p{margin-bottom:1.3em}
+.bio-text .contact-heading{margin-bottom:32px}
 
 .contact-name{
   font-weight:600;
