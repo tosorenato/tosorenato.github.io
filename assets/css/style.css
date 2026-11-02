@@ -194,6 +194,7 @@ body{
 }
 
 .section-text{
+  display:none;            /* desktop: o menu já indica a seção */
   opacity:.45;
   margin-bottom:20px;
   flex-shrink:0;
@@ -335,6 +336,8 @@ body{
   height:100%;
   aspect-ratio:auto;
 }
+
+#mainFit.landscape img{object-fit:contain}
 
 /* Setas brancas, finas, sobre a foto */
 .nav-arrow{
@@ -510,7 +513,7 @@ body{
     padding:0;
   }
 
-  .section-text{margin:0;padding:14px var(--pad)}
+  .section-text{display:block;margin:0;padding:14px var(--pad)}
 
   .project-list{gap:3px;padding-bottom:0}
   .project img{opacity:1}

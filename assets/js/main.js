@@ -212,6 +212,8 @@
     const img = current.images[index];
     mainImage.removeAttribute('srcset');
     setRatio($('mainFit'), img);
+    // horizontais: sem corte (encostam nas laterais); verticais: sangria total
+    $('mainFit').classList.toggle('landscape', img.w / img.h > 1.05);
     mainImage.sizes = '(max-width: 768px) 100vw, 55vw';
     mainImage.srcset = srcset(img, ['m','l']);
     mainImage.src = url(img, 'l');
