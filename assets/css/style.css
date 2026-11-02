@@ -70,7 +70,7 @@ body{
   font-family:Helvetica, Arial, sans-serif;
   font-weight:700;
   font-size:var(--logo);
-  letter-spacing:.03em;
+  letter-spacing:.02em;          /* igual ao celular: o mesmo desenho, só maior */
   line-height:1;
   white-space:nowrap;
   color:inherit;
@@ -435,7 +435,6 @@ img.instant{transition:none}
   .logo{
     margin-top:0;
     font-size:26px;
-    letter-spacing:.02em;
   }
 
   .hamburger{display:block}
