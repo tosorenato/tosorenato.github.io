@@ -36,7 +36,7 @@ Nunca edite `assets/img/` ou `projects.json` à mão. Rode o publish de novo.
 Rotas: (vazio) home · `#work` feed · `#work/<slug>/<n>` trabalho na foto n · `#contact`. Links antigos (`#ads/...`, `#people`, `#bio`..., ou slug sem o ano, como `#work/melissa/2`) são redirecionados.
 
 Peças principais:
-- `.fit`: a foto na proporção exata dentro de uma caixa 4x5 horizontal (5:4) centralizada no conteúdo. Verticais têm a altura toda, horizontais têm a largura da caixa, e nada é cortado. Vale para a home (`.slide`) e para o feed (`.frame`).
+- `.fit`: a foto na proporção exata dentro de uma caixa 4x5 horizontal (5:4) centralizada no conteúdo. Verticais têm a altura toda, horizontais têm a largura da caixa, e nada é cortado. Vale para a home (`.slide`) e para o feed (`.frame`). No celular também não há corte: a home mostra a capa na proporção exata, e cada post do feed tem a proporção da capa (`--pr`), com todas as fotos inteiras (`contain`).
 - `.feed`: rolagem vertical com encaixe (um trabalho por tela no desktop). Cada `.post` tem um `.track`, o carrossel lateral, com uma `.pg` por foto.
 - `.cap`: nome do trabalho na vertical, ao lado da foto (desktop) ou sobre a borda esquerda (celular, preto ou branco conforme `tone()`), com o contador `n/total`.
 - `glide()`: deslize com curva suave para cliques, teclado e menu. O encaixe nativo fica desligado durante o movimento; qualquer gesto do usuário interrompe.
