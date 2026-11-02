@@ -19,8 +19,13 @@ Regras
      primeira vez que ele é publicado (semente: data do arquivo mais novo da
      pasta) e não muda depois (order.json; edite as datas para reordenar).
 - Pastas vazias ou ocultas (".") são ignoradas.
-- Cada imagem gera 3 tamanhos (lado maior): l=2560, m=1280, s=480. JPEG sRGB
-  progressivo, sem metadados. A foto de compartilhamento sai com 1200 px.
+- Cada imagem gera 3 tamanhos (lado maior): l=2560, m=1280, s=480, em WebP sRGB
+  sem metadados, com nome legível: work/<slug>/<slug>-NN-<tamanho>.webp.
+  A foto de compartilhamento (og.jpg, 1200 px) continua JPEG, por compatibilidade
+  com o preview de WhatsApp e Instagram.
+- Textos opcionais: <saida>/textos.json, chave = nome da pasta,
+  {"descricao": "...", "categoria": "..."}. Entram no manifest como desc e cat.
+- lastmod de cada trabalho = data do arquivo de origem mais recente (para o sitemap).
 - Cache incremental: só reprocessa o que mudou (caminho + tamanho + data).
 
 Uso:   python3 publish.py <pasta-fonte> <pasta-saida> [orçamento-em-segundos]
@@ -34,8 +39,9 @@ from pathlib import Path
 from PIL import Image, ImageCms, ImageOps
 
 WORK = "_selected work"
-SIZES = {"l": (2560, 82), "m": (1280, 80), "s": (480, 78)}
-OG = (1200, 80)
+EXT = "webp"
+SIZES = {"l": (2560, 84), "m": (1280, 82), "s": (480, 80)}  # (lado maior, qualidade WebP)
+OG = (1200, 80)  # JPEG
 EXTS = {".jpg", ".jpeg", ".png", ".tif", ".tiff", ".webp"}
 YEAR = re.compile(r"^(\d{4})[ _-]")
 SRGB = ImageCms.createProfile("sRGB")
@@ -81,7 +87,10 @@ def render(src, outputs):
         for dest, edge, q in outputs:
             v = im.copy()
             v.thumbnail((edge, edge), Image.LANCZOS)
-            v.save(dest, "JPEG", quality=q, progressive=True, optimize=True, subsampling="4:2:0")
+            if str(dest).lower().endswith(".webp"):
+                v.save(dest, "WEBP", quality=q, method=6)
+            else:
+                v.save(dest, "JPEG", quality=q, progressive=True, optimize=True, subsampling="4:2:0")
             first = first or v.size
         return first
 
@@ -117,7 +126,9 @@ def main():
         written.update(p for p, _, _ in outputs)
         return wh
 
-    manifest = {"sizes": {k: v[0] for k, v in SIZES.items()}, "work": []}
+    textos_file = out_root / "textos.json"
+    textos = json.loads(textos_file.read_text()) if textos_file.exists() else {}
+    manifest = {"ext": EXT, "sizes": {k: v[0] for k, v in SIZES.items()}, "work": []}
     try:
         home = src_root / "_home"
         first = images_in(home)[:1] if home.is_dir() else []
@@ -143,13 +154,17 @@ def main():
                 order[okey] = date.fromtimestamp(newest).isoformat()
             images = []
             for i, f in enumerate(files, 1):
-                rel = f"work/{slug}/{i:02d}"
-                w, h = build(f, rel, [(f"{rel}-{k}.jpg", e, q) for k, (e, q) in SIZES.items()])
+                rel = f"work/{slug}/{slug}-{i:02d}"
+                w, h = build(f, rel, [(f"{rel}-{k}.{EXT}", e, q) for k, (e, q) in SIZES.items()])
                 images.append({"src": f"/assets/img/{rel}", "w": w, "h": h})
+            tx = textos.get(d.name, {})
             work = {
                 "slug": slug,
                 "title": d.name.strip().lower(),
                 "date": order[okey],
+                "lastmod": date.fromtimestamp(max(f.stat().st_mtime for f in files)).isoformat(),
+                "desc": tx.get("descricao", ""),
+                "cat": tx.get("categoria", ""),
                 "images": images,
             }
             if d.name.startswith("_"):
