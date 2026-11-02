@@ -228,6 +228,9 @@ body{
   -webkit-tap-highlight-color:transparent;
 }
 
+.project{position:relative}
+.project-name{display:none}
+
 .project img,
 .gallery-thumbs img{
   display:block;
@@ -527,6 +530,30 @@ body{
 
   .project-list{gap:3px;padding-bottom:0}
   .project img{opacity:1}
+
+  /* nome do trabalho na vertical, na lateral esquerda da capa;
+     preto sobre fundo claro, branco sobre fundo escuro (ver edgeTone no JS) */
+  .project-name{
+    display:block;
+    position:absolute;
+    left:14px;
+    top:50%;
+    writing-mode:vertical-rl;
+    transform:translateY(-50%) rotate(180deg);
+    max-height:90%;
+    overflow:hidden;
+    white-space:nowrap;
+    text-overflow:ellipsis;
+    font-size:14px;
+    font-weight:700;
+    text-transform:uppercase;
+    letter-spacing:.14em;
+    color:#fff;
+    text-shadow:0 0 10px rgba(0,0,0,.35);
+    pointer-events:none;
+  }
+
+  .project.light-edge .project-name{color:var(--ink);text-shadow:none}
 
   /* ─── GALERIA: título em cima, foto no meio, miniaturas embaixo ─── */
   .gallery{

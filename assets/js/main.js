@@ -112,7 +112,11 @@
       const cover = picture(p.images[0], ['s','m','l'],
         '(max-width: 768px) 100vw, 160px', i < 4);
       cover.alt = p.title;
-      card.appendChild(cover);
+      const name = document.createElement('span');
+      name.className = 'project-name';          // visível só no celular
+      name.textContent = p.title;
+      card.append(cover, name);
+      cover.addEventListener('load', () => edgeTone(cover, card), {once:true});
       card.addEventListener('mouseenter', () => showStage(stage, projects[key]));
       card.addEventListener('focus', () => showStage(stage, projects[key]));
       grid.appendChild(card);
@@ -124,6 +128,22 @@
       sub.appendChild(a);
     });
     if(list.length) showStage(stage, projects[`${sec}/${list[0].slug}`], true);
+  }
+
+  // Mede a claridade da faixa esquerda da capa (área do nome no celular)
+  // e escolhe texto preto ou branco. Mesma origem: o canvas não fica bloqueado.
+  function edgeTone(img, card){
+    try{
+      const w = img.naturalWidth, h = img.naturalHeight;
+      const vw = Math.min(w, h * .8), x0 = (w - vw) / 2;     // recorte 4:5 centralizado
+      const c = document.createElement('canvas'); c.width = 8; c.height = 24;
+      const g = c.getContext('2d', {willReadFrequently:true});
+      g.drawImage(img, x0, h * .2, vw * .14, h * .6, 0, 0, 8, 24);
+      const d = g.getImageData(0, 0, 8, 24).data;
+      let l = 0;
+      for(let i = 0; i < d.length; i += 4) l += .2126*d[i] + .7152*d[i+1] + .0722*d[i+2];
+      card.classList.toggle('light-edge', l / (d.length / 4) > 150);
+    }catch(e){}
   }
 
   // Palco: capa do projeto em sangria total; o título aparece no hover
