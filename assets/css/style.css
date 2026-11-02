@@ -167,7 +167,9 @@ body{
 }
 
 .home .fit{
-  --s:min(74cqh, 62cqw);
+  /* moldura 4:5 fixa: todas as fotos com o mesmo tamanho (horizontais recortadas no centro) */
+  aspect-ratio:4/5;
+  width:min(100cqw, calc(92cqh * .8));
   grid-area:1/1;
   opacity:0;
   transition:opacity 1s var(--ease);
@@ -215,7 +217,10 @@ body{
   -webkit-tap-highlight-color:transparent;
 }
 
-.project .fit{--s:82cqmin}
+.project .cell{aspect-ratio:4/5}
+
+/* capas: mesma moldura 4:5 da home, todas idênticas */
+.project .fit{aspect-ratio:4/5;width:100%}
 
 /* Título: aparece sobre a imagem ao passar o mouse */
 .project-title{
@@ -487,7 +492,6 @@ body{
     padding:8px var(--pad) 20px;
   }
 
-  .home .fit{--s:min(70cqh, 88cqw)}
 
   .section-text{margin:12px 0 20px}
 
@@ -496,7 +500,6 @@ body{
     gap:12px 16px;
   }
 
-  .project .fit{--s:86cqmin}
 
   /* ─── GALLERY ─── */
   .back-btn{display:block}
