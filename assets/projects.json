@@ -6,294 +6,603 @@
  },
  "work": [
   {
-   "slug": "vogue-perfumes-26",
-   "title": "vogue - perfumes 26",
+   "slug": "personal-flowers",
+   "title": "_personal_flowers",
    "date": "2026-09-15",
    "images": [
     {
-     "src": "/assets/img/work/vogue-perfumes-26/01",
+     "src": "/assets/img/work/personal-flowers/01",
      "w": 2048,
      "h": 2560
     },
     {
-     "src": "/assets/img/work/vogue-perfumes-26/02",
+     "src": "/assets/img/work/personal-flowers/02",
      "w": 2048,
      "h": 2560
     },
     {
-     "src": "/assets/img/work/vogue-perfumes-26/03",
+     "src": "/assets/img/work/personal-flowers/03",
      "w": 2048,
      "h": 2560
     },
     {
-     "src": "/assets/img/work/vogue-perfumes-26/04",
+     "src": "/assets/img/work/personal-flowers/04",
      "w": 2048,
      "h": 2560
     },
     {
-     "src": "/assets/img/work/vogue-perfumes-26/05",
+     "src": "/assets/img/work/personal-flowers/05",
      "w": 2048,
      "h": 2560
     },
     {
-     "src": "/assets/img/work/vogue-perfumes-26/06",
-     "w": 2048,
-     "h": 2560
-    },
-    {
-     "src": "/assets/img/work/vogue-perfumes-26/07",
-     "w": 2048,
-     "h": 2560
-    },
-    {
-     "src": "/assets/img/work/vogue-perfumes-26/08",
-     "w": 2048,
-     "h": 2560
-    },
-    {
-     "src": "/assets/img/work/vogue-perfumes-26/09",
-     "w": 2048,
-     "h": 2560
-    },
-    {
-     "src": "/assets/img/work/vogue-perfumes-26/10",
-     "w": 2048,
-     "h": 2560
-    },
-    {
-     "src": "/assets/img/work/vogue-perfumes-26/11",
+     "src": "/assets/img/work/personal-flowers/06",
      "w": 2048,
      "h": 2560
     }
    ]
   },
   {
-   "slug": "page9",
-   "title": "page9",
-   "date": "2026-09-15",
+   "slug": "personal-portraits",
+   "title": "_personal_portraits",
+   "date": "2026-10-05",
    "images": [
     {
-     "src": "/assets/img/work/page9/01",
-     "w": 2560,
-     "h": 1707
+     "src": "/assets/img/work/personal-portraits/01",
+     "w": 2048,
+     "h": 2560
     },
     {
-     "src": "/assets/img/work/page9/02",
-     "w": 2560,
-     "h": 1707
+     "src": "/assets/img/work/personal-portraits/02",
+     "w": 2048,
+     "h": 2560
     },
     {
-     "src": "/assets/img/work/page9/03",
-     "w": 2560,
-     "h": 1896
+     "src": "/assets/img/work/personal-portraits/03",
+     "w": 1949,
+     "h": 2325
     },
     {
-     "src": "/assets/img/work/page9/04",
-     "w": 2560,
-     "h": 1897
+     "src": "/assets/img/work/personal-portraits/04",
+     "w": 2048,
+     "h": 2560
+    },
+    {
+     "src": "/assets/img/work/personal-portraits/05",
+     "w": 2048,
+     "h": 2560
+    },
+    {
+     "src": "/assets/img/work/personal-portraits/06",
+     "w": 2016,
+     "h": 2560
+    },
+    {
+     "src": "/assets/img/work/personal-portraits/07",
+     "w": 2048,
+     "h": 2560
+    },
+    {
+     "src": "/assets/img/work/personal-portraits/08",
+     "w": 1817,
+     "h": 2560
+    },
+    {
+     "src": "/assets/img/work/personal-portraits/09",
+     "w": 1987,
+     "h": 2560
+    },
+    {
+     "src": "/assets/img/work/personal-portraits/10",
+     "w": 1813,
+     "h": 1284
+    },
+    {
+     "src": "/assets/img/work/personal-portraits/11",
+     "w": 1707,
+     "h": 2560
     }
    ]
   },
   {
-   "slug": "luiza-barcelos",
-   "title": "luiza barcelos",
-   "date": "2026-09-09",
+   "slug": "2026-roberto-strongoli",
+   "title": "2026_roberto_strongoli",
+   "date": "2026-11-01",
    "images": [
     {
-     "src": "/assets/img/work/luiza-barcelos/01",
-     "w": 2048,
-     "h": 2560
-    },
-    {
-     "src": "/assets/img/work/luiza-barcelos/02",
-     "w": 2048,
-     "h": 2560
-    },
-    {
-     "src": "/assets/img/work/luiza-barcelos/03",
-     "w": 2048,
-     "h": 2560
-    },
-    {
-     "src": "/assets/img/work/luiza-barcelos/04",
-     "w": 2048,
-     "h": 2560
-    },
-    {
-     "src": "/assets/img/work/luiza-barcelos/05",
-     "w": 2048,
-     "h": 2560
-    },
-    {
-     "src": "/assets/img/work/luiza-barcelos/06",
-     "w": 2048,
-     "h": 2560
-    },
-    {
-     "src": "/assets/img/work/luiza-barcelos/07",
-     "w": 2048,
-     "h": 2560
-    },
-    {
-     "src": "/assets/img/work/luiza-barcelos/08",
-     "w": 2048,
-     "h": 2560
-    },
-    {
-     "src": "/assets/img/work/luiza-barcelos/09",
+     "src": "/assets/img/work/2026-roberto-strongoli/01",
      "w": 2049,
      "h": 2560
+    },
+    {
+     "src": "/assets/img/work/2026-roberto-strongoli/02",
+     "w": 2048,
+     "h": 2560
     }
    ]
   },
   {
-   "slug": "melissa",
-   "title": "melissa",
-   "date": "2026-07-01",
+   "slug": "2026-vogue-selected-stills",
+   "title": "2026_vogue_selected_stills",
+   "date": "2026-10-19",
    "images": [
     {
-     "src": "/assets/img/work/melissa/01",
+     "src": "/assets/img/work/2026-vogue-selected-stills/01",
+     "w": 1877,
+     "h": 2560
+    },
+    {
+     "src": "/assets/img/work/2026-vogue-selected-stills/02",
+     "w": 1867,
+     "h": 2560
+    },
+    {
+     "src": "/assets/img/work/2026-vogue-selected-stills/03",
+     "w": 1867,
+     "h": 2560
+    },
+    {
+     "src": "/assets/img/work/2026-vogue-selected-stills/04",
+     "w": 1878,
+     "h": 2560
+    },
+    {
+     "src": "/assets/img/work/2026-vogue-selected-stills/05",
+     "w": 1867,
+     "h": 2560
+    }
+   ]
+  },
+  {
+   "slug": "2026-vogue-perfumes",
+   "title": "2026_vogue_perfumes",
+   "date": "2026-09-15",
+   "images": [
+    {
+     "src": "/assets/img/work/2026-vogue-perfumes/01",
      "w": 2048,
      "h": 2560
     },
     {
-     "src": "/assets/img/work/melissa/02",
+     "src": "/assets/img/work/2026-vogue-perfumes/02",
      "w": 2048,
      "h": 2560
     },
     {
-     "src": "/assets/img/work/melissa/03",
+     "src": "/assets/img/work/2026-vogue-perfumes/03",
      "w": 2048,
      "h": 2560
     },
     {
-     "src": "/assets/img/work/melissa/04",
+     "src": "/assets/img/work/2026-vogue-perfumes/04",
      "w": 2048,
      "h": 2560
     },
     {
-     "src": "/assets/img/work/melissa/05",
+     "src": "/assets/img/work/2026-vogue-perfumes/05",
      "w": 2048,
      "h": 2560
     },
     {
-     "src": "/assets/img/work/melissa/06",
+     "src": "/assets/img/work/2026-vogue-perfumes/06",
      "w": 2048,
      "h": 2560
     },
     {
-     "src": "/assets/img/work/melissa/07",
+     "src": "/assets/img/work/2026-vogue-perfumes/07",
+     "w": 2048,
+     "h": 2560
+    },
+    {
+     "src": "/assets/img/work/2026-vogue-perfumes/08",
+     "w": 2048,
+     "h": 2560
+    },
+    {
+     "src": "/assets/img/work/2026-vogue-perfumes/09",
+     "w": 2048,
+     "h": 2560
+    },
+    {
+     "src": "/assets/img/work/2026-vogue-perfumes/10",
+     "w": 2048,
+     "h": 2560
+    },
+    {
+     "src": "/assets/img/work/2026-vogue-perfumes/11",
+     "w": 2048,
+     "h": 2560
+    },
+    {
+     "src": "/assets/img/work/2026-vogue-perfumes/12",
+     "w": 2048,
+     "h": 2560
+    },
+    {
+     "src": "/assets/img/work/2026-vogue-perfumes/13",
      "w": 2048,
      "h": 2560
     }
    ]
   },
   {
-   "slug": "mizuno-budwaiser",
-   "title": "mizuno+budwaiser",
+   "slug": "2026-page9",
+   "title": "2026_page9",
+   "date": "2026-08-04",
+   "images": [
+    {
+     "src": "/assets/img/work/2026-page9/01",
+     "w": 2048,
+     "h": 2560
+    },
+    {
+     "src": "/assets/img/work/2026-page9/02",
+     "w": 2048,
+     "h": 2560
+    },
+    {
+     "src": "/assets/img/work/2026-page9/03",
+     "w": 2048,
+     "h": 2560
+    },
+    {
+     "src": "/assets/img/work/2026-page9/04",
+     "w": 2560,
+     "h": 1721
+    },
+    {
+     "src": "/assets/img/work/2026-page9/05",
+     "w": 2048,
+     "h": 2560
+    },
+    {
+     "src": "/assets/img/work/2026-page9/06",
+     "w": 2048,
+     "h": 2560
+    }
+   ]
+  },
+  {
+   "slug": "2026-luiza-barcelos",
+   "title": "2026_luiza_barcelos",
+   "date": "2026-07-20",
+   "images": [
+    {
+     "src": "/assets/img/work/2026-luiza-barcelos/01",
+     "w": 1707,
+     "h": 2560
+    },
+    {
+     "src": "/assets/img/work/2026-luiza-barcelos/02",
+     "w": 1708,
+     "h": 2560
+    },
+    {
+     "src": "/assets/img/work/2026-luiza-barcelos/03",
+     "w": 2048,
+     "h": 2560
+    },
+    {
+     "src": "/assets/img/work/2026-luiza-barcelos/04",
+     "w": 1707,
+     "h": 2560
+    },
+    {
+     "src": "/assets/img/work/2026-luiza-barcelos/05",
+     "w": 2048,
+     "h": 2560
+    },
+    {
+     "src": "/assets/img/work/2026-luiza-barcelos/06",
+     "w": 2048,
+     "h": 2560
+    },
+    {
+     "src": "/assets/img/work/2026-luiza-barcelos/07",
+     "w": 2048,
+     "h": 2560
+    }
+   ]
+  },
+  {
+   "slug": "2026-mizuno-budwaiser",
+   "title": "2026_mizuno+budwaiser",
    "date": "2026-05-10",
    "images": [
     {
-     "src": "/assets/img/work/mizuno-budwaiser/01",
+     "src": "/assets/img/work/2026-mizuno-budwaiser/01",
      "w": 2047,
      "h": 2560
     },
     {
-     "src": "/assets/img/work/mizuno-budwaiser/02",
+     "src": "/assets/img/work/2026-mizuno-budwaiser/02",
      "w": 2047,
      "h": 2560
     },
     {
-     "src": "/assets/img/work/mizuno-budwaiser/03",
+     "src": "/assets/img/work/2026-mizuno-budwaiser/03",
      "w": 2048,
      "h": 2560
     },
     {
-     "src": "/assets/img/work/mizuno-budwaiser/04",
+     "src": "/assets/img/work/2026-mizuno-budwaiser/04",
      "w": 2048,
      "h": 2560
     },
     {
-     "src": "/assets/img/work/mizuno-budwaiser/05",
+     "src": "/assets/img/work/2026-mizuno-budwaiser/05",
      "w": 2048,
      "h": 2560
     },
     {
-     "src": "/assets/img/work/mizuno-budwaiser/06",
+     "src": "/assets/img/work/2026-mizuno-budwaiser/06",
      "w": 2078,
      "h": 2560
     }
    ]
   },
   {
-   "slug": "notorious-fish",
-   "title": "notorious fish",
-   "date": "2026-03-28",
+   "slug": "2026-gq-cassio",
+   "title": "2026_gq_cassio",
+   "date": "2026-04-21",
    "images": [
     {
-     "src": "/assets/img/work/notorious-fish/01",
-     "w": 2543,
+     "src": "/assets/img/work/2026-gq-cassio/01",
+     "w": 2050,
      "h": 2560
     },
     {
-     "src": "/assets/img/work/notorious-fish/02",
-     "w": 2048,
+     "src": "/assets/img/work/2026-gq-cassio/02",
+     "w": 2083,
      "h": 2560
     },
     {
-     "src": "/assets/img/work/notorious-fish/03",
+     "src": "/assets/img/work/2026-gq-cassio/03",
      "w": 2560,
-     "h": 2048
+     "h": 1920
+    }
+   ]
+  },
+  {
+   "slug": "2026-notorious-fish",
+   "title": "2026_notorious_fish",
+   "date": "2026-04-03",
+   "images": [
+    {
+     "src": "/assets/img/work/2026-notorious-fish/01",
+     "w": 2049,
+     "h": 2560
     },
     {
-     "src": "/assets/img/work/notorious-fish/04",
+     "src": "/assets/img/work/2026-notorious-fish/02",
      "w": 2048,
      "h": 2560
     },
     {
-     "src": "/assets/img/work/notorious-fish/05",
+     "src": "/assets/img/work/2026-notorious-fish/03",
+     "w": 1707,
+     "h": 2560
+    },
+    {
+     "src": "/assets/img/work/2026-notorious-fish/04",
+     "w": 2560,
+     "h": 2560
+    },
+    {
+     "src": "/assets/img/work/2026-notorious-fish/05",
+     "w": 2445,
+     "h": 2560
+    },
+    {
+     "src": "/assets/img/work/2026-notorious-fish/06",
+     "w": 2560,
+     "h": 2560
+    },
+    {
+     "src": "/assets/img/work/2026-notorious-fish/07",
+     "w": 2559,
+     "h": 2560
+    }
+   ]
+  },
+  {
+   "slug": "2026-melissa",
+   "title": "2026_melissa",
+   "date": "2025-12-10",
+   "images": [
+    {
+     "src": "/assets/img/work/2026-melissa/01",
      "w": 2048,
      "h": 2560
     },
     {
-     "src": "/assets/img/work/notorious-fish/06",
+     "src": "/assets/img/work/2026-melissa/02",
+     "w": 2048,
+     "h": 2560
+    },
+    {
+     "src": "/assets/img/work/2026-melissa/03",
+     "w": 2048,
+     "h": 2560
+    },
+    {
+     "src": "/assets/img/work/2026-melissa/04",
+     "w": 2048,
+     "h": 2560
+    },
+    {
+     "src": "/assets/img/work/2026-melissa/05",
+     "w": 2048,
+     "h": 2560
+    },
+    {
+     "src": "/assets/img/work/2026-melissa/06",
+     "w": 2048,
+     "h": 2560
+    },
+    {
+     "src": "/assets/img/work/2026-melissa/07",
+     "w": 2048,
+     "h": 2560
+    },
+    {
+     "src": "/assets/img/work/2026-melissa/08",
+     "w": 2048,
+     "h": 2560
+    },
+    {
+     "src": "/assets/img/work/2026-melissa/09",
      "w": 2048,
      "h": 2560
     }
    ]
   },
   {
-   "slug": "capodarte",
-   "title": "capodarte",
-   "date": "2026-03-11",
+   "slug": "2025-vogue-hstern",
+   "title": "2025_vogue+hstern",
+   "date": "2025-10-15",
    "images": [
     {
-     "src": "/assets/img/work/capodarte/01",
+     "src": "/assets/img/work/2025-vogue-hstern/01",
      "w": 2048,
      "h": 2560
     },
     {
-     "src": "/assets/img/work/capodarte/02",
+     "src": "/assets/img/work/2025-vogue-hstern/02",
+     "w": 2560,
+     "h": 1923
+    },
+    {
+     "src": "/assets/img/work/2025-vogue-hstern/03",
      "w": 2048,
      "h": 2560
     },
     {
-     "src": "/assets/img/work/capodarte/03",
+     "src": "/assets/img/work/2025-vogue-hstern/04",
      "w": 2048,
      "h": 2560
     },
     {
-     "src": "/assets/img/work/capodarte/04",
+     "src": "/assets/img/work/2025-vogue-hstern/05",
      "w": 2048,
      "h": 2560
     },
     {
-     "src": "/assets/img/work/capodarte/05",
+     "src": "/assets/img/work/2025-vogue-hstern/06",
      "w": 2048,
      "h": 2560
     },
     {
-     "src": "/assets/img/work/capodarte/06",
+     "src": "/assets/img/work/2025-vogue-hstern/07",
+     "w": 2048,
+     "h": 2560
+    },
+    {
+     "src": "/assets/img/work/2025-vogue-hstern/08",
+     "w": 2560,
+     "h": 1923
+    },
+    {
+     "src": "/assets/img/work/2025-vogue-hstern/09",
+     "w": 2048,
+     "h": 2560
+    },
+    {
+     "src": "/assets/img/work/2025-vogue-hstern/10",
+     "w": 2560,
+     "h": 1923
+    }
+   ]
+  },
+  {
+   "slug": "2025-vogue-perfumes",
+   "title": "2025_vogue_perfumes",
+   "date": "2025-10-08",
+   "images": [
+    {
+     "src": "/assets/img/work/2025-vogue-perfumes/01",
+     "w": 2048,
+     "h": 2560
+    },
+    {
+     "src": "/assets/img/work/2025-vogue-perfumes/02",
+     "w": 2048,
+     "h": 2560
+    },
+    {
+     "src": "/assets/img/work/2025-vogue-perfumes/03",
+     "w": 2048,
+     "h": 2560
+    },
+    {
+     "src": "/assets/img/work/2025-vogue-perfumes/04",
+     "w": 2048,
+     "h": 2560
+    },
+    {
+     "src": "/assets/img/work/2025-vogue-perfumes/05",
+     "w": 2048,
+     "h": 2560
+    },
+    {
+     "src": "/assets/img/work/2025-vogue-perfumes/06",
+     "w": 2048,
+     "h": 2560
+    },
+    {
+     "src": "/assets/img/work/2025-vogue-perfumes/07",
+     "w": 2048,
+     "h": 2560
+    },
+    {
+     "src": "/assets/img/work/2025-vogue-perfumes/08",
+     "w": 2048,
+     "h": 2560
+    },
+    {
+     "src": "/assets/img/work/2025-vogue-perfumes/09",
+     "w": 2048,
+     "h": 2560
+    },
+    {
+     "src": "/assets/img/work/2025-vogue-perfumes/10",
+     "w": 2048,
+     "h": 2560
+    },
+    {
+     "src": "/assets/img/work/2025-vogue-perfumes/11",
+     "w": 2048,
+     "h": 2560
+    }
+   ]
+  },
+  {
+   "slug": "2025-vogue-theoridinary",
+   "title": "2025_vogue+theoridinary",
+   "date": "2025-08-01",
+   "images": [
+    {
+     "src": "/assets/img/work/2025-vogue-theoridinary/01",
+     "w": 2048,
+     "h": 2560
+    },
+    {
+     "src": "/assets/img/work/2025-vogue-theoridinary/02",
+     "w": 2048,
+     "h": 2560
+    },
+    {
+     "src": "/assets/img/work/2025-vogue-theoridinary/03",
+     "w": 2048,
+     "h": 2560
+    },
+    {
+     "src": "/assets/img/work/2025-vogue-theoridinary/04",
+     "w": 2048,
+     "h": 2560
+    },
+    {
+     "src": "/assets/img/work/2025-vogue-theoridinary/05",
      "w": 2048,
      "h": 2560
     }
