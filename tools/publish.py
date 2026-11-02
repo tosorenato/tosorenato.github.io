@@ -7,13 +7,18 @@ Lê a pasta-fonte (Dropbox) e gera a versão web pronta para o repositório:
     <fonte>/_home/<primeira foto>            -> imagem de compartilhamento (og:image)
 
 Regras
-- Nome da pasta = título do trabalho (exibido em minúsculas).
+- Nome da pasta = título do trabalho, exibido como está (minúsculas, com os
+  underlines), ex.: "2026_luiza_barcelos".
 - Ordem das imagens = ordem natural do nome do arquivo (como o Finder: 2 < 10).
   A primeira imagem é a capa (feed e home).
-- Ordem dos trabalhos = mais recente primeiro. A data de cada trabalho é fixada
-  na primeira vez que ele é publicado (semente: data do arquivo mais novo da
-  pasta) e não muda depois (order.json). Pasta nova entra no topo.
-- Pastas vazias, ocultas ou que começam com "_" são ignoradas.
+- Ordem dos trabalhos:
+  1. fixados: pastas que começam com "_" (ex.: "_personal_flowers") ficam no
+     topo, na ordem do Finder;
+  2. depois, por ano (o "2026_" do início do nome), do mais novo para o mais antigo;
+  3. dentro do ano, mais recente primeiro. A data de cada trabalho é fixada na
+     primeira vez que ele é publicado (semente: data do arquivo mais novo da
+     pasta) e não muda depois (order.json; edite as datas para reordenar).
+- Pastas vazias ou ocultas (".") são ignoradas.
 - Cada imagem gera 3 tamanhos (lado maior): l=2560, m=1280, s=480. JPEG sRGB
   progressivo, sem metadados. A foto de compartilhamento sai com 1200 px.
 - Cache incremental: só reprocessa o que mudou (caminho + tamanho + data).
@@ -32,6 +37,7 @@ WORK = "_selected work"
 SIZES = {"l": (2560, 82), "m": (1280, 80), "s": (480, 78)}
 OG = (1200, 80)
 EXTS = {".jpg", ".jpeg", ".png", ".tif", ".tiff", ".webp"}
+YEAR = re.compile(r"^(\d{4})[ _-]")
 SRGB = ImageCms.createProfile("sRGB")
 Image.MAX_IMAGE_PIXELS = None  # arquivos de origem são confiáveis e podem passar de 200 MP
 
@@ -119,10 +125,10 @@ def main():
             build(first[0], "og", [("og.jpg", *OG)])
 
         base = src_root / WORK
-        slugs = set()
+        slugs, pinned, dated = set(), [], []
         dirs = sorted(base.iterdir(), key=lambda d: natural_key(d.name)) if base.is_dir() else []
         for d in dirs:
-            if not d.is_dir() or d.name[0] in "._":
+            if not d.is_dir() or d.name.startswith("."):
                 continue
             files = images_in(d)
             if not files:
@@ -140,13 +146,19 @@ def main():
                 rel = f"work/{slug}/{i:02d}"
                 w, h = build(f, rel, [(f"{rel}-{k}.jpg", e, q) for k, (e, q) in SIZES.items()])
                 images.append({"src": f"/assets/img/{rel}", "w": w, "h": h})
-            manifest["work"].append({
+            work = {
                 "slug": slug,
                 "title": d.name.strip().lower(),
                 "date": order[okey],
                 "images": images,
-            })
-        manifest["work"].sort(key=lambda p: (p["date"], p["slug"]), reverse=True)
+            }
+            if d.name.startswith("_"):
+                pinned.append(work)
+            else:
+                m = YEAR.match(d.name)
+                dated.append((int(m.group(1)) if m else int(order[okey][:4]), work))
+        dated.sort(key=lambda t: (t[0], t[1]["date"], t[1]["slug"]), reverse=True)
+        manifest["work"] = pinned + [w for _, w in dated]
     except TimeoutError:
         cache_file.write_text(json.dumps({**cache, **new_cache}))
         print(f"PARCIAL: {done} imagens processadas; rode de novo para continuar")

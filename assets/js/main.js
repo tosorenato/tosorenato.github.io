@@ -246,9 +246,15 @@
   // Trabalho em foco: o post cujo centro está mais perto do centro do feed
   let spyRaf = 0;
   feed.addEventListener('scroll', () => { if(!spyRaf) spyRaf = requestAnimationFrame(spy); }, {passive: true});
+  let lastSize = '';
   function spy(){
     spyRaf = 0;
     if(!works.length || page !== 'work') return;   // feed escondido: nada a baixar
+    // O layout mudou (girar o aparelho, redimensionar): a rolagem antiga não vale
+    // mais; mantém o trabalho em foco e deixa realign() recentralizar.
+    const size = feed.clientWidth + 'x' + feed.clientHeight;
+    if(lastSize && size !== lastSize){ lastSize = size; clearTimeout(rz); rz = setTimeout(realign, 150); return; }
+    lastSize = size;
     const mid = feed.scrollTop + feed.clientHeight / 2;
     let best = 0, d = Infinity;
     works.forEach((w, i) => {
@@ -460,7 +466,8 @@
     if(route !== 'work') return;
     ready.then(() => {
       if(page !== 'work' || !works.length) return;
-      const w = bySlug[slug];
+      // link antigo sem o ano (#work/melissa/2) acha o trabalho atual (2026-melissa)
+      const w = bySlug[slug] || (slug && works.find(x => x.slug.endsWith('-' + slug)));
       if(w) reveal(w, n - 1);
       else if(cur < 0) reveal(works[0], 0);   // primeira visita: o primeiro trabalho
       else { spy(); syncURL(); }
