@@ -51,8 +51,9 @@
     .then(r => r.json())
     .then(m => {
       if(m.sizes) SIZES = m.sizes;
-      buildHome(m.home || []);
       SECTIONS.forEach(sec => buildSection(sec, (m.sections || {})[sec] || []));
+      // home: capas de todos os trabalhos, sorteadas; cada uma abre a galeria do projeto
+      buildHome(Object.values(projects).map(p => ({img: p.images[0], key: p.key, title: p.title})));
     })
     .catch(err => console.error('projects.json', err));
 
@@ -67,13 +68,17 @@
     }
     const box = $('homeSlides');
     const sizes = '(max-width: 768px) 100vw, 65vw';  // home ocupa todo o painel
-    slides = list.map((img, i) => {
+    slides = list.map(({img, key, title}, i) => {
       const el = document.createElement('img');
       el.sizes = sizes;
-      el.alt = '';
+      el.alt = title;
       el.decoding = 'async';
       el._set = () => { if(!el.srcset){ el.srcset = srcset(img, ['m','l']); el.src = url(img,'l'); } };
-      const f = fit(img, el);
+      const f = document.createElement('a');
+      f.className = 'fit';
+      f.href = `#${key}/1`;
+      f.dataset.key = key;
+      f.appendChild(el);
       f._img = el;
       if(i === 0){ el._set(); f.classList.add('active'); el.fetchPriority = 'high'; }
       box.appendChild(f);

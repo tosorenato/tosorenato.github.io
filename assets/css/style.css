@@ -166,7 +166,8 @@ body{
   transition:opacity 1.2s var(--ease);
 }
 
-.home .fit.active{opacity:1}
+.home .fit{pointer-events:none;cursor:pointer}
+.home .fit.active{opacity:1;pointer-events:auto}
 
 /* ─── FAIXA LATERAL (abas e galeria) ─── */
 .section,
@@ -507,13 +508,13 @@ body{
     min-height:0;
   }
 
-  /* ─── HOME: sem sangria; moldura 4:5 uniforme com margem ─── */
+  /* ─── HOME: capa em 4:5, de borda a borda na largura, como nas abas ─── */
   .home .fit{
     inset:0;
     margin:auto;
-    width:calc(100% - 2 * var(--pad));
+    width:100%;
     height:auto;
-    max-height:calc(100% - 2 * var(--pad));
+    max-height:100%;
     aspect-ratio:4/5;
   }
 
