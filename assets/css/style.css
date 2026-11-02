@@ -481,17 +481,18 @@ img.instant{transition:none}
   .page{transition:opacity .22s var(--ease), visibility 0s linear .22s}
   .page.active{transition:opacity .45s var(--ease-out) .12s, visibility 0s}
 
-  /* ─── HOME: capa em 4:5, de borda a borda na largura ─── */
+  /* ─── HOME: capa inteira, na largura toda (ou na altura toda, se for mais
+     alta que a tela), na proporção exata da foto: nada é cortado ─── */
   .slide{
-    width:100%;
-    height:auto;
-    max-height:100%;
-    aspect-ratio:4/5;
+    --h:min(100cqh, 100cqw / var(--r, .8));
+    height:var(--h);
+    width:calc(var(--h) * var(--r, .8));
   }
 
-  /* ─── SELECTED WORK: feed de posts 4:5 em largura total; cada post é um
-     carrossel lateral (arrastar ou tocar). A capa preenche o 4:5; as demais
-     fotos aparecem inteiras. ─── */
+  /* ─── SELECTED WORK: feed de posts em largura total; cada post é um
+     carrossel lateral (arrastar ou tocar). A altura do post segue a proporção
+     da capa (--pr, do JS), limitada à altura da tela; todas as fotos aparecem
+     inteiras, sem corte. ─── */
   .section-text{display:block;flex-shrink:0;padding:14px var(--pad)}
 
   .feed{scroll-snap-type:none}
@@ -499,7 +500,7 @@ img.instant{transition:none}
   .post{height:auto;padding:0}
   .post + .post{margin-top:3px}
 
-  .track{height:auto;aspect-ratio:4/5;scroll-snap-align:none}
+  .track{height:auto;aspect-ratio:var(--pr, .8);max-height:100cqh;scroll-snap-align:none}
 
   .pg{display:block}
 
@@ -512,7 +513,6 @@ img.instant{transition:none}
   }
 
   .frame img{object-fit:contain}
-  .is-cover .frame img{object-fit:cover}
 
   /* nome na vertical, na lateral esquerda da foto; preto sobre fundo claro,
      branco sobre fundo escuro (ver tone() no JS) */

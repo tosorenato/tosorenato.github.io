@@ -155,12 +155,14 @@
       const post = document.createElement('article');
       post.className = 'post';
       post.dataset.slug = w.slug;
+      // celular: o post tem a proporção da capa (foto inteira, sem corte)
+      post.style.setProperty('--pr', Math.min(1.91, Math.max(.5, ratio(w.images[0]))).toFixed(4));
       const track = document.createElement('div');
       track.className = 'track';
       const n = w.images.length;
       w.imgs = w.images.map((img, k) => {
         const pg = document.createElement('div');
-        pg.className = k ? 'pg' : 'pg is-cover';
+        pg.className = 'pg';
         const frame = document.createElement('figure');
         frame.className = 'frame fit';
         frame.style.setProperty('--r', ratio(img).toFixed(4));
@@ -200,20 +202,21 @@
   }
 
   // Celular: o nome fica sobre a foto. Mede a claridade da faixa esquerda (como
-  // a foto aparece no 4:5) e escolhe texto preto ou branco. Mesma origem: o
-  // canvas não fica bloqueado.
+  // a foto aparece inteira no post, com o fundo branco em volta) e escolhe texto
+  // preto ou branco. Mesma origem: o canvas não fica bloqueado.
   function tone(pg, el){
-    if(!MOBILE.matches || pg._tone) return;
+    if(!MOBILE.matches || pg._tone || !pg.clientWidth) return;
     try{
       const W = el.naturalWidth, H = el.naturalHeight;
+      const bw = 40, bh = Math.max(10, Math.round(40 * pg.clientHeight / pg.clientWidth));
       const c = document.createElement('canvas');
-      c.width = 40; c.height = 50;
+      c.width = bw; c.height = bh;
       const g = c.getContext('2d', {willReadFrequently: true});
       g.fillStyle = '#fff';
-      g.fillRect(0, 0, 40, 50);
-      const s = pg.classList.contains('is-cover') ? Math.max(40 / W, 50 / H) : Math.min(40 / W, 50 / H);
-      g.drawImage(el, (40 - W * s) / 2, (50 - H * s) / 2, W * s, H * s);
-      const d = g.getImageData(0, 10, 6, 30).data;
+      g.fillRect(0, 0, bw, bh);
+      const s = Math.min(bw / W, bh / H);
+      g.drawImage(el, (bw - W * s) / 2, (bh - H * s) / 2, W * s, H * s);
+      const d = g.getImageData(0, Math.round(bh * .2), 6, Math.round(bh * .6)).data;
       let l = 0;
       for(let i = 0; i < d.length; i += 4) l += .2126 * d[i] + .7152 * d[i + 1] + .0722 * d[i + 2];
       pg.classList.toggle('light', l / (d.length / 4) > 150);
