@@ -504,6 +504,16 @@ body{
     min-height:0;
   }
 
+  /* ─── HOME: sem sangria; moldura 4:5 uniforme com margem ─── */
+  .home .fit{
+    inset:0;
+    margin:auto;
+    width:calc(100% - 2 * var(--pad));
+    height:auto;
+    max-height:calc(100% - 2 * var(--pad));
+    aspect-ratio:4/5;
+  }
+
   /* ─── ABAS: feed vertical de capas em largura total ─── */
   .section{flex-direction:column}
   .stage{display:none}
