@@ -2,15 +2,16 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <title>___TOSO — Renato Toso, fotografia</title>
+  <title>____TOSO — Renato Toso, fotografia</title>
   <meta name="description" content="Renato Toso — fotógrafo em São Paulo. Still life, produto, publicidade, moda e retrato.">
-  <meta property="og:title" content="___TOSO — Renato Toso">
+  <meta property="og:title" content="____TOSO — Renato Toso">
   <meta property="og:description" content="Fotografia de still life, produto, publicidade, moda e retrato. São Paulo, Brasil.">
-  <meta property="og:image" content="https://www.toso.studio/assets/img/home/01-l.jpg">
+  <meta property="og:image" content="https://www.toso.studio/assets/img/og.jpg">
   <meta property="og:type" content="website">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 
-  <link rel="stylesheet" href="/assets/css/style.css">
+  <link rel="preload" href="/assets/fonts/bodoni-moda.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/assets/css/style.css?v=20261102">
 </head>
 <body>
 
@@ -18,97 +19,36 @@
 
   <!-- MENU -->
   <nav id="nav" class="nav gray">
-    <div class="logo">___TOSO</div>
+    <a class="logo" href="/" aria-label="Renato Toso — início">____TOSO</a>
 
-    <button class="hamburger" id="hamburger" aria-label="Menu">
+    <button class="hamburger" id="hamburger" aria-label="Menu" aria-expanded="false" aria-controls="menu">
       <span></span>
       <span></span>
       <span></span>
     </button>
 
-    <div class="menu">
-      <a href="#home" data-route="home" class="active">home</a>
-      <a href="#ads" data-route="ads">products & advertising</a>
-      <div class="submenu" data-section="ads"></div>
-      <a href="#people" data-route="people">people & fashion</a>
-      <div class="submenu" data-section="people"></div>
-      <a href="#personal" data-route="personal">personal work</a>
-      <div class="submenu" data-section="personal"></div>
-      <a href="#bio" data-route="bio">bio</a>
+    <div class="menu" id="menu">
+      <a href="#work" data-route="work">selected work</a>
+      <div class="submenu" id="submenu"></div>
       <a href="#contact" data-route="contact">contact</a>
     </div>
   </nav>
 
-  <!-- CONTENT -->
+  <!-- CONTEÚDO -->
   <main id="content" class="content theme-gray">
 
-    <!-- HOME -->
-    <section id="home" class="page active">
+    <!-- HOME (clique no logo): capas sorteadas -->
+    <section id="home" class="page">
       <div class="home" id="homeSlides"></div>
     </section>
 
-    <!-- ADS -->
-    <section id="ads" class="page">
-      <div class="section">
-        <aside class="strip">
-          <div class="section-text">Products & Advertising</div>
-          <div class="project-list" data-section="ads"></div>
-        </aside>
-        <a class="stage" data-section="ads"><img alt=""><span class="stage-title"></span></a>
-      </div>
+    <!-- SELECTED WORK: feed vertical; cada trabalho é um carrossel lateral -->
+    <section id="work" class="page">
+      <div class="section-text">Selected work</div>
+      <div class="feed" id="feed"></div>
     </section>
 
-    <!-- GALLERY -->
-    <section id="gallery" class="page">
-      <div class="gallery">
-        <aside class="strip">
-          <div class="gallery-head">
-            <button class="back-btn" id="backBtn">&larr; voltar</button>
-            <span class="gallery-title" id="galleryTitle"></span>
-            <span class="gallery-count" id="galleryCount"></span>
-          </div>
-          <div class="gallery-thumbs" id="galleryThumbs"></div>
-        </aside>
-        <div class="viewer">
-          <button class="nav-arrow prev" aria-label="anterior"></button>
-          <span class="frame" id="mainFrame"><img id="mainImage" alt=""></span>
-          <button class="nav-arrow next" aria-label="próxima"></button>
-        </div>
-      </div>
-    </section>
-
-    <!-- PEOPLE -->
-    <section id="people" class="page">
-      <div class="section">
-        <aside class="strip">
-          <div class="section-text">People & Fashion</div>
-          <div class="project-list" data-section="people"></div>
-        </aside>
-        <a class="stage" data-section="people"><img alt=""><span class="stage-title"></span></a>
-      </div>
-    </section>
-
-    <!-- PERSONAL -->
-    <section id="personal" class="page">
-      <div class="section">
-        <aside class="strip">
-          <div class="section-text">Personal work</div>
-          <div class="project-list" data-section="personal"></div>
-        </aside>
-        <a class="stage" data-section="personal"><img alt=""><span class="stage-title"></span></a>
-      </div>
-    </section>
-
-    <!-- BIO -->
-    <section id="bio" class="page">
-      <div class="text bio-text">
-        <p>Nasci em São Paulo e trabalho com fotografia desde 2011. Minha formação começou ao lado de alguns dos mais importantes fotógrafos brasileiros e se expandiu em colaboração com profissionais europeus e americanos. Mais do que estilos, assimilei rigor: compreensão precisa da luz, construção cuidadosa da composição e respeito absoluto pelo processo.</p>
-        <p>Meu trabalho transita entre o refinamento clássico da moda e uma sensibilidade bucólica e silenciosa. Busco equilíbrio entre estrutura e atmosfera, entre precisão formal e presença orgânica. Ao fotografar pessoas, produtos ou desenvolver campanhas publicitárias, procuro uma abordagem contida, onde o objeto ganha força sem espetáculo e o retrato se constrói com clareza e intenção.</p>
-        <p>Nos projetos autorais, essa economia se aprofunda. Entendo a luz como arquitetura e o espaço como elemento narrativo. Acredito que o refinamento não nasce do excesso, mas da escolha deliberada — da decisão consciente sobre o que permanece e o que deve ser deixado em silêncio.</p>
-      </div>
-    </section>
-
-    <!-- CONTACT -->
+    <!-- CONTATO -->
     <section id="contact" class="page">
       <div class="text contact-text">
         <h2 class="contact-heading">Contato</h2>
@@ -125,6 +65,6 @@
   </main>
 </div>
 
-<script src="/assets/js/main.js"></script>
+<script src="/assets/js/main.js?v=20261102"></script>
 </body>
 </html>

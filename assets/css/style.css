@@ -1,19 +1,33 @@
+/* Bodoni Moda (SIL OFL, ver assets/fonts/OFL.txt): nome dos trabalhos.
+   Variável em peso e tamanho óptico: o traço fica mais fino quanto maior o corpo. */
+@font-face{
+  font-family:"Bodoni Moda";
+  src:url("/assets/fonts/bodoni-moda.woff2") format("woff2");
+  font-weight:400 900;
+  font-style:normal;
+  font-display:block;
+}
+
 *{box-sizing:border-box;margin:0;padding:0}
 
 :root{
   --gray:#d2d2d2;
   --ink:#111;
-  --pad:56px;
+  --pad:clamp(28px, 4.4vw, 56px);
   --ease:cubic-bezier(.25,.1,.25,1);
-  /* Geometria do desktop (da esquerda para a direita):
-     menu (o que sobrar) | G | coluna da foto W | G | faixa de miniaturas
-     W cabe uma vertical 4:5 na altura toda; horizontais podem usar W + 1,5G. */
-  --strip:clamp(150px, 10vw, 200px);
-  --G:clamp(28px, 3.5vw, 72px);
-  --W:min(calc(100dvh * .8), calc(70vw - 2 * var(--G) - var(--strip)));
-  --Z:calc(var(--W) + 2 * var(--G));      /* largura da coluna da foto */
-  --H:calc(var(--W) + 1.5 * var(--G));    /* limite das horizontais (folga de G/4) */
+  --ease-out:cubic-bezier(.22,.61,.36,1);
+  --serif:"Bodoni Moda", Didot, "Bodoni 72", "Times New Roman", serif;
+  /* Desktop: menu 30% | conteúdo 70%.
+     Cada foto ocupa uma caixa 4x5 horizontal (5:4) centralizada no conteúdo:
+     verticais com a altura toda, horizontais com a largura da caixa, sem corte.
+     As margens laterais da caixa (--gut) abrigam o nome do trabalho. */
+  --nav:30%;
+  --gut:clamp(56px, 5vw, 104px);
+  --gap:clamp(40px, 7vh, 80px);          /* respiro entre trabalhos, visível só na rolagem */
+  --logo:clamp(22px, calc((30vw - 2 * var(--pad)) / 5.5), 92px);
 }
+
+html{-webkit-text-size-adjust:100%}
 
 body{
   font-family:"Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -34,30 +48,38 @@ body{
 
 /* ─── MENU (DESKTOP) ─── */
 .nav{
-  flex:1;
+  flex:0 0 var(--nav);
   min-width:0;
   padding:var(--pad);
   position:relative;
-  transition:background .4s var(--ease);
+  overflow-y:auto;
+  scrollbar-width:none;
+  transition:background-color .6s var(--ease);
 }
 
-.gray{background:var(--gray);color:var(--ink)}
-.white{background:#fff;color:var(--ink)}
+.nav::-webkit-scrollbar{display:none}
 
+.gray{background-color:var(--gray);color:var(--ink)}
+.white{background-color:#fff;color:var(--ink)}
+
+/* ____TOSO: link da home. Mesma fonte no desktop e no celular (Helvetica bold) */
 .logo{
-  position:absolute;
-  top:25vh;
-  left:var(--pad);
-  font-family:Geneva, Helvetica, Arial, sans-serif;
+  display:block;
+  width:max-content;
+  margin-top:calc(25vh - var(--pad));
+  font-family:Helvetica, Arial, sans-serif;
   font-weight:700;
-  font-size:clamp(52px, 5.5vw, 92px);
+  font-size:var(--logo);
   letter-spacing:.03em;
   line-height:1;
   white-space:nowrap;
+  color:inherit;
+  text-decoration:none;
+  -webkit-tap-highlight-color:transparent;
 }
 
 .menu{
-  margin-top:calc(25vh + 96px);
+  margin-top:calc(var(--logo) * .68);
 }
 
 .menu a{
@@ -71,7 +93,8 @@ body{
   text-decoration:none;
   color:inherit;
   opacity:.38;
-  transition:opacity .2s var(--ease);
+  transition:opacity .25s var(--ease);
+  -webkit-tap-highlight-color:transparent;
 }
 
 .menu a:hover{opacity:.75}
@@ -81,16 +104,15 @@ body{
   font-weight:500;
 }
 
-/* Submenu: projetos da seção ativa */
+/* Submenu: os trabalhos; o que está em foco no feed fica marcado */
 .submenu{
   display:none;
   margin:2px 0 20px 1px;
   padding-left:14px;
-  border-left:1px solid currentColor;
-  border-color:rgba(0,0,0,.14);
+  border-left:1px solid rgba(0,0,0,.14);
 }
 
-.submenu.open{display:block}
+.submenu.open{display:block;animation:fade .5s var(--ease-out)}
 
 .submenu a{
   font-size:12.5px;
@@ -101,7 +123,7 @@ body{
 .submenu a:last-child{margin-bottom:0}
 .submenu a.active{font-weight:400;opacity:1}
 
-/* Hamburger — escondido no desktop */
+/* Hamburger: escondido no desktop */
 .hamburger{
   display:none;
   background:none;
@@ -122,68 +144,57 @@ body{
   transition:transform .3s var(--ease), opacity .3s var(--ease);
 }
 
-/* ─── CONTENT (DESKTOP) ───
-   Sem margem: fotos em sangria total até a borda da janela. */
+/* ─── CONTEÚDO (DESKTOP) ─── */
 .content{
   position:relative;
-  flex:none;
-  width:calc(var(--Z) + var(--strip));
-  padding:0;
+  flex:1;
+  min-width:0;
   overflow:hidden;
-  transition:background .4s var(--ease);
+  transition:background-color .6s var(--ease);
 }
 
-.theme-gray{background:var(--gray);color:var(--ink)}
-.theme-white{background:#fff;color:var(--ink)}
+.theme-gray{background-color:var(--gray);color:var(--ink)}
+.theme-white{background-color:#fff;color:var(--ink)}
 
-.page{display:none;height:100%}
-.page.active{display:block;animation:fade .45s var(--ease)}
+/* Páginas empilhadas. A que entra surge por cima e a que sai só some depois:
+   na passagem da home para o trabalho a foto (a mesma, no mesmo lugar) não pisca.
+   Ficam renderizadas, então o feed guarda a posição de rolagem. */
+.page{
+  position:absolute;
+  inset:0;
+  opacity:0;
+  visibility:hidden;
+  pointer-events:none;
+  transition:opacity .4s var(--ease) .25s, visibility 0s linear .65s;
+}
+
+.page.active{
+  z-index:1;
+  opacity:1;
+  visibility:visible;
+  pointer-events:auto;
+  transition:opacity .6s var(--ease-out), visibility 0s;
+}
+
+.no-anim *,
+.no-anim *::before,
+.no-anim *::after{transition:none !important;animation:none !important}
 
 @keyframes fade{from{opacity:0}to{opacity:1}}
 
-/* ─── HOME: foto cobre o painel inteiro ─── */
-/* ─── FOTO SEM CORTE (desktop) ───
-   A moldura tem a proporção exata da foto (--r, definido no JS). Ocupa a
-   altura toda limitada à largura --lim: W para verticais, W + 1,5G para
-   horizontais (.landscape), que abrem um pouco para os dois lados.
-   Fica centralizada na coluna da foto; a faixa da direita é só das miniaturas. */
-.slide,
-.stage,
-.viewer{
-  --lim:var(--W);
-  --h:min(100cqh, calc(var(--lim) / var(--r, .8)));
+/* ─── MOLDURA (desktop) ───
+   A foto na proporção exata (--r, definido no JS) dentro da caixa 5:4. */
+.home,
+.feed{container-type:size}
+
+.fit{
+  --bw:min(100cqw - 2 * var(--gut), 100cqh * 1.25);
+  --h:min(100cqh, var(--bw) / var(--r, .8));
   height:var(--h);
   width:calc(var(--h) * var(--r, .8));
 }
 
-.slide.landscape,
-.stage.landscape,
-.viewer.landscape{--lim:var(--H)}
-
-.home{
-  position:relative;
-  width:100%;
-  height:100%;
-  overflow:hidden;
-  container-type:size;
-}
-
-.slide{
-  position:absolute;
-  top:0;
-  bottom:0;
-  left:0;
-  right:var(--strip);            /* mesma coluna da foto das outras páginas */
-  margin:auto;
-  display:block;
-  opacity:0;
-  pointer-events:none;          /* só o slide visível recebe o clique */
-  cursor:pointer;
-  transition:opacity 1.2s var(--ease);
-}
-
-.slide.active{opacity:1;pointer-events:auto}
-
+/* As fotos surgem em fade quando chegam (na hora, se já estavam no cache) */
 .slide img,
 .frame img{
   display:block;
@@ -191,230 +202,145 @@ body{
   height:100%;
   object-fit:cover;
   user-select:none;
+  -webkit-user-select:none;
   -webkit-user-drag:none;
+  opacity:0;
+  transition:opacity .8s var(--ease-out);
 }
 
-/* ─── FAIXA LATERAL (abas e galeria) ─── */
-.section,
-.gallery{
+.slide img.on,
+.frame img.on{opacity:1}
+img.instant{transition:none}
+
+/* ─── HOME: capas sorteadas, slideshow de 5 s ─── */
+.home{
+  position:relative;
+  width:100%;
   height:100%;
-  display:flex;
-  align-items:center;
-  container-type:size;
+  overflow:hidden;
 }
 
-/* faixa de miniaturas: coluna fixa na direita da tela */
-.strip{
-  order:2;
-  width:var(--strip);
-  flex-shrink:0;
-  height:100%;
+.slide{
+  position:absolute;
+  inset:0;
+  margin:auto;
+  display:block;
+  opacity:0;
+  pointer-events:none;           /* só o slide visível recebe o clique */
+  cursor:pointer;
+  transition:opacity 1.2s var(--ease);
+  -webkit-tap-highlight-color:transparent;
+}
+
+.slide.active{opacity:1;pointer-events:auto}
+
+/* ─── SELECTED WORK ───
+   Feed vertical com encaixe: um trabalho por tela. Cada trabalho (.post) é um
+   carrossel lateral (.track) com uma página (.pg) por foto. */
+#work{
   display:flex;
   flex-direction:column;
-  padding:var(--pad) 14px 0;
 }
 
-.section-text,
-.gallery-title{
+.section-text{
+  display:none;                  /* desktop: o menu já indica a seção */
   font-size:11px;
   font-weight:500;
   text-transform:uppercase;
   letter-spacing:.14em;
   line-height:1.5;
-}
-
-.section-text{
-  display:none;            /* desktop: o menu já indica a seção */
   opacity:.45;
-  margin-bottom:20px;
-  flex-shrink:0;
 }
 
-.project-list,
-.gallery-thumbs{
+.feed{
+  position:relative;
   flex:1;
   min-height:0;
-  position:relative;
-  display:flex;
-  flex-direction:column;
-  gap:10px;
+  overflow-x:hidden;
   overflow-y:auto;
-  padding-bottom:14px;
+  scroll-snap-type:y mandatory;
+  overscroll-behavior:contain;
   scrollbar-width:none;
-  -webkit-overflow-scrolling:touch;
 }
 
-.project-list::-webkit-scrollbar,
-.gallery-thumbs::-webkit-scrollbar{display:none}
+.feed::-webkit-scrollbar,
+.track::-webkit-scrollbar{display:none}
 
-.project,
-.gallery-thumbs .cell{
-  display:block;
-  padding:0;
-  border:0;
-  background:none;
-  flex-shrink:0;
-  aspect-ratio:4/5;
-  overflow:hidden;
-  cursor:pointer;
-  outline:none;
+/* O post tem a altura da tela mais o respiro; o encaixe é no carrossel, que tem
+   exatamente a altura da tela (área de encaixe maior que a tela deixaria folga). */
+.post{
+  position:relative;
+  height:calc(100% + var(--gap));
+  padding:calc(var(--gap) / 2) 0;
+}
+
+.track{
+  display:flex;
+  height:100%;
+  overflow-x:auto;
+  overflow-y:hidden;
+  scroll-snap-type:x mandatory;
+  scroll-snap-align:center;
+  scroll-snap-stop:always;
+  overscroll-behavior-x:contain;
+  scrollbar-width:none;
   -webkit-tap-highlight-color:transparent;
 }
 
-.project{position:relative}
-.project-name{display:none}
-
-.project img,
-.gallery-thumbs img{
-  display:block;
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  opacity:.45;
-  transition:opacity .25s var(--ease);
-}
-
-.project:hover img,
-.project.current img,
-.project:focus-visible img,
-.gallery-thumbs .cell:hover img,
-.gallery-thumbs .cell.active img{opacity:1}
-
-/* miniaturas não verticais aparecem inteiras (sobra acima e abaixo) */
-@media (min-width: 769px){
-  .project.wide img,
-  .gallery-thumbs .cell.wide img{object-fit:contain}
-}
-
-/* ─── PALCO: capa do projeto ─── */
-.stage,
-.viewer{
-  flex:none;
-  margin:auto;                   /* centraliza na coluna da foto */
-}
-
-.stage{
+.pg{
   position:relative;
-  display:block;
-  overflow:hidden;
-  cursor:pointer;
-  color:#fff;
-  text-decoration:none;
-}
-
-.stage:not([data-key]){visibility:hidden}
-
-.stage img{
-  position:absolute;
-  inset:0;
-  width:100%;
-  height:100%;
-  object-fit:cover;
-}
-
-/* Título: aparece sobre a imagem ao passar o mouse na capa ou no palco */
-.stage-title{
-  position:absolute;
-  inset:0;
+  flex:0 0 100%;
   display:flex;
   align-items:center;
   justify-content:center;
-  padding:24px;
-  text-align:center;
-  font-size:clamp(20px, 2.2vw, 34px);
-  font-weight:700;
-  text-transform:uppercase;
-  letter-spacing:.06em;
-  line-height:1.15;
-  overflow-wrap:anywhere;
-  background:rgba(0,0,0,.3);
-  opacity:0;
-  transition:opacity .3s var(--ease);
-  pointer-events:none;
-}
-
-@media (hover:hover){
-  .stage:hover .stage-title,
-  .section:has(.project:hover) .stage-title{opacity:1}
-}
-
-/* ─── GALERIA ─── */
-.gallery-head{
-  display:flex;
-  flex-direction:column;
-  gap:4px;
-  margin-bottom:20px;
-  flex-shrink:0;
-}
-
-.gallery-title{opacity:.75}
-
-.gallery-count{
-  font-size:11px;
-  letter-spacing:.08em;
-  opacity:.4;
-  font-variant-numeric:tabular-nums;
-}
-
-.back-btn{
-  align-self:flex-start;
-  background:none;
-  border:none;
-  font:inherit;
-  font-size:12px;
-  cursor:pointer;
-  color:inherit;
-  opacity:.5;
-  padding:0 0 10px;
-  -webkit-tap-highlight-color:transparent;
-}
-
-.back-btn:hover{opacity:1}
-
-.viewer{
-  position:relative;
-  overflow:hidden;
-  touch-action:pan-y pinch-zoom;
+  scroll-snap-align:center;
+  scroll-snap-stop:always;
 }
 
 .frame{
-  position:absolute;
-  inset:0;
+  position:relative;
+  display:block;
+  flex:none;
+  background:rgba(0,0,0,.035);   /* enquanto a foto não chega */
 }
 
-.frame.landscape img{object-fit:contain}   /* horizontais: inteiras */
-
-/* Setas brancas, finas, sobre a foto */
-.nav-arrow{
+/* Nome do trabalho ao lado da foto, na vertical (de baixo para cima),
+   alinhado à base da imagem; o contador fica na mesma linha. */
+.cap{
   position:absolute;
-  top:0;
-  bottom:0;
-  width:20%;
-  background:none;
-  border:none;
-  cursor:pointer;
-  z-index:10;
-  -webkit-tap-highlight-color:transparent;
+  left:calc(100% + clamp(16px, 1.4vw, 26px));
+  bottom:max(0px, calc(clamp(28px, 4.5vh, 44px) - (100cqh - var(--h)) / 2));
+  writing-mode:vertical-rl;
+  transform:rotate(180deg);
+  white-space:nowrap;
+  line-height:1;
+  pointer-events:none;
+  user-select:none;
+  -webkit-user-select:none;
 }
 
-.nav-arrow::before{
-  content:'';
-  position:absolute;
-  top:50%;
-  width:14px;
-  height:14px;
-  border-top:1.5px solid #fff;
-  border-left:1.5px solid #fff;
-  opacity:.55;
-  filter:drop-shadow(0 0 3px rgba(0,0,0,.35));
-  transition:opacity .2s var(--ease);
+.cap-t{
+  font-family:var(--serif);
+  font-size:clamp(22px, 1.6vw, 32px);
+  font-weight:400;
+  letter-spacing:.005em;
 }
 
-.nav-arrow.prev{left:0}
-.nav-arrow.next{right:0}
-.nav-arrow.prev::before{left:24px;transform:translateY(-50%) rotate(-45deg)}
-.nav-arrow.next::before{right:24px;transform:translateY(-50%) rotate(135deg)}
-.nav-arrow:hover::before{opacity:1}
+.cap-n{
+  margin-inline-start:1.4em;
+  font-size:10.5px;
+  font-weight:500;
+  letter-spacing:.14em;
+  font-variant-numeric:tabular-nums;
+  opacity:.5;
+}
+
+/* Cursor indica o que o clique faz: foto anterior, próxima ou próximo trabalho */
+@media (hover:hover){
+  .post[data-cur="next"]{cursor:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32'%3E%3Cg fill='none' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 16h20M20 10l6 6-6 6' stroke='%23fff' stroke-opacity='.9' stroke-width='4'/%3E%3Cpath d='M6 16h20M20 10l6 6-6 6' stroke='%23111' stroke-width='1.4'/%3E%3C/g%3E%3C/svg%3E") 16 16, e-resize}
+  .post[data-cur="prev"]{cursor:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32'%3E%3Cg fill='none' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M26 16H6M12 10l-6 6 6 6' stroke='%23fff' stroke-opacity='.9' stroke-width='4'/%3E%3Cpath d='M26 16H6M12 10l-6 6 6 6' stroke='%23111' stroke-width='1.4'/%3E%3C/g%3E%3C/svg%3E") 16 16, w-resize}
+  .post[data-cur="down"]{cursor:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32'%3E%3Cg fill='none' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M16 6v20M10 20l6 6 6-6' stroke='%23fff' stroke-opacity='.9' stroke-width='4'/%3E%3Cpath d='M16 6v20M10 20l6 6 6-6' stroke='%23111' stroke-width='1.4'/%3E%3C/g%3E%3C/svg%3E") 16 16, s-resize}
+}
 
 /* Aviso se a lista de trabalhos não carregar */
 .load-error{
@@ -430,7 +356,7 @@ body{
 
 .load-error a{color:inherit}
 
-/* ─── TEXT ─── */
+/* ─── TEXTO (contato) ─── */
 .text{
   max-width:calc(600px + 2 * var(--pad));
   padding:var(--pad);
@@ -438,18 +364,6 @@ body{
   line-height:1.8;
   letter-spacing:.005em;
 }
-
-#bio .text{
-  font-size:15px;
-  line-height:1.85;
-  overflow-y:auto;
-  height:100%;
-  scrollbar-width:none;
-  -webkit-overflow-scrolling:touch;
-}
-
-#bio .text p{margin-bottom:1.4em}
-#bio .text p:last-child{margin-bottom:0}
 
 #contact .text{
   overflow-y:auto;
@@ -497,9 +411,9 @@ body{
 
 
 /* ══════════════════════════════════════════════
-   MOBILE — max-width: 768px
+   CELULAR (e tablet em pé) — mesmo critério de MOBILE no JS
    ══════════════════════════════════════════════ */
-@media (max-width: 768px) {
+@media (max-width: 768px), (max-width: 1100px) and (orientation: portrait) {
 
   :root{--pad:20px}
 
@@ -514,12 +428,12 @@ body{
     display:flex;
     align-items:center;
     justify-content:space-between;
+    overflow:visible;
     z-index:50;
-    flex-shrink:0;
   }
 
   .logo{
-    position:static;
+    margin-top:0;
     font-size:26px;
     letter-spacing:.02em;
   }
@@ -557,108 +471,88 @@ body{
   .submenu{margin:4px 0 14px 1px}
   .submenu a{font-size:14.5px;padding:7px 0;margin-bottom:0}
 
-  /* ─── CONTENT ─── */
+  /* ─── CONTEÚDO ─── */
   .content{
     width:100%;
     flex:1;
     min-height:0;
   }
 
-  /* ─── HOME: capa em 4:5, de borda a borda na largura, como nas abas ─── */
+  /* troca de página: sai rápido e entra em seguida (sem sobrepor) */
+  .page{transition:opacity .22s var(--ease), visibility 0s linear .22s}
+  .page.active{transition:opacity .45s var(--ease-out) .12s, visibility 0s}
+
+  /* ─── HOME: capa em 4:5, de borda a borda na largura ─── */
   .slide{
-    inset:0;
-    margin:auto;
     width:100%;
     height:auto;
     max-height:100%;
     aspect-ratio:4/5;
   }
 
-  /* ─── ABAS: feed vertical de capas em largura total ─── */
-  .section{flex-direction:column;align-items:stretch;justify-content:flex-start}
-  .stage{display:none}
+  /* ─── SELECTED WORK: feed de posts 4:5 em largura total; cada post é um
+     carrossel lateral (arrastar ou tocar). A capa preenche o 4:5; as demais
+     fotos aparecem inteiras. ─── */
+  .section-text{display:block;flex-shrink:0;padding:14px var(--pad)}
 
-  .strip{
-    width:100%;
-    padding:0;
+  .feed{scroll-snap-type:none}
+
+  .post{height:auto;padding:0}
+  .post + .post{margin-top:3px}
+
+  .track{height:auto;aspect-ratio:4/5;scroll-snap-align:none}
+
+  .pg{display:block}
+
+  .frame{
+    position:absolute;
+    inset:0;
+    width:auto;
+    height:auto;
+    background:none;
   }
 
-  .section-text{display:block;margin:0;padding:14px var(--pad)}
+  .frame img{object-fit:contain}
+  .is-cover .frame img{object-fit:cover}
 
-  .project-list{gap:3px;padding-bottom:0}
-  .project img{opacity:1}
-
-  /* nome do trabalho na vertical, na lateral esquerda da capa;
-     preto sobre fundo claro, branco sobre fundo escuro (ver edgeTone no JS) */
-  .project-name{
-    display:block;
-    position:absolute;
+  /* nome na vertical, na lateral esquerda da foto; preto sobre fundo claro,
+     branco sobre fundo escuro (ver tone() no JS) */
+  .cap{
     left:14px;
     top:50%;
-    writing-mode:vertical-rl;
-    transform:translateY(-50%) rotate(180deg);
+    bottom:auto;
     max-height:90%;
     overflow:hidden;
-    white-space:nowrap;
     text-overflow:ellipsis;
-    font-size:14px;
-    font-weight:700;
-    text-transform:uppercase;
-    letter-spacing:.14em;
+    transform:translateY(-50%) rotate(180deg);
     color:#fff;
-    text-shadow:0 0 10px rgba(0,0,0,.35);
-    pointer-events:none;
+    text-shadow:0 0 12px rgba(0,0,0,.3);
+    transition:color .4s var(--ease), text-shadow .4s var(--ease);
   }
 
-  .project.light-edge .project-name{color:var(--ink);text-shadow:none}
+  .pg.light .cap{color:var(--ink);text-shadow:0 0 12px rgba(255,255,255,.45)}
 
-  /* ─── GALERIA: título em cima, foto no meio, miniaturas embaixo ─── */
-  .gallery{
-    display:grid;
-    align-items:stretch;
-    grid-template-columns:1fr;
-    grid-template-rows:auto 1fr auto;
-  }
-
-  .gallery .strip{display:contents}
-
-  .gallery-head{
-    grid-row:1;
-    flex-direction:row;
-    align-items:baseline;
-    gap:14px;
-    margin:0;
-    padding:10px var(--pad);
-  }
-
-  .viewer{grid-row:2;min-height:0;height:auto;width:auto;margin:0}
-
-  .back-btn{padding:0}
-  .gallery-count{margin-left:auto}
-
-  .gallery-thumbs{
-    grid-row:3;
-    flex:none;
-    flex-direction:row;
-    gap:5px;
-    height:58px;
-    padding:8px var(--pad) 10px;
-    overflow-x:auto;
-    overflow-y:hidden;
-  }
-
-  .gallery-thumbs .cell{height:100%;width:auto}
-
-  /* a foto ocupa toda a área que sobra; horizontais inteiras (regra .frame) */
-
-  .nav-arrow::before{border-color:var(--ink);filter:none;opacity:.3;width:10px;height:10px}
-  .nav-arrow.prev::before{left:10px}
-  .nav-arrow.next::before{right:10px}
+  .cap-t{font-size:20px}
+  .cap-n{font-size:9.5px;opacity:.75}
 
   .text{font-size:14px}
-  #bio .text{font-size:14px;line-height:1.75}
 }
 
 @media (max-width: 390px) {
   .logo{font-size:23px}
+}
+
+/* tablet em pé: mesmo layout do celular, letra um pouco maior */
+@media (min-width: 769px) and (max-width: 1100px) and (orientation: portrait) {
+  .logo{font-size:30px}
+  .cap-t{font-size:25px}
+  .cap-n{font-size:10.5px}
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page,
+  .page.active,
+  .slide,
+  .slide img,
+  .frame img{transition-duration:.01s;transition-delay:0s}
 }
