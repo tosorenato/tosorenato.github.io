@@ -533,7 +533,7 @@ body{
     align-items:baseline;
     gap:14px;
     margin:0;
-    padding:12px var(--pad);
+    padding:10px var(--pad);
   }
 
   .viewer{grid-row:2;min-height:0}
@@ -545,17 +545,19 @@ body{
     grid-row:3;
     flex:none;
     flex-direction:row;
-    gap:6px;
-    height:76px;
-    padding:10px var(--pad) 12px;
+    gap:5px;
+    height:58px;
+    padding:8px var(--pad) 10px;
     overflow-x:auto;
     overflow-y:hidden;
   }
 
   .gallery-thumbs .cell{height:100%;width:auto}
 
-  /* no celular a foto vai de borda a borda na largura, sem corte */
-  #mainFit img{object-fit:contain}
+  /* foto ocupa toda a área que sobra (sangria total); horizontais seguem
+     a regra do desktop: inteiras, de borda a borda na largura */
+  #mainFit img{object-fit:cover}
+  #mainFit.landscape img{object-fit:contain}
 
   .nav-arrow::before{border-color:var(--ink);filter:none;opacity:.3;width:10px;height:10px}
   .nav-arrow.prev::before{left:10px}
