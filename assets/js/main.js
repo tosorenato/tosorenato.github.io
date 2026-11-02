@@ -66,7 +66,7 @@
       [list[i], list[j]] = [list[j], list[i]];
     }
     const box = $('homeSlides');
-    const sizes = '(max-width: 768px) 100vw, 65vw';
+    const sizes = '(max-width: 768px) 100vw, 65vw';  // home ocupa todo o painel
     slides = list.map((img, i) => {
       const el = document.createElement('img');
       el.sizes = sizes;
@@ -98,27 +98,23 @@
     const grid = document.querySelector(`.project-list[data-section="${sec}"]`);
     const sub = document.querySelector(`.submenu[data-section="${sec}"]`);
     const link = document.querySelector(`.menu a[data-route="${sec}"]`);
+    const stage = document.querySelector(`.stage[data-section="${sec}"]`);
     if(!list.length && link) link.hidden = true;
     list.forEach((p, i) => {
       const key = `${sec}/${p.slug}`;
       projects[key] = {...p, key, section: sec};
 
+      // capa na faixa lateral (desktop) / no feed vertical (celular)
       const card = document.createElement('a');
       card.className = 'project';
       card.href = `#${key}/1`;
       card.dataset.key = key;
-      const cover = picture(p.images[0], ['s','m'],
-        '(max-width: 768px) 45vw, 22vw', i < 3);
+      const cover = picture(p.images[0], ['s','m','l'],
+        '(max-width: 768px) 100vw, 160px', i < 4);
       cover.alt = p.title;
-      const box = fit(p.images[0], cover);
-      const cap = document.createElement('span');
-      cap.className = 'project-title';
-      cap.textContent = p.title;
-      box.appendChild(cap);
-      const cell = document.createElement('span');
-      cell.className = 'cell';
-      cell.appendChild(box);
-      card.appendChild(cell);
+      card.appendChild(cover);
+      card.addEventListener('mouseenter', () => showStage(stage, projects[key]));
+      card.addEventListener('focus', () => showStage(stage, projects[key]));
       grid.appendChild(card);
 
       const a = document.createElement('a');
@@ -127,6 +123,23 @@
       a.textContent = p.title;
       sub.appendChild(a);
     });
+    if(list.length) showStage(stage, projects[`${sec}/${list[0].slug}`], true);
+  }
+
+  // Palco: capa do projeto em sangria total; o título aparece no hover
+  function showStage(stage, p, initial){
+    if(!stage || stage.dataset.key === p.key && !initial) return;
+    stage.dataset.key = p.key;
+    stage.href = `#${p.key}/1`;
+    const img = stage.querySelector('img');
+    const cover = p.images[0];
+    img.sizes = '(max-width: 768px) 100vw, 55vw';
+    img.srcset = srcset(cover, ['m','l']);
+    img.src = url(cover, 'l');
+    img.alt = p.title;
+    stage.querySelector('.stage-title').textContent = p.title;
+    document.querySelectorAll(`.project-list[data-section="${p.section}"] .project`).forEach(c =>
+      c.classList.toggle('current', c.dataset.key === p.key));
   }
 
   // ─── TEMA / PÁGINAS ───
@@ -178,12 +191,13 @@
       p.images.forEach((img, i) => {
         const t = document.createElement('img');
         t.src = url(img, 's');
+        t.srcset = `${url(img,'s')} 1x, ${url(img,'m')} 2x`;
         t.alt = '';
         t.loading = 'lazy';
         t.decoding = 'async';
         const cell = document.createElement('span');
         cell.className = 'cell';
-        cell.appendChild(fit(img, t));
+        cell.appendChild(t);
         cell.onclick = () => go(i);
         thumbs.appendChild(cell);
       });
@@ -198,12 +212,18 @@
     const img = current.images[index];
     mainImage.removeAttribute('srcset');
     setRatio($('mainFit'), img);
-    mainImage.sizes = '(max-width: 768px) 100vw, 65vw';
+    mainImage.sizes = '(max-width: 768px) 100vw, 55vw';
     mainImage.srcset = srcset(img, ['m','l']);
     mainImage.src = url(img, 'l');
     mainImage.alt = current.title;
     gCount.textContent = `${index + 1} / ${current.images.length}`;
     [...thumbs.children].forEach((t, i) => t.classList.toggle('active', i === index));
+    // mantém a miniatura ativa visível, rolando só a faixa (nunca a página)
+    const c = thumbs.children[index];
+    if(c) thumbs.scrollTo({
+      top: c.offsetTop - (thumbs.clientHeight - c.offsetHeight) / 2,
+      left: c.offsetLeft - (thumbs.clientWidth - c.offsetWidth) / 2,
+      behavior: 'smooth'});
     // pré-carrega a próxima no tamanho que o navegador escolheria
     const nxt = current.images[(index + 1) % current.images.length];
     if(nxt){ const pre = new Image(); pre.sizes = mainImage.sizes; pre.srcset = srcset(nxt, ['m','l']); }
