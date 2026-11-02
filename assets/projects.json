@@ -179,31 +179,6 @@
       "src": "/assets/img/ads/page9/04",
       "w": 2560,
       "h": 1897
-     },
-     {
-      "src": "/assets/img/ads/page9/05",
-      "w": 2048,
-      "h": 2560
-     },
-     {
-      "src": "/assets/img/ads/page9/06",
-      "w": 2048,
-      "h": 2560
-     },
-     {
-      "src": "/assets/img/ads/page9/07",
-      "w": 2048,
-      "h": 2560
-     },
-     {
-      "src": "/assets/img/ads/page9/08",
-      "w": 2048,
-      "h": 2560
-     },
-     {
-      "src": "/assets/img/ads/page9/09",
-      "w": 2048,
-      "h": 2560
      }
     ]
    },
@@ -229,6 +204,31 @@
      },
      {
       "src": "/assets/img/ads/luiza-barcelos/04",
+      "w": 2048,
+      "h": 2560
+     },
+     {
+      "src": "/assets/img/ads/luiza-barcelos/05",
+      "w": 2048,
+      "h": 2560
+     },
+     {
+      "src": "/assets/img/ads/luiza-barcelos/06",
+      "w": 2048,
+      "h": 2560
+     },
+     {
+      "src": "/assets/img/ads/luiza-barcelos/07",
+      "w": 2048,
+      "h": 2560
+     },
+     {
+      "src": "/assets/img/ads/luiza-barcelos/08",
+      "w": 2048,
+      "h": 2560
+     },
+     {
+      "src": "/assets/img/ads/luiza-barcelos/09",
       "w": 2049,
       "h": 2560
      }
@@ -428,7 +428,7 @@
      },
      {
       "src": "/assets/img/people/gabriel-sotero/04",
-      "w": 2048,
+      "w": 1707,
       "h": 2560
      },
      {
@@ -453,7 +453,7 @@
      },
      {
       "src": "/assets/img/people/gabriel-sotero/09",
-      "w": 1707,
+      "w": 2048,
       "h": 2560
      }
     ]
