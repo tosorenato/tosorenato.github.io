@@ -12,18 +12,29 @@
   const submenu = $('submenu'), hamburger = $('hamburger'), homeBox = $('homeSlides');
 
   // Manifest gerado por tools/publish.py (assets/projects.json):
-  // { sizes:{l,m,s}, work:[{slug,title,date,images:[{src,w,h}]}] }
-  // Cada imagem existe em src-l.jpg (2560), src-m.jpg (1280) e src-s.jpg (480).
+  // { ext, sizes:{l,m,s}, work:[{slug,title,date,images:[{src,w,h}]}] }
+  // Cada imagem existe em src-l.<ext> (2560), src-m.<ext> (1280) e src-s.<ext> (480).
   // A primeira imagem de cada trabalho é a capa (feed e home).
-  let SIZES = {l: 2560, m: 1280, s: 480};
+  let SIZES = {l: 2560, m: 1280, s: 480}, EXT = 'webp';
   const works = [], bySlug = {};
   let page = '';      // página visível
   let cur = -1;       // trabalho em foco no feed
 
   history.scrollRestoration = 'manual';
 
+  // ─── ENDEREÇOS ───
+  // /  ·  /trabalhos/  ·  /trabalhos/<trabalho>/ (foto n no hash: #n)  ·  /contato/
+  // Cada caminho existe como página estática (tools/build_pages.py), com o mesmo JS.
+  const WORK = '/trabalhos/';
+  const ROUTE_PATH = {work: WORK, contact: '/contato/'};
+  const pathOf = slug => slug ? `${WORK}${slug}/` : WORK;
+  const here = () => location.pathname + location.hash;
+  let TITLES = {};
+  try{ TITLES = JSON.parse($('seo-titles').textContent); }catch(e){}
+  const setTitle = path => { if(TITLES[path]) document.title = TITLES[path]; };
+
   // ─── IMAGENS ───
-  const url = (img, k) => `${img.src}-${k}.jpg`;
+  const url = (img, k) => `${img.src}-${k}.${EXT}`;
   const ratio = img => img.w / img.h;
   function srcset(img){
     const long = Math.max(img.w, img.h);
@@ -78,6 +89,7 @@
   const ready = loadManifest()
     .then(m => {
       if(m.sizes) SIZES = m.sizes;
+      if(m.ext) EXT = m.ext;
       (m.work || []).forEach((w, i) => {
         // tipografia: " - " do nome da pasta vira travessão curto (–)
         Object.assign(w, {i, idx: 0, to: 0, title: w.title.replace(/ - /g, ' \u2013 ')});
@@ -106,7 +118,7 @@
     slides = list.map(w => {
       const a = document.createElement('a');
       a.className = 'slide fit';
-      a.href = `#work/${w.slug}/1`;
+      a.href = pathOf(w.slug);
       a.dataset.slug = w.slug;
       a.style.setProperty('--r', ratio(w.images[0]).toFixed(4));
       a._img = makeImg(w.images[0], w.title);
@@ -193,7 +205,7 @@
       track.addEventListener('scroll', () => onTrack(w), {passive: true});
 
       const a = document.createElement('a');
-      a.href = `#work/${w.slug}/1`;
+      a.href = pathOf(w.slug);
       a.dataset.slug = w.slug;
       a.textContent = w.title;
       submenu.appendChild(a);
@@ -285,7 +297,8 @@
     syncURL();
   }
 
-  // O endereço acompanha o feed (sem criar histórico): #work/<trabalho>/<foto>.
+  // O endereço acompanha o feed (sem criar histórico): /trabalhos/<trabalho>/#<foto>.
+  // Em /trabalhos/, o primeiro trabalho na capa mantém o endereço da lista.
   // Espera a rolagem assentar (o Safari limita a frequência de replaceState).
   let urlT = 0;
   function syncURL(){
@@ -293,8 +306,9 @@
     urlT = setTimeout(() => {
       if(page !== 'work' || cur < 0) return;
       const w = works[cur];
-      const h = cur === 0 && w.idx === 0 ? '#work' : `#work/${w.slug}/${w.idx + 1}`;
-      if(location.hash !== h) history.replaceState(history.state, '', h);
+      const onList = location.pathname === WORK;
+      const h = onList && cur === 0 && w.idx === 0 ? WORK : pathOf(w.slug) + (w.idx ? `#${w.idx + 1}` : '');
+      if(here() !== h){ history.replaceState(history.state, '', h); setTitle(location.pathname); }
     }, 200);
   }
 
@@ -452,34 +466,52 @@
     if(first) requestAnimationFrame(() => requestAnimationFrame(() => root.classList.remove('no-anim')));
   }
 
-  // ─── ROTAS: (vazio) home · #work · #work/<trabalho>/<foto> · #contact ───
-  // Links antigos: #ads/... → #work/...; #home, #people, #personal, #bio → home.
+  // ─── ROTAS: / · /trabalhos/ · /trabalhos/<trabalho>/#<foto> · /contato/ ───
+  // Links antigos com # (#work, #work/<trabalho>/<foto>, #ads/..., #contact, #home,
+  // #people, #personal, #bio) são levados ao caminho novo (migrate).
   function parse(){
+    const p = location.pathname.replace(/index\.html$/, '');
+    const m = p.match(/^\/trabalhos\/(?:([^/]+)\/?)?$/);
+    if(m) return {route: 'work', slug: m[1] || '', n: parseInt(location.hash.slice(1), 10) || 1};
+    if(/^\/contato\/?$/.test(p)) return {route: 'contact'};
     const [r = '', slug = '', n = ''] = location.hash.replace(/^#\/?/, '').split('/');
-    if(r === 'work' || r === 'ads') return {route: 'work', slug, n: parseInt(n, 10) || 1, legacy: r === 'ads'};
-    if(r === 'contact') return {route: 'contact'};
+    if(r === 'work' || r === 'ads') return {route: 'work', slug, n: parseInt(n, 10) || 1, legacy: true};
+    if(r === 'contact') return {route: 'contact', legacy: true};
     return {route: 'home', legacy: r !== ''};
   }
 
+  // link antigo sem o ano (#work/melissa/2) acha o trabalho atual (2026-melissa)
+  const findWork = slug => bySlug[slug] || (slug && works.find(x => x.slug.endsWith('-' + slug)));
+
+  function migrate({route, slug, n}){
+    if(route === 'home') return location.replace('/');
+    if(route === 'contact') return location.replace(ROUTE_PATH.contact);
+    if(!slug) return location.replace(WORK);
+    ready.then(() => {
+      const w = findWork(slug);
+      location.replace(w ? pathOf(w.slug) + (n > 1 ? `#${n}` : '') : WORK);
+    });
+  }
+
   function apply(){
-    const {route, slug, n, legacy} = parse();
-    if(legacy) history.replaceState(null, '',
-      route === 'home' ? location.pathname : slug ? `#work/${slug}/${n}` : '#work');
+    const r = parse();
+    if(r.legacy){ migrate(r); return; }
+    const {route, slug, n} = r;
     show(route);
+    setTitle(location.pathname);
     if(route !== 'work') return;
     ready.then(() => {
       if(page !== 'work' || !works.length) return;
-      // link antigo sem o ano (#work/melissa/2) acha o trabalho atual (2026-melissa)
-      const w = bySlug[slug] || (slug && works.find(x => x.slug.endsWith('-' + slug)));
+      const w = findWork(slug);
       if(w) reveal(w, n - 1);
       else if(cur < 0) reveal(works[0], 0);   // primeira visita: o primeiro trabalho
       else { spy(); syncURL(); }
     });
   }
 
-  function navigate(hash){
-    if(location.hash === hash){ apply(); return; }
-    history.pushState(null, '', hash || location.pathname);
+  function navigate(to){
+    if(here() === to){ apply(); return; }
+    history.pushState(null, '', to);
     apply();
   }
 
@@ -501,13 +533,13 @@
     const a = e.target.closest('a');
     if(!a || e.button || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
 
-    if(a.classList.contains('logo')){ e.preventDefault(); navigate(''); return; }
+    if(a.classList.contains('logo')){ e.preventDefault(); navigate('/'); return; }
 
     const route = a.dataset.route;
     if(route){
       e.preventDefault();
       if(route === 'work' && page === 'work'){ closeMenu(); goWork(0); }   // de novo: volta ao início
-      else navigate('#' + route);
+      else navigate(ROUTE_PATH[route]);
       return;
     }
 
@@ -517,7 +549,7 @@
       // a capa da home já está na tela: no feed ela aparece na hora, sem fade
       if(a.classList.contains('slide') && a._img.classList.contains('on')) w.imgs[0]._instant = true;
       if(page === 'work'){ closeMenu(); openWork(w); }
-      else navigate(`#work/${w.slug}/1`);
+      else navigate(pathOf(w.slug));
     }
   });
 

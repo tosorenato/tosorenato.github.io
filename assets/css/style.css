@@ -555,3 +555,27 @@ img.instant{transition:none}
   .slide img,
   .frame img{transition-duration:.01s;transition-delay:0s}
 }
+
+/* Conteúdo para buscadores e leitores de tela (gerado por tools/build_pages.py).
+   Não aparece na tela. A galeria fica fora da área visível e com lazy-load,
+   para o navegador não baixar as fotos duas vezes. */
+.sr-only{
+  position:absolute;
+  width:1px;
+  height:1px;
+  margin:-1px;
+  overflow:hidden;
+  clip:rect(0 0 0 0);
+  clip-path:inset(50%);
+  white-space:nowrap;
+  border:0;
+}
+
+.seo-gallery{
+  position:absolute;
+  left:-10000px;
+  top:0;
+  width:1px;
+  height:1px;
+  overflow:hidden;
+}
