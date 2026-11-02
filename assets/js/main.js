@@ -20,7 +20,12 @@
 
   const url = (img, k) => `${img.src}-${k}.jpg`;
   // proporção da foto → o CSS dimensiona a moldura no tamanho exato (sem corte)
-  const setRatio = (el, img) => el.style.setProperty('--r', (img.w / img.h).toFixed(4));
+  const setRatio = (el, img) => {
+    const r = img.w / img.h;
+    el.style.setProperty('--r', r.toFixed(4));
+    el.classList.toggle('landscape', r > 1.05);   // horizontais: podem abrir para os lados
+  };
+  const isWide = img => img.w / img.h > .85;       // miniatura inteira (contain) no desktop
   function srcset(img, keys){
     const long = Math.max(img.w, img.h);
     return keys.map(k => `${url(img,k)} ${Math.round(img.w * Math.min(1, SIZES[k] / long))}w`).join(', ');
@@ -121,6 +126,7 @@
       card.className = 'project';
       card.href = `#${key}/1`;
       card.dataset.key = key;
+      card.classList.toggle('wide', isWide(p.images[0]));
       const cover = picture(p.images[0], ['s','m','l'],
         '(max-width: 768px) 100vw, 160px', i < 4);
       cover.alt = p.title;
@@ -229,7 +235,7 @@
         t.loading = 'lazy';
         t.decoding = 'async';
         const cell = document.createElement('button');
-        cell.className = 'cell';
+        cell.className = 'cell' + (isWide(img) ? ' wide' : '');
         cell.type = 'button';
         cell.setAttribute('aria-label', `foto ${i + 1}`);
         cell.appendChild(t);
@@ -247,7 +253,7 @@
     const img = current.images[index];
     mainImage.removeAttribute('srcset');
     // horizontais: sem corte (encostam nas laterais); verticais: sangria total
-    mainFrame.classList.toggle('landscape', img.w / img.h > 1.05);
+    mainFrame.classList.toggle('landscape', img.w / img.h > 1.05);   // celular: contain
     setRatio(viewer, img);
     mainImage.sizes = '(max-width: 768px) 100vw, 55vw';
     mainImage.srcset = srcset(img, ['m','l']);

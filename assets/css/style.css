@@ -5,7 +5,14 @@
   --ink:#111;
   --pad:56px;
   --ease:cubic-bezier(.25,.1,.25,1);
-  --strip:clamp(132px, 12vw, 184px);
+  /* Geometria do desktop (da esquerda para a direita):
+     menu (o que sobrar) | G | coluna da foto W | G | faixa de miniaturas
+     W cabe uma vertical 4:5 na altura toda; horizontais podem usar W + 1,5G. */
+  --strip:clamp(150px, 10vw, 200px);
+  --G:clamp(28px, 3.5vw, 72px);
+  --W:min(calc(100dvh * .8), calc(70vw - 2 * var(--G) - var(--strip)));
+  --Z:calc(var(--W) + 2 * var(--G));      /* largura da coluna da foto */
+  --H:calc(var(--W) + 1.5 * var(--G));    /* limite das horizontais (folga de G/4) */
 }
 
 body{
@@ -27,7 +34,8 @@ body{
 
 /* ─── MENU (DESKTOP) ─── */
 .nav{
-  width:35%;
+  flex:1;
+  min-width:0;
   padding:var(--pad);
   position:relative;
   transition:background .4s var(--ease);
@@ -118,7 +126,8 @@ body{
    Sem margem: fotos em sangria total até a borda da janela. */
 .content{
   position:relative;
-  width:65%;
+  flex:none;
+  width:calc(var(--Z) + var(--strip));
   padding:0;
   overflow:hidden;
   transition:background .4s var(--ease);
@@ -134,9 +143,23 @@ body{
 
 /* ─── HOME: foto cobre o painel inteiro ─── */
 /* ─── FOTO SEM CORTE (desktop) ───
-   A moldura tem a proporção exata da foto (--r, definido no JS): ocupa toda a
-   altura e, se não couber na largura, encolhe por inteiro. Fica alinhada à
-   direita; o espaço que sobra à esquerda é do menu. */
+   A moldura tem a proporção exata da foto (--r, definido no JS). Ocupa a
+   altura toda limitada à largura --lim: W para verticais, W + 1,5G para
+   horizontais (.landscape), que abrem um pouco para os dois lados.
+   Fica centralizada na coluna da foto; a faixa da direita é só das miniaturas. */
+.slide,
+.stage,
+.viewer{
+  --lim:var(--W);
+  --h:min(100cqh, calc(var(--lim) / var(--r, .8)));
+  height:var(--h);
+  width:calc(var(--h) * var(--r, .8));
+}
+
+.slide.landscape,
+.stage.landscape,
+.viewer.landscape{--lim:var(--H)}
+
 .home{
   position:relative;
   width:100%;
@@ -147,11 +170,11 @@ body{
 
 .slide{
   position:absolute;
-  right:0;
-  top:50%;
-  transform:translateY(-50%);
-  height:min(100cqh, calc(100cqw / var(--r, .8)));
-  aspect-ratio:var(--r, .8);
+  top:0;
+  bottom:0;
+  left:0;
+  right:var(--strip);            /* mesma coluna da foto das outras páginas */
+  margin:auto;
   display:block;
   opacity:0;
   pointer-events:none;          /* só o slide visível recebe o clique */
@@ -176,12 +199,13 @@ body{
 .gallery{
   height:100%;
   display:flex;
-  justify-content:flex-end;        /* faixa + foto encostadas à direita */
   align-items:center;
   container-type:size;
 }
 
+/* faixa de miniaturas: coluna fixa na direita da tela */
 .strip{
+  order:2;
   width:var(--strip);
   flex-shrink:0;
   height:100%;
@@ -256,12 +280,17 @@ body{
 .gallery-thumbs .cell:hover img,
 .gallery-thumbs .cell.active img{opacity:1}
 
-/* ─── PALCO: capa do projeto em sangria total ─── */
+/* miniaturas não verticais aparecem inteiras (sobra acima e abaixo) */
+@media (min-width: 769px){
+  .project.wide img,
+  .gallery-thumbs .cell.wide img{object-fit:contain}
+}
+
+/* ─── PALCO: capa do projeto ─── */
 .stage,
 .viewer{
   flex:none;
-  height:min(100cqh, calc((100cqw - var(--strip)) / var(--r, .8)));
-  aspect-ratio:var(--r, .8);
+  margin:auto;                   /* centraliza na coluna da foto */
 }
 
 .stage{
@@ -478,6 +507,7 @@ body{
 
   /* ─── NAV → BARRA SUPERIOR ─── */
   .nav{
+    flex:none;
     width:100%;
     height:64px;
     padding:0 var(--pad);
@@ -537,7 +567,6 @@ body{
   /* ─── HOME: capa em 4:5, de borda a borda na largura, como nas abas ─── */
   .slide{
     inset:0;
-    transform:none;
     margin:auto;
     width:100%;
     height:auto;
@@ -602,7 +631,7 @@ body{
     padding:10px var(--pad);
   }
 
-  .viewer{grid-row:2;min-height:0;height:auto;aspect-ratio:auto}
+  .viewer{grid-row:2;min-height:0;height:auto;width:auto;margin:0}
 
   .back-btn{padding:0}
   .gallery-count{margin-left:auto}
