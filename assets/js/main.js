@@ -34,15 +34,31 @@
     return el;
   }
 
-  const ready = fetch('/assets/projects.json', {cache:'no-cache'})
-    .then(r => r.json())
+  // Lista de trabalhos. Se falhar (rede instável), tenta de novo 3 vezes
+  // (1, 2 e 4 s) e, se ainda assim falhar, mostra um aviso discreto.
+  function loadManifest(tries = 0){
+    return fetch('/assets/projects.json', {cache:'no-cache'})
+      .then(r => { if(!r.ok) throw new Error(r.status); return r.json(); })
+      .catch(err => {
+        if(tries < 3) return new Promise(res => setTimeout(res, 1000 * 2 ** tries)).then(() => loadManifest(tries + 1));
+        throw err;
+      });
+  }
+
+  const ready = loadManifest()
     .then(m => {
       if(m.sizes) SIZES = m.sizes;
       SECTIONS.forEach(sec => buildSection(sec, (m.sections || {})[sec] || []));
       // home: capas de todos os trabalhos, sorteadas; cada uma abre a galeria do projeto
       buildHome(Object.values(projects).map(p => ({img: p.images[0], key: p.key, title: p.title})));
     })
-    .catch(err => console.error('projects.json', err));
+    .catch(err => {
+      console.error('projects.json', err);
+      const n = document.createElement('p');
+      n.className = 'load-error';
+      n.innerHTML = 'Não foi possível carregar as imagens. <a href="">Tentar de novo</a>';
+      content.appendChild(n);
+    });
 
   // ─── HOME ───
   let slides = [];

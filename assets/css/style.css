@@ -116,6 +116,7 @@ body{
 /* ─── CONTENT (DESKTOP) ───
    Sem margem: fotos em sangria total até a borda da janela. */
 .content{
+  position:relative;
   width:65%;
   padding:0;
   overflow:hidden;
@@ -367,6 +368,20 @@ body{
 .nav-arrow.prev::before{left:24px;transform:translateY(-50%) rotate(-45deg)}
 .nav-arrow.next::before{right:24px;transform:translateY(-50%) rotate(135deg)}
 .nav-arrow:hover::before{opacity:1}
+
+/* Aviso se a lista de trabalhos não carregar */
+.load-error{
+  position:absolute;
+  left:50%;
+  top:50%;
+  transform:translate(-50%,-50%);
+  font-size:12px;
+  letter-spacing:.02em;
+  opacity:.6;
+  text-align:center;
+}
+
+.load-error a{color:inherit}
 
 /* ─── TEXT ─── */
 .text{
