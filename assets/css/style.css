@@ -518,17 +518,17 @@ body{
   .project-list{gap:3px;padding-bottom:0}
   .project img{opacity:1}
 
-  /* ─── GALERIA: barra com título, miniaturas à esquerda, foto à direita ─── */
+  /* ─── GALERIA: título em cima, foto no meio, miniaturas embaixo ─── */
   .gallery{
     display:grid;
-    grid-template-columns:62px 1fr;
-    grid-template-rows:auto 1fr;
+    grid-template-columns:1fr;
+    grid-template-rows:auto 1fr auto;
   }
 
   .gallery .strip{display:contents}
 
   .gallery-head{
-    grid-column:1 / -1;
+    grid-row:1;
     flex-direction:row;
     align-items:baseline;
     gap:14px;
@@ -536,13 +536,23 @@ body{
     padding:12px var(--pad);
   }
 
+  .viewer{grid-row:2;min-height:0}
+
   .back-btn{padding:0}
   .gallery-count{margin-left:auto}
 
   .gallery-thumbs{
+    grid-row:3;
+    flex:none;
+    flex-direction:row;
     gap:6px;
-    padding:0 0 12px 8px;
+    height:76px;
+    padding:10px var(--pad) 12px;
+    overflow-x:auto;
+    overflow-y:hidden;
   }
+
+  .gallery-thumbs .cell{height:100%;width:auto}
 
   /* no celular a foto vai de borda a borda na largura, sem corte */
   #mainFit img{object-fit:contain}
