@@ -7,198 +7,6 @@
  },
  "work": [
   {
-   "slug": "personal-flowers",
-   "title": "_personal_flowers",
-   "titulo": "",
-   "og": "/assets/img/og/personal-flowers.jpg",
-   "date": "2026-09-15",
-   "lastmod": "2026-09-15",
-   "desc": "Série pessoal de flores, em preto e branco e em filme.",
-   "cat": "pessoal",
-   "images": [
-    {
-     "src": "/assets/img/work/personal-flowers/personal-flowers-01",
-     "w": 2048,
-     "h": 2560,
-     "alt": "Lírios em preto e branco, com a haste inteira, sobre fundo claro"
-    },
-    {
-     "src": "/assets/img/work/personal-flowers/personal-flowers-02",
-     "w": 2048,
-     "h": 2560,
-     "alt": "Girassol com folhas em preto e branco sobre fundo branco"
-    },
-    {
-     "src": "/assets/img/work/personal-flowers/personal-flowers-03",
-     "w": 2048,
-     "h": 2560,
-     "alt": "Cacho de flores secas em preto e branco, fundo claro"
-    },
-    {
-     "src": "/assets/img/work/personal-flowers/personal-flowers-04",
-     "w": 2048,
-     "h": 2560,
-     "alt": "Duas flores de pétalas amarelas e hastes finas em filme Kodak Ektar 100"
-    },
-    {
-     "src": "/assets/img/work/personal-flowers/personal-flowers-05",
-     "w": 2048,
-     "h": 2560,
-     "alt": "Close de flores de pétalas creme em camadas, em filme"
-    }
-   ]
-  },
-  {
-   "slug": "personal-portraits",
-   "title": "_personal_portraits",
-   "titulo": "",
-   "og": "/assets/img/og/personal-portraits.jpg",
-   "date": "2026-10-05",
-   "lastmod": "2026-11-02",
-   "desc": "Série pessoal de retratos, em estúdio e em filme.",
-   "cat": "retrato",
-   "images": [
-    {
-     "src": "/assets/img/work/personal-portraits/personal-portraits-01",
-     "w": 1574,
-     "h": 1946,
-     "alt": "Retrato em preto e branco de homem de chapéu de palha e camiseta branca, sorrindo, braços cruzados"
-    },
-    {
-     "src": "/assets/img/work/personal-portraits/personal-portraits-02",
-     "w": 2048,
-     "h": 2560,
-     "alt": "Retrato de mulher de cabelo curto, ombros nus, fundo claro"
-    },
-    {
-     "src": "/assets/img/work/personal-portraits/personal-portraits-03",
-     "w": 2048,
-     "h": 2560,
-     "alt": "Retrato em preto e branco de mulher de jaqueta esportiva listrada, com o queixo apoiado na mão"
-    },
-    {
-     "src": "/assets/img/work/personal-portraits/personal-portraits-04",
-     "w": 1949,
-     "h": 2325,
-     "alt": "Retrato em preto e branco de homem de óculos e camiseta preta, braços cruzados"
-    },
-    {
-     "src": "/assets/img/work/personal-portraits/personal-portraits-05",
-     "w": 2048,
-     "h": 2560,
-     "alt": "Retrato em preto e branco de homem sem camisa, cabelo cacheado e bigode, em outro ângulo, fundo preto"
-    },
-    {
-     "src": "/assets/img/work/personal-portraits/personal-portraits-06",
-     "w": 2016,
-     "h": 2560,
-     "alt": "Retrato em preto e branco de mulher de cabelo cacheado sentada em um banco, em ambiente de ateliê"
-    },
-    {
-     "src": "/assets/img/work/personal-portraits/personal-portraits-07",
-     "w": 2048,
-     "h": 2560,
-     "alt": "Retrato em preto e branco de homem de barba e camiseta, em pé diante de fundo cinza"
-    },
-    {
-     "src": "/assets/img/work/personal-portraits/personal-portraits-08",
-     "w": 1817,
-     "h": 2560,
-     "alt": "Retrato de homem de tranças, em três quartos, com luz baixa e fundo esverdeado"
-    },
-    {
-     "src": "/assets/img/work/personal-portraits/personal-portraits-09",
-     "w": 1987,
-     "h": 2560,
-     "alt": "Retrato de mulher de cabelo curto, ombro nu envolto em tecido branco, fundo claro"
-    },
-    {
-     "src": "/assets/img/work/personal-portraits/personal-portraits-10",
-     "w": 1813,
-     "h": 1284,
-     "alt": "Pessoa reclinada em poltrona de couro entre plantas, em filme Kodak Portra 400"
-    },
-    {
-     "src": "/assets/img/work/personal-portraits/personal-portraits-11",
-     "w": 1602,
-     "h": 1968,
-     "alt": "Retrato de corpo inteiro de homem de boné e roupa preta, em fundo de estúdio cinza"
-    },
-    {
-     "src": "/assets/img/work/personal-portraits/personal-portraits-12",
-     "w": 1592,
-     "h": 1962,
-     "alt": "Retrato de homem de barba e cabelo cacheado, camiseta preta e mãos na cintura, fundo branco"
-    }
-   ]
-  },
-  {
-   "slug": "2026-roberto-strongoli",
-   "title": "2026_roberto_strongoli",
-   "titulo": "",
-   "og": "/assets/img/og/2026-roberto-strongoli.jpg",
-   "date": "2026-11-01",
-   "lastmod": "2026-11-01",
-   "desc": "Retratos em estúdio, com fundo branco.",
-   "cat": "retrato",
-   "images": [
-    {
-     "src": "/assets/img/work/2026-roberto-strongoli/2026-roberto-strongoli-01",
-     "w": 2049,
-     "h": 2560,
-     "alt": "Retrato de homem de suéter azul-marinho, rosto apoiado na mão e boné na outra, fundo branco"
-    },
-    {
-     "src": "/assets/img/work/2026-roberto-strongoli/2026-roberto-strongoli-02",
-     "w": 2048,
-     "h": 2560,
-     "alt": "Retrato de homem de camisa preta piscando e levando a mão ao rosto, fundo branco"
-    }
-   ]
-  },
-  {
-   "slug": "2026-vogue-selected-stills",
-   "title": "2026_vogue_selected_stills",
-   "titulo": "",
-   "og": "/assets/img/og/2026-vogue-selected-stills.jpg",
-   "date": "2026-10-19",
-   "lastmod": "2026-10-19",
-   "desc": "Still life de beleza, moda e joias, em páginas de revista.",
-   "cat": "still life",
-   "images": [
-    {
-     "src": "/assets/img/work/2026-vogue-selected-stills/2026-vogue-selected-stills-01",
-     "w": 1877,
-     "h": 2560,
-     "alt": "Página de revista com produtos de skincare coreano, cremes e tubos, sobre uma bandeja azul"
-    },
-    {
-     "src": "/assets/img/work/2026-vogue-selected-stills/2026-vogue-selected-stills-02",
-     "w": 1867,
-     "h": 2560,
-     "alt": "Página de revista com bolsa de couro aberta sobre fundo vermelho, com canetas, lápis e acessórios"
-    },
-    {
-     "src": "/assets/img/work/2026-vogue-selected-stills/2026-vogue-selected-stills-03",
-     "w": 1867,
-     "h": 2560,
-     "alt": "Página de revista com tênis rosados sobre tecido branco e partituras"
-    },
-    {
-     "src": "/assets/img/work/2026-vogue-selected-stills/2026-vogue-selected-stills-04",
-     "w": 1878,
-     "h": 2560,
-     "alt": "Página de revista com colar de trevos vermelhos e correntes douradas sobre folhas translúcidas"
-    },
-    {
-     "src": "/assets/img/work/2026-vogue-selected-stills/2026-vogue-selected-stills-05",
-     "w": 1867,
-     "h": 2560,
-     "alt": "Página de revista com bolsa de couro verde-oliva entre galhos e maçãs vermelhas, fundo escuro"
-    }
-   ]
-  },
-  {
    "slug": "2026-vogue-perfumes",
    "title": "2026_vogue_perfumes",
    "titulo": "",
@@ -336,50 +144,146 @@
    ]
   },
   {
-   "slug": "2026-page9",
-   "title": "2026_page9",
+   "slug": "2026-roberto-strongoli",
+   "title": "2026_roberto_strongoli",
    "titulo": "",
-   "og": "/assets/img/og/2026-page9.jpg",
-   "date": "2026-08-04",
-   "lastmod": "2026-08-04",
-   "desc": "Still life de moda e viagem: malas abertas com roupas e acessórios, em páginas de revista.",
+   "og": "/assets/img/og/2026-roberto-strongoli.jpg",
+   "date": "2026-11-01",
+   "lastmod": "2026-11-01",
+   "desc": "Retratos em estúdio, com fundo branco.",
+   "cat": "retrato",
+   "images": [
+    {
+     "src": "/assets/img/work/2026-roberto-strongoli/2026-roberto-strongoli-01",
+     "w": 2049,
+     "h": 2560,
+     "alt": "Retrato de homem de suéter azul-marinho, rosto apoiado na mão e boné na outra, fundo branco"
+    },
+    {
+     "src": "/assets/img/work/2026-roberto-strongoli/2026-roberto-strongoli-02",
+     "w": 2048,
+     "h": 2560,
+     "alt": "Retrato de homem de camisa preta piscando e levando a mão ao rosto, fundo branco"
+    }
+   ]
+  },
+  {
+   "slug": "2026-mizuno-budweiser",
+   "title": "2026_mizuno+budweiser",
+   "titulo": "",
+   "og": "/assets/img/og/2026-mizuno-budweiser.jpg",
+   "date": "2026-05-10",
+   "lastmod": "2026-05-10",
+   "desc": "Fotografia de produto e publicidade com chuteiras, camisas de futebol e cerveja.",
+   "cat": "produto",
+   "images": [
+    {
+     "src": "/assets/img/work/2026-mizuno-budweiser/2026-mizuno-budweiser-01",
+     "w": 2047,
+     "h": 2560,
+     "alt": "Chuteiras Mizuno pretas e brancas sobre a grama, ao lado de uma garrafa de Budweiser"
+    },
+    {
+     "src": "/assets/img/work/2026-mizuno-budweiser/2026-mizuno-budweiser-02",
+     "w": 2047,
+     "h": 2560,
+     "alt": "Camisas de futebol, bonés e flâmulas em uma arara sobre fundo vermelho, com garrafas de cerveja ao lado"
+    },
+    {
+     "src": "/assets/img/work/2026-mizuno-budweiser/2026-mizuno-budweiser-03",
+     "w": 2048,
+     "h": 2560,
+     "alt": "Garrafa de cerveja sobre superfície de mármore vermelho com marcações de campo de futebol e fichas"
+    },
+    {
+     "src": "/assets/img/work/2026-mizuno-budweiser/2026-mizuno-budweiser-04",
+     "w": 2048,
+     "h": 2560,
+     "alt": "Caixa de madeira entalhada aberta e garrafa de cerveja sobre mármore vermelho com linhas de campo"
+    },
+    {
+     "src": "/assets/img/work/2026-mizuno-budweiser/2026-mizuno-budweiser-05",
+     "w": 2048,
+     "h": 2560,
+     "alt": "Mesa de concreto com tampo vermelho em formato de campo de futebol, fundo cinza claro"
+    },
+    {
+     "src": "/assets/img/work/2026-mizuno-budweiser/2026-mizuno-budweiser-06",
+     "w": 2078,
+     "h": 2560,
+     "alt": "Garrafa de cerveja e lata sobre uma bandeira, com o Monte Fuji ao fundo e neve caindo"
+    }
+   ]
+  },
+  {
+   "slug": "2025-vogue-theordinary",
+   "title": "2025_vogue+theordinary",
+   "titulo": "",
+   "og": "/assets/img/og/2025-vogue-theordinary.jpg",
+   "date": "2025-08-01",
+   "lastmod": "2025-08-01",
+   "desc": "Still life de skincare entre utensílios de aço inox, sobre fundo preto.",
    "cat": "still life",
    "images": [
     {
-     "src": "/assets/img/work/2026-page9/2026-page9-01",
+     "src": "/assets/img/work/2025-vogue-theordinary/2025-vogue-theordinary-01",
      "w": 2048,
      "h": 2560,
-     "alt": "Página dupla de revista com mala de viagem aberta, roupas, chapéu e acessórios vistos de cima"
+     "alt": "Quatro composições de produtos de skincare entre utensílios de aço inox, em página de revista"
     },
     {
-     "src": "/assets/img/work/2026-page9/2026-page9-02",
+     "src": "/assets/img/work/2025-vogue-theordinary/2025-vogue-theordinary-02",
      "w": 2048,
      "h": 2560,
-     "alt": "Detalhe de mala de viagem com roupas estampadas, sandálias e produtos de beleza, em página de revista"
+     "alt": "Frascos conta-gotas e tubo sobre bandeja de aço inox com ervilhas e um dado branco"
     },
     {
-     "src": "/assets/img/work/2026-page9/2026-page9-03",
+     "src": "/assets/img/work/2025-vogue-theordinary/2025-vogue-theordinary-03",
      "w": 2048,
      "h": 2560,
-     "alt": "Página de revista sobre San Martín de los Andes, com mala de viagem, gorro, meias e casaco de tweed"
+     "alt": "Frasco conta-gotas em cesto de arame e bisnaga sobre escorredor de aço inox, fundo preto"
     },
     {
-     "src": "/assets/img/work/2026-page9/2026-page9-04",
+     "src": "/assets/img/work/2025-vogue-theordinary/2025-vogue-theordinary-04",
+     "w": 2048,
+     "h": 2560,
+     "alt": "Frascos conta-gotas entre jarras e utensílios de prata, fundo preto"
+    },
+    {
+     "src": "/assets/img/work/2025-vogue-theordinary/2025-vogue-theordinary-05",
+     "w": 2048,
+     "h": 2560,
+     "alt": "Frasco conta-gotas em travessa de aço inox, ao lado de outro frasco, de um termômetro e de tampas de garrafa"
+    }
+   ]
+  },
+  {
+   "slug": "2026-gq-cassio",
+   "title": "2026_gq_cassio",
+   "titulo": "",
+   "og": "/assets/img/og/2026-gq-cassio.jpg",
+   "date": "2026-04-21",
+   "lastmod": "2026-04-21",
+   "desc": "Retratos de colecionador de camisas de futebol, em filme.",
+   "cat": "retrato",
+   "images": [
+    {
+     "src": "/assets/img/work/2026-gq-cassio/2026-gq-cassio-01",
+     "w": 2050,
+     "h": 2560,
+     "alt": "Retrato em filme de homem de óculos e camisa amarela de futebol, segurando uma camisa de listras pretas e brancas"
+    },
+    {
+     "src": "/assets/img/work/2026-gq-cassio/2026-gq-cassio-02",
+     "w": 2083,
+     "h": 2560,
+     "alt": "Retrato em filme de homem de óculos olhando para a camisa listrada que segura, com estante de livros ao fundo"
+    },
+    {
+     "src": "/assets/img/work/2026-gq-cassio/2026-gq-cassio-03",
      "w": 2560,
-     "h": 1721,
-     "alt": "Página dupla de revista com mala aberta, chapéu de crochê, camisa azul e acessórios"
-    },
-    {
-     "src": "/assets/img/work/2026-page9/2026-page9-05",
-     "w": 2048,
-     "h": 2560,
-     "alt": "Mala de viagem com chapéu de crochê, sandália e perfume, em página de revista"
-    },
-    {
-     "src": "/assets/img/work/2026-page9/2026-page9-06",
-     "w": 2048,
-     "h": 2560,
-     "alt": "Página de revista sobre Medellín, com camisa azul de linho, câmera instantânea e peças de crochê na mala"
+     "h": 1920,
+     "alt": "Retrato de homem de óculos sentado diante de uma parede com centenas de camisas de futebol penduradas"
     }
    ]
   },
@@ -434,84 +338,6 @@
      "w": 2048,
      "h": 2560,
      "alt": "Sandália branca de salto e tela vista de cima, sobre tecido vermelho"
-    }
-   ]
-  },
-  {
-   "slug": "2026-mizuno-budweiser",
-   "title": "2026_mizuno+budweiser",
-   "titulo": "",
-   "og": "/assets/img/og/2026-mizuno-budweiser.jpg",
-   "date": "2026-05-10",
-   "lastmod": "2026-05-10",
-   "desc": "Fotografia de produto e publicidade com chuteiras, camisas de futebol e cerveja.",
-   "cat": "produto",
-   "images": [
-    {
-     "src": "/assets/img/work/2026-mizuno-budweiser/2026-mizuno-budweiser-01",
-     "w": 2047,
-     "h": 2560,
-     "alt": "Chuteiras Mizuno pretas e brancas sobre a grama, ao lado de uma garrafa de Budweiser"
-    },
-    {
-     "src": "/assets/img/work/2026-mizuno-budweiser/2026-mizuno-budweiser-02",
-     "w": 2047,
-     "h": 2560,
-     "alt": "Camisas de futebol, bonés e flâmulas em uma arara sobre fundo vermelho, com garrafas de cerveja ao lado"
-    },
-    {
-     "src": "/assets/img/work/2026-mizuno-budweiser/2026-mizuno-budweiser-03",
-     "w": 2048,
-     "h": 2560,
-     "alt": "Garrafa de cerveja sobre superfície de mármore vermelho com marcações de campo de futebol e fichas"
-    },
-    {
-     "src": "/assets/img/work/2026-mizuno-budweiser/2026-mizuno-budweiser-04",
-     "w": 2048,
-     "h": 2560,
-     "alt": "Caixa de madeira entalhada aberta e garrafa de cerveja sobre mármore vermelho com linhas de campo"
-    },
-    {
-     "src": "/assets/img/work/2026-mizuno-budweiser/2026-mizuno-budweiser-05",
-     "w": 2048,
-     "h": 2560,
-     "alt": "Mesa de concreto com tampo vermelho em formato de campo de futebol, fundo cinza claro"
-    },
-    {
-     "src": "/assets/img/work/2026-mizuno-budweiser/2026-mizuno-budweiser-06",
-     "w": 2078,
-     "h": 2560,
-     "alt": "Garrafa de cerveja e lata sobre uma bandeira, com o Monte Fuji ao fundo e neve caindo"
-    }
-   ]
-  },
-  {
-   "slug": "2026-gq-cassio",
-   "title": "2026_gq_cassio",
-   "titulo": "",
-   "og": "/assets/img/og/2026-gq-cassio.jpg",
-   "date": "2026-04-21",
-   "lastmod": "2026-04-21",
-   "desc": "Retratos de colecionador de camisas de futebol, em filme.",
-   "cat": "retrato",
-   "images": [
-    {
-     "src": "/assets/img/work/2026-gq-cassio/2026-gq-cassio-01",
-     "w": 2050,
-     "h": 2560,
-     "alt": "Retrato em filme de homem de óculos e camisa amarela de futebol, segurando uma camisa de listras pretas e brancas"
-    },
-    {
-     "src": "/assets/img/work/2026-gq-cassio/2026-gq-cassio-02",
-     "w": 2083,
-     "h": 2560,
-     "alt": "Retrato em filme de homem de óculos olhando para a camisa listrada que segura, com estante de livros ao fundo"
-    },
-    {
-     "src": "/assets/img/work/2026-gq-cassio/2026-gq-cassio-03",
-     "w": 2560,
-     "h": 1920,
-     "alt": "Retrato de homem de óculos sentado diante de uma parede com centenas de camisas de futebol penduradas"
     }
    ]
   },
@@ -580,34 +406,170 @@
    ]
   },
   {
-   "slug": "2026-capodarte",
-   "title": "2026_capodarte",
+   "slug": "2026-page9",
+   "title": "2026_page9",
    "titulo": "",
-   "og": "/assets/img/og/2026-capodarte.jpg",
-   "date": "2026-03-09",
-   "lastmod": "2026-03-09",
-   "desc": "",
-   "cat": "",
+   "og": "/assets/img/og/2026-page9.jpg",
+   "date": "2026-08-04",
+   "lastmod": "2026-08-04",
+   "desc": "Still life de moda e viagem: malas abertas com roupas e acessórios, em páginas de revista.",
+   "cat": "still life",
    "images": [
     {
-     "src": "/assets/img/work/2026-capodarte/2026-capodarte-01",
+     "src": "/assets/img/work/2026-page9/2026-page9-01",
      "w": 2048,
-     "h": 2560
+     "h": 2560,
+     "alt": "Página dupla de revista com mala de viagem aberta, roupas, chapéu e acessórios vistos de cima"
     },
     {
-     "src": "/assets/img/work/2026-capodarte/2026-capodarte-02",
+     "src": "/assets/img/work/2026-page9/2026-page9-02",
      "w": 2048,
-     "h": 2560
+     "h": 2560,
+     "alt": "Detalhe de mala de viagem com roupas estampadas, sandálias e produtos de beleza, em página de revista"
     },
     {
-     "src": "/assets/img/work/2026-capodarte/2026-capodarte-03",
+     "src": "/assets/img/work/2026-page9/2026-page9-03",
      "w": 2048,
-     "h": 2560
+     "h": 2560,
+     "alt": "Página de revista sobre San Martín de los Andes, com mala de viagem, gorro, meias e casaco de tweed"
     },
     {
-     "src": "/assets/img/work/2026-capodarte/2026-capodarte-04",
+     "src": "/assets/img/work/2026-page9/2026-page9-04",
+     "w": 2560,
+     "h": 1721,
+     "alt": "Página dupla de revista com mala aberta, chapéu de crochê, camisa azul e acessórios"
+    },
+    {
+     "src": "/assets/img/work/2026-page9/2026-page9-05",
      "w": 2048,
-     "h": 2560
+     "h": 2560,
+     "alt": "Mala de viagem com chapéu de crochê, sandália e perfume, em página de revista"
+    },
+    {
+     "src": "/assets/img/work/2026-page9/2026-page9-06",
+     "w": 2048,
+     "h": 2560,
+     "alt": "Página de revista sobre Medellín, com camisa azul de linho, câmera instantânea e peças de crochê na mala"
+    }
+   ]
+  },
+  {
+   "slug": "2026-vogue-selected-stills",
+   "title": "2026_vogue_selected_stills",
+   "titulo": "",
+   "og": "/assets/img/og/2026-vogue-selected-stills.jpg",
+   "date": "2026-10-19",
+   "lastmod": "2026-10-19",
+   "desc": "Still life de beleza, moda e joias, em páginas de revista.",
+   "cat": "still life",
+   "images": [
+    {
+     "src": "/assets/img/work/2026-vogue-selected-stills/2026-vogue-selected-stills-01",
+     "w": 1877,
+     "h": 2560,
+     "alt": "Página de revista com produtos de skincare coreano, cremes e tubos, sobre uma bandeja azul"
+    },
+    {
+     "src": "/assets/img/work/2026-vogue-selected-stills/2026-vogue-selected-stills-02",
+     "w": 1867,
+     "h": 2560,
+     "alt": "Página de revista com bolsa de couro aberta sobre fundo vermelho, com canetas, lápis e acessórios"
+    },
+    {
+     "src": "/assets/img/work/2026-vogue-selected-stills/2026-vogue-selected-stills-03",
+     "w": 1867,
+     "h": 2560,
+     "alt": "Página de revista com tênis rosados sobre tecido branco e partituras"
+    },
+    {
+     "src": "/assets/img/work/2026-vogue-selected-stills/2026-vogue-selected-stills-04",
+     "w": 1878,
+     "h": 2560,
+     "alt": "Página de revista com colar de trevos vermelhos e correntes douradas sobre folhas translúcidas"
+    },
+    {
+     "src": "/assets/img/work/2026-vogue-selected-stills/2026-vogue-selected-stills-05",
+     "w": 1867,
+     "h": 2560,
+     "alt": "Página de revista com bolsa de couro verde-oliva entre galhos e maçãs vermelhas, fundo escuro"
+    }
+   ]
+  },
+  {
+   "slug": "2025-vogue-perfumes",
+   "title": "2025_vogue_perfumes",
+   "titulo": "",
+   "og": "/assets/img/og/2025-vogue-perfumes.jpg",
+   "date": "2025-10-08",
+   "lastmod": "2025-10-08",
+   "desc": "Still life de perfumes e cosméticos com flores, frutas e texturas.",
+   "cat": "still life",
+   "images": [
+    {
+     "src": "/assets/img/work/2025-vogue-perfumes/2025-vogue-perfumes-01",
+     "w": 2048,
+     "h": 2560,
+     "alt": "Frascos de perfume vermelho e verde sobre papéis, com chaves e alfinete, em luz suave"
+    },
+    {
+     "src": "/assets/img/work/2025-vogue-perfumes/2025-vogue-perfumes-02",
+     "w": 2048,
+     "h": 2560,
+     "alt": "Frascos de perfume rosados de vidro lapidado entre folhas verdes e uma rosa vermelha"
+    },
+    {
+     "src": "/assets/img/work/2025-vogue-perfumes/2025-vogue-perfumes-03",
+     "w": 2048,
+     "h": 2560,
+     "alt": "Frascos de perfume sobre raiz retorcida, com grãos espalhados, fundo claro"
+    },
+    {
+     "src": "/assets/img/work/2025-vogue-perfumes/2025-vogue-perfumes-04",
+     "w": 2048,
+     "h": 2560,
+     "alt": "Cremes e tubos sobre fragmentos coloridos de gelatina em laranja, azul e amarelo"
+    },
+    {
+     "src": "/assets/img/work/2025-vogue-perfumes/2025-vogue-perfumes-05",
+     "w": 2048,
+     "h": 2560,
+     "alt": "Frascos de perfume sobre fatias de limão e gomos de tangerina"
+    },
+    {
+     "src": "/assets/img/work/2025-vogue-perfumes/2025-vogue-perfumes-06",
+     "w": 2048,
+     "h": 2560,
+     "alt": "Frascos de perfume entre ramos secos e pequenos frascos dourados"
+    },
+    {
+     "src": "/assets/img/work/2025-vogue-perfumes/2025-vogue-perfumes-07",
+     "w": 2048,
+     "h": 2560,
+     "alt": "Frascos de perfume sobre chocolate, nozes, canela e amêndoas"
+    },
+    {
+     "src": "/assets/img/work/2025-vogue-perfumes/2025-vogue-perfumes-08",
+     "w": 2048,
+     "h": 2560,
+     "alt": "Frascos de perfume entre flores lilás e tulipas"
+    },
+    {
+     "src": "/assets/img/work/2025-vogue-perfumes/2025-vogue-perfumes-09",
+     "w": 2048,
+     "h": 2560,
+     "alt": "Frascos de perfume sobre fatias de pera, laranja e figo"
+    },
+    {
+     "src": "/assets/img/work/2025-vogue-perfumes/2025-vogue-perfumes-10",
+     "w": 2048,
+     "h": 2560,
+     "alt": "Frascos de perfume sobre fundo verde desfocado, com flores de mimosa"
+    },
+    {
+     "src": "/assets/img/work/2025-vogue-perfumes/2025-vogue-perfumes-11",
+     "w": 2048,
+     "h": 2560,
+     "alt": "Frascos de perfume sobre fundo verde luminoso, com folhas e flores secas"
     }
    ]
   },
@@ -718,122 +680,160 @@
    ]
   },
   {
-   "slug": "2025-vogue-perfumes",
-   "title": "2025_vogue_perfumes",
+   "slug": "2026-capodarte",
+   "title": "2026_capodarte",
    "titulo": "",
-   "og": "/assets/img/og/2025-vogue-perfumes.jpg",
-   "date": "2025-10-08",
-   "lastmod": "2025-10-08",
-   "desc": "Still life de perfumes e cosméticos com flores, frutas e texturas.",
-   "cat": "still life",
+   "og": "/assets/img/og/2026-capodarte.jpg",
+   "date": "2026-03-09",
+   "lastmod": "2026-03-09",
+   "desc": "",
+   "cat": "",
    "images": [
     {
-     "src": "/assets/img/work/2025-vogue-perfumes/2025-vogue-perfumes-01",
+     "src": "/assets/img/work/2026-capodarte/2026-capodarte-01",
      "w": 2048,
-     "h": 2560,
-     "alt": "Frascos de perfume vermelho e verde sobre papéis, com chaves e alfinete, em luz suave"
+     "h": 2560
     },
     {
-     "src": "/assets/img/work/2025-vogue-perfumes/2025-vogue-perfumes-02",
+     "src": "/assets/img/work/2026-capodarte/2026-capodarte-02",
      "w": 2048,
-     "h": 2560,
-     "alt": "Frascos de perfume rosados de vidro lapidado entre folhas verdes e uma rosa vermelha"
+     "h": 2560
     },
     {
-     "src": "/assets/img/work/2025-vogue-perfumes/2025-vogue-perfumes-03",
+     "src": "/assets/img/work/2026-capodarte/2026-capodarte-03",
      "w": 2048,
-     "h": 2560,
-     "alt": "Frascos de perfume sobre raiz retorcida, com grãos espalhados, fundo claro"
+     "h": 2560
     },
     {
-     "src": "/assets/img/work/2025-vogue-perfumes/2025-vogue-perfumes-04",
+     "src": "/assets/img/work/2026-capodarte/2026-capodarte-04",
      "w": 2048,
-     "h": 2560,
-     "alt": "Cremes e tubos sobre fragmentos coloridos de gelatina em laranja, azul e amarelo"
-    },
-    {
-     "src": "/assets/img/work/2025-vogue-perfumes/2025-vogue-perfumes-05",
-     "w": 2048,
-     "h": 2560,
-     "alt": "Frascos de perfume sobre fatias de limão e gomos de tangerina"
-    },
-    {
-     "src": "/assets/img/work/2025-vogue-perfumes/2025-vogue-perfumes-06",
-     "w": 2048,
-     "h": 2560,
-     "alt": "Frascos de perfume entre ramos secos e pequenos frascos dourados"
-    },
-    {
-     "src": "/assets/img/work/2025-vogue-perfumes/2025-vogue-perfumes-07",
-     "w": 2048,
-     "h": 2560,
-     "alt": "Frascos de perfume sobre chocolate, nozes, canela e amêndoas"
-    },
-    {
-     "src": "/assets/img/work/2025-vogue-perfumes/2025-vogue-perfumes-08",
-     "w": 2048,
-     "h": 2560,
-     "alt": "Frascos de perfume entre flores lilás e tulipas"
-    },
-    {
-     "src": "/assets/img/work/2025-vogue-perfumes/2025-vogue-perfumes-09",
-     "w": 2048,
-     "h": 2560,
-     "alt": "Frascos de perfume sobre fatias de pera, laranja e figo"
-    },
-    {
-     "src": "/assets/img/work/2025-vogue-perfumes/2025-vogue-perfumes-10",
-     "w": 2048,
-     "h": 2560,
-     "alt": "Frascos de perfume sobre fundo verde desfocado, com flores de mimosa"
-    },
-    {
-     "src": "/assets/img/work/2025-vogue-perfumes/2025-vogue-perfumes-11",
-     "w": 2048,
-     "h": 2560,
-     "alt": "Frascos de perfume sobre fundo verde luminoso, com folhas e flores secas"
+     "h": 2560
     }
    ]
   },
   {
-   "slug": "2025-vogue-theordinary",
-   "title": "2025_vogue+theordinary",
+   "slug": "personal-flowers",
+   "title": "_personal_flowers",
    "titulo": "",
-   "og": "/assets/img/og/2025-vogue-theordinary.jpg",
-   "date": "2025-08-01",
-   "lastmod": "2025-08-01",
-   "desc": "Still life de skincare entre utensílios de aço inox, sobre fundo preto.",
-   "cat": "still life",
+   "og": "/assets/img/og/personal-flowers.jpg",
+   "date": "2026-09-15",
+   "lastmod": "2026-09-15",
+   "desc": "Série pessoal de flores, em preto e branco e em filme.",
+   "cat": "pessoal",
    "images": [
     {
-     "src": "/assets/img/work/2025-vogue-theordinary/2025-vogue-theordinary-01",
+     "src": "/assets/img/work/personal-flowers/personal-flowers-01",
      "w": 2048,
      "h": 2560,
-     "alt": "Quatro composições de produtos de skincare entre utensílios de aço inox, em página de revista"
+     "alt": "Lírios em preto e branco, com a haste inteira, sobre fundo claro"
     },
     {
-     "src": "/assets/img/work/2025-vogue-theordinary/2025-vogue-theordinary-02",
+     "src": "/assets/img/work/personal-flowers/personal-flowers-02",
      "w": 2048,
      "h": 2560,
-     "alt": "Frascos conta-gotas e tubo sobre bandeja de aço inox com ervilhas e um dado branco"
+     "alt": "Girassol com folhas em preto e branco sobre fundo branco"
     },
     {
-     "src": "/assets/img/work/2025-vogue-theordinary/2025-vogue-theordinary-03",
+     "src": "/assets/img/work/personal-flowers/personal-flowers-03",
      "w": 2048,
      "h": 2560,
-     "alt": "Frasco conta-gotas em cesto de arame e bisnaga sobre escorredor de aço inox, fundo preto"
+     "alt": "Cacho de flores secas em preto e branco, fundo claro"
     },
     {
-     "src": "/assets/img/work/2025-vogue-theordinary/2025-vogue-theordinary-04",
+     "src": "/assets/img/work/personal-flowers/personal-flowers-04",
      "w": 2048,
      "h": 2560,
-     "alt": "Frascos conta-gotas entre jarras e utensílios de prata, fundo preto"
+     "alt": "Duas flores de pétalas amarelas e hastes finas em filme Kodak Ektar 100"
     },
     {
-     "src": "/assets/img/work/2025-vogue-theordinary/2025-vogue-theordinary-05",
+     "src": "/assets/img/work/personal-flowers/personal-flowers-05",
      "w": 2048,
      "h": 2560,
-     "alt": "Frasco conta-gotas em travessa de aço inox, ao lado de outro frasco, de um termômetro e de tampas de garrafa"
+     "alt": "Close de flores de pétalas creme em camadas, em filme"
+    }
+   ]
+  },
+  {
+   "slug": "personal-portraits",
+   "title": "_personal_portraits",
+   "titulo": "",
+   "og": "/assets/img/og/personal-portraits.jpg",
+   "date": "2026-10-05",
+   "lastmod": "2026-11-02",
+   "desc": "Série pessoal de retratos, em estúdio e em filme.",
+   "cat": "retrato",
+   "images": [
+    {
+     "src": "/assets/img/work/personal-portraits/personal-portraits-01",
+     "w": 1574,
+     "h": 1946,
+     "alt": "Retrato em preto e branco de homem de chapéu de palha e camiseta branca, sorrindo, braços cruzados"
+    },
+    {
+     "src": "/assets/img/work/personal-portraits/personal-portraits-02",
+     "w": 2048,
+     "h": 2560,
+     "alt": "Retrato de mulher de cabelo curto, ombros nus, fundo claro"
+    },
+    {
+     "src": "/assets/img/work/personal-portraits/personal-portraits-03",
+     "w": 2048,
+     "h": 2560,
+     "alt": "Retrato em preto e branco de mulher de jaqueta esportiva listrada, com o queixo apoiado na mão"
+    },
+    {
+     "src": "/assets/img/work/personal-portraits/personal-portraits-04",
+     "w": 1949,
+     "h": 2325,
+     "alt": "Retrato em preto e branco de homem de óculos e camiseta preta, braços cruzados"
+    },
+    {
+     "src": "/assets/img/work/personal-portraits/personal-portraits-05",
+     "w": 2048,
+     "h": 2560,
+     "alt": "Retrato em preto e branco de homem sem camisa, cabelo cacheado e bigode, em outro ângulo, fundo preto"
+    },
+    {
+     "src": "/assets/img/work/personal-portraits/personal-portraits-06",
+     "w": 2016,
+     "h": 2560,
+     "alt": "Retrato em preto e branco de mulher de cabelo cacheado sentada em um banco, em ambiente de ateliê"
+    },
+    {
+     "src": "/assets/img/work/personal-portraits/personal-portraits-07",
+     "w": 2048,
+     "h": 2560,
+     "alt": "Retrato em preto e branco de homem de barba e camiseta, em pé diante de fundo cinza"
+    },
+    {
+     "src": "/assets/img/work/personal-portraits/personal-portraits-08",
+     "w": 1817,
+     "h": 2560,
+     "alt": "Retrato de homem de tranças, em três quartos, com luz baixa e fundo esverdeado"
+    },
+    {
+     "src": "/assets/img/work/personal-portraits/personal-portraits-09",
+     "w": 1987,
+     "h": 2560,
+     "alt": "Retrato de mulher de cabelo curto, ombro nu envolto em tecido branco, fundo claro"
+    },
+    {
+     "src": "/assets/img/work/personal-portraits/personal-portraits-10",
+     "w": 1813,
+     "h": 1284,
+     "alt": "Pessoa reclinada em poltrona de couro entre plantas, em filme Kodak Portra 400"
+    },
+    {
+     "src": "/assets/img/work/personal-portraits/personal-portraits-11",
+     "w": 1602,
+     "h": 1968,
+     "alt": "Retrato de corpo inteiro de homem de boné e roupa preta, em fundo de estúdio cinza"
+    },
+    {
+     "src": "/assets/img/work/personal-portraits/personal-portraits-12",
+     "w": 1592,
+     "h": 1962,
+     "alt": "Retrato de homem de barba e cabelo cacheado, camiseta preta e mãos na cintura, fundo branco"
     }
    ]
   }
