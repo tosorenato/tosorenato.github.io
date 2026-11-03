@@ -212,7 +212,7 @@ body{
 .frame img.on{opacity:1}
 img.instant{transition:none}
 
-/* ─── HOME: capas sorteadas, slideshow de 5 s ─── */
+/* ─── HOME: capas sorteadas, slideshow de 3 s ─── */
 .home{
   position:relative;
   width:100%;
@@ -537,6 +537,9 @@ img.instant{transition:none}
 
   .cap-t{font-size:20px}
   .cap-n{font-size:9.5px;opacity:.75}
+
+  /* demais fotos do trabalho: sem o nome (só o contador) */
+  .cap-rest .cap-t{display:none}
 
   .text{font-size:14px}
 }

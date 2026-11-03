@@ -61,6 +61,17 @@ def slugify(s):
     return s or "trabalho"
 
 
+def clean_name(name):
+    """Pasta numerada no Finder ("#7_2026_luiza_barcelos"): o "#N_" sai do título
+    e da URL, para que o nome continue igual ao de antes. "#99_" marca trabalho
+    fixado no topo, como o "_" do início do nome."""
+    m = re.match(r"^#(\d+)_", name)
+    if not m:
+        return name
+    rest = name[m.end():]
+    return ("_" if m.group(1) == "99" else "") + rest
+
+
 def images_in(folder):
     files = [f for f in folder.iterdir()
              if f.is_file() and not f.name.startswith(".") and f.suffix.lower() in EXTS]
@@ -147,18 +158,19 @@ def main():
             files = images_in(d)
             if not files:
                 continue
-            slug = slugify(d.name)
+            name = clean_name(d.name)   # nome sem o "#N_" da numeração do Finder
+            slug = slugify(name)
             while slug in slugs:
                 slug += "-2"
             slugs.add(slug)
-            okey = f"{WORK}/{d.name}"
+            okey = f"{WORK}/{name}"
             if okey not in order:
                 newest = max(f.stat().st_mtime for f in files)
                 order[okey] = date.fromtimestamp(newest).isoformat()
-            tx = textos.get(d.name, {})
+            tx = textos.get(name, {})
             alts = tx.get("fotos") or []   # alt por foto, na ordem das fotos
             if alts and len(alts) != len(files):
-                print(f"AVISO: {d.name} tem {len(files)} fotos e {len(alts)} textos em 'fotos'")
+                print(f"AVISO: {name} tem {len(files)} fotos e {len(alts)} textos em 'fotos'")
             images = []
             for i, f in enumerate(files, 1):
                 rel = f"work/{slug}/{slug}-{i:02d}"
@@ -171,7 +183,7 @@ def main():
             build(files[0], f"og/{slug}", [(f"og/{slug}.jpg", *OG)])
             work = {
                 "slug": slug,
-                "title": d.name.strip().lower(),
+                "title": name.strip().lower(),
                 "titulo": tx.get("titulo", ""),
                 "og": f"/assets/img/og/{slug}.jpg",
                 "date": order[okey],
@@ -180,10 +192,10 @@ def main():
                 "cat": tx.get("categoria", ""),
                 "images": images,
             }
-            if d.name.startswith("_"):
+            if name.startswith("_"):
                 pinned.append(work)
             else:
-                m = YEAR.match(d.name)
+                m = YEAR.match(name)
                 dated.append((int(m.group(1)) if m else int(order[okey][:4]), work))
         dated.sort(key=lambda t: (t[0], t[1]["date"], t[1]["slug"]), reverse=True)
         manifest["work"] = pinned + [w for _, w in dated]

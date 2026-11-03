@@ -141,10 +141,10 @@
     else addEventListener('load', later, {once: true});
   }
 
-  // Slideshow de 5 s. O relógio recomeça sempre que a home volta à tela, e a
+  // Slideshow de 3 s. O relógio recomeça sempre que a home volta à tela, e a
   // troca só acontece com a próxima foto já carregada.
   let homeTimer = 0;
-  function scheduleHome(ms = 5000){
+  function scheduleHome(ms = 3000){
     clearTimeout(homeTimer);
     if(page === 'home' && slides.length > 1) homeTimer = setTimeout(advanceHome, ms);
   }
@@ -192,7 +192,8 @@
           c.textContent = `${k + 1}/${n}`;
           cap.appendChild(c);
         }
-        if(k) cap.setAttribute('aria-hidden', 'true');
+        // celular: o nome só aparece na primeira foto do trabalho (ver CSS .cap-rest)
+        if(k){ cap.classList.add('cap-rest'); cap.setAttribute('aria-hidden', 'true'); }
         frame.append(el, cap);
         pg.appendChild(frame);
         track.appendChild(pg);
