@@ -12,8 +12,10 @@ Regras
 - Ordem das imagens = ordem natural do nome do arquivo (como o Finder: 2 < 10).
   A primeira imagem é a capa (feed e home).
 - Ordem dos trabalhos:
+  0. pastas numeradas ("#1_2026_nome", "#14_2026_nome"): pelo número N, do menor
+     para o maior (N=1 no topo). O "#N_" não aparece no título nem na URL;
   1. fixados: pastas que começam com "_" (ex.: "_personal_flowers") ficam no
-     topo, na ordem do Finder;
+     topo, na ordem do Finder (só as que não têm número);
   2. depois, por ano (o "2026_" do início do nome), do mais novo para o mais antigo;
   3. dentro do ano, mais recente primeiro. A data de cada trabalho é fixada na
      primeira vez que ele é publicado (semente: data do arquivo mais novo da
@@ -70,6 +72,13 @@ def clean_name(name):
         return name
     rest = name[m.end():]
     return ("_" if m.group(1) == "99" else "") + rest
+
+
+def order_no(name):
+    """Número do "#N_" da pasta: define a ordem dos trabalhos (1 no topo).
+    Sem número, o trabalho segue as regras antigas (fixados, ano, data)."""
+    m = re.match(r"^#(\d+)_", name)
+    return int(m.group(1)) if m else None
 
 
 def images_in(folder):
@@ -150,7 +159,7 @@ def main():
             build(first[0], "og", [("og.jpg", *OG)])
 
         base = src_root / WORK
-        slugs, pinned, dated = set(), [], []
+        slugs, numbered, pinned, dated = set(), [], [], []
         dirs = sorted(base.iterdir(), key=lambda d: natural_key(d.name)) if base.is_dir() else []
         for d in dirs:
             if not d.is_dir() or d.name.startswith("."):
@@ -192,13 +201,17 @@ def main():
                 "cat": tx.get("categoria", ""),
                 "images": images,
             }
-            if name.startswith("_"):
+            num = order_no(d.name)
+            if num is not None:
+                numbered.append((num, work))
+            elif name.startswith("_"):
                 pinned.append(work)
             else:
                 m = YEAR.match(name)
                 dated.append((int(m.group(1)) if m else int(order[okey][:4]), work))
+        numbered.sort(key=lambda t: (t[0], t[1]["slug"]))
         dated.sort(key=lambda t: (t[0], t[1]["date"], t[1]["slug"]), reverse=True)
-        manifest["work"] = pinned + [w for _, w in dated]
+        manifest["work"] = [w for _, w in numbered] + pinned + [w for _, w in dated]
     except TimeoutError:
         cache_file.write_text(json.dumps({**cache, **new_cache}))
         print(f"PARCIAL: {done} imagens processadas; rode de novo para continuar")
