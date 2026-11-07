@@ -22,24 +22,18 @@
   <!--/seo:head-->
 
   <link rel="preload" href="/assets/fonts/bodoni-moda.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="/assets/css/style.css?v=20261102g">
+  <link rel="stylesheet" href="/assets/css/style.css?v=20261107a">
 </head>
 <body>
 
 <div class="wrapper">
 
-  <!-- MENU -->
+  <!-- MENU (no celular: barra superior com os dois links, sem hambúrguer) -->
   <nav id="nav" class="nav gray">
     <a class="logo" href="/" aria-label="Renato Toso — início">____TOSO</a>
 
-    <button class="hamburger" id="hamburger" aria-label="Menu" aria-expanded="false" aria-controls="menu">
-      <span></span>
-      <span></span>
-      <span></span>
-    </button>
-
     <div class="menu" id="menu">
-      <a href="/trabalhos/" data-route="work" lang="en">selected work</a>
+      <a href="/trabalhos/" data-route="grid" lang="en">selected work</a>
       <div class="submenu" id="submenu"></div>
       <a href="/contato/" data-route="contact" lang="en">contact</a>
     </div>
@@ -53,9 +47,16 @@
       <div class="home" id="homeSlides"></div>
     </section>
 
-    <!-- SELECTED WORK: feed vertical; cada trabalho é um carrossel lateral -->
+    <!-- SELECTED WORK: grade 3×3 com as capas (4:5, como no Instagram); o clique abre o trabalho -->
+    <section id="grid" class="page">
+      <div class="grid-scroll" id="gridScroll" tabindex="-1">
+        <div class="grid" id="gridList"></div>
+      </div>
+      <div class="grid-cap" id="gridCap" aria-hidden="true"><span class="cap-t"></span></div>
+    </section>
+
+    <!-- TRABALHO: feed vertical; cada trabalho é um carrossel lateral -->
     <section id="work" class="page">
-      <div class="section-text" lang="en">Selected work</div>
       <div class="feed" id="feed"></div>
     </section>
 
@@ -99,6 +100,6 @@
 <div class="seo-gallery"><a href="/trabalhos/2026-vogue-perfumes/" tabindex="-1"><img src="/assets/img/work/2026-vogue-perfumes/2026-vogue-perfumes-01-s.webp" width="384" height="480" alt="Frasco de perfume em degradê azul sobre um lírio rosa, fundo claro" loading="lazy" decoding="async"></a><a href="/trabalhos/2026-hstern-campanha/" tabindex="-1"><img src="/assets/img/work/2026-hstern-campanha/2026-hstern-campanha-01-s.webp" width="360" height="480" alt="hstern campanha (2026), foto 1 de 7" loading="lazy" decoding="async"></a><a href="/trabalhos/2026-roberto-strongoli/" tabindex="-1"><img src="/assets/img/work/2026-roberto-strongoli/2026-roberto-strongoli-01-s.webp" width="384" height="480" alt="Retrato de homem de suéter azul-marinho, rosto apoiado na mão e boné na outra, fundo branco" loading="lazy" decoding="async"></a><a href="/trabalhos/gabriel-sotero-carol-miranda/" tabindex="-1"><img src="/assets/img/work/gabriel-sotero-carol-miranda/gabriel-sotero-carol-miranda-01-s.webp" width="384" height="480" alt="gabriel sotero carol miranda, foto 1 de 4" loading="lazy" decoding="async"></a><a href="/trabalhos/2025-vogue-theordinary/" tabindex="-1"><img src="/assets/img/work/2025-vogue-theordinary/2025-vogue-theordinary-01-s.webp" width="384" height="480" alt="Quatro composições de produtos de skincare entre utensílios de aço inox, em página de revista" loading="lazy" decoding="async"></a><a href="/trabalhos/2026-gq-cassio/" tabindex="-1"><img src="/assets/img/work/2026-gq-cassio/2026-gq-cassio-01-s.webp" width="384" height="480" alt="Retrato em filme de homem de óculos e camisa amarela de futebol, segurando uma camisa de listras pretas e brancas" loading="lazy" decoding="async"></a><a href="/trabalhos/2026-luiza-barcelos/" tabindex="-1"><img src="/assets/img/work/2026-luiza-barcelos/2026-luiza-barcelos-01-s.webp" width="320" height="480" alt="Sapato slingback de salto fino sobre pilha de livros e banco de metal, fundo claro" loading="lazy" decoding="async"></a><a href="/trabalhos/2026-notorious-fish/" tabindex="-1"><img src="/assets/img/work/2026-notorious-fish/2026-notorious-fish-01-s.webp" width="477" height="480" alt="notorious fish (2026), foto 1 de 9" loading="lazy" decoding="async"></a><a href="/trabalhos/2026-mizuno-budweiser/" tabindex="-1"><img src="/assets/img/work/2026-mizuno-budweiser/2026-mizuno-budweiser-01-s.webp" width="384" height="480" alt="Chuteiras Mizuno pretas e brancas sobre a grama, ao lado de uma garrafa de Budweiser" loading="lazy" decoding="async"></a><a href="/trabalhos/2026-vogue-selected-stills/" tabindex="-1"><img src="/assets/img/work/2026-vogue-selected-stills/2026-vogue-selected-stills-01-s.webp" width="352" height="480" alt="Página de revista com produtos de skincare coreano, cremes e tubos, sobre uma bandeja azul" loading="lazy" decoding="async"></a><a href="/trabalhos/2025-vogue-perfumes/" tabindex="-1"><img src="/assets/img/work/2025-vogue-perfumes/2025-vogue-perfumes-01-s.webp" width="384" height="480" alt="Frascos de perfume vermelho e verde sobre papéis, com chaves e alfinete, em luz suave" loading="lazy" decoding="async"></a><a href="/trabalhos/2026-melissa/" tabindex="-1"><img src="/assets/img/work/2026-melissa/2026-melissa-01-s.webp" width="384" height="480" alt="Tênis roxo e rosa de cadarço roxo, vista lateral, fundo cinza claro" loading="lazy" decoding="async"></a><a href="/trabalhos/2025-vogue-hstern/" tabindex="-1"><img src="/assets/img/work/2025-vogue-hstern/2025-vogue-hstern-01-s.webp" width="480" height="361" alt="Pulseira de cristal e anel sobre tronco com líquen" loading="lazy" decoding="async"></a><a href="/trabalhos/2026-capodarte/" tabindex="-1"><img src="/assets/img/work/2026-capodarte/2026-capodarte-01-s.webp" width="384" height="480" alt="capodarte (2026), foto 1 de 4" loading="lazy" decoding="async"></a><a href="/trabalhos/2026-page9/" tabindex="-1"><img src="/assets/img/work/2026-page9/2026-page9-01-s.webp" width="384" height="480" alt="Página dupla de revista com mala de viagem aberta, roupas, chapéu e acessórios vistos de cima" loading="lazy" decoding="async"></a><a href="/trabalhos/personal-flowers/" tabindex="-1"><img src="/assets/img/work/personal-flowers/personal-flowers-01-s.webp" width="384" height="480" alt="Lírios em preto e branco, com a haste inteira, sobre fundo claro" loading="lazy" decoding="async"></a><a href="/trabalhos/personal-portraits/" tabindex="-1"><img src="/assets/img/work/personal-portraits/personal-portraits-01-s.webp" width="388" height="480" alt="Retrato em preto e branco de homem de chapéu de palha e camiseta branca, sorrindo, braços cruzados" loading="lazy" decoding="async"></a></div>
   <!--/seo:body-->
 
-<script src="/assets/js/main.js?v=20261102g"></script>
+<script src="/assets/js/main.js?v=20261107a"></script>
 </body>
 </html>

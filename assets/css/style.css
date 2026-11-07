@@ -123,27 +123,6 @@ body{
 .submenu a:last-child{margin-bottom:0}
 .submenu a.active{font-weight:400;opacity:1}
 
-/* Hamburger: escondido no desktop */
-.hamburger{
-  display:none;
-  background:none;
-  border:none;
-  cursor:pointer;
-  padding:8px;
-  margin-right:-8px;
-  z-index:100;
-  -webkit-tap-highlight-color:transparent;
-}
-
-.hamburger span{
-  display:block;
-  width:22px;
-  height:1.5px;
-  background:var(--ink);
-  margin:5px 0;
-  transition:transform .3s var(--ease), opacity .3s var(--ease);
-}
-
 /* ─── CONTEÚDO (DESKTOP) ─── */
 .content{
   position:relative;
@@ -234,22 +213,93 @@ img.instant{transition:none}
 
 .slide.active{opacity:1;pointer-events:auto}
 
-/* ─── SELECTED WORK ───
+/* ─── SELECTED WORK: GRADE ───
+   As capas dos trabalhos em 3 colunas, em células 4:5 (o formato do Instagram).
+   Desktop: a grade fica no espaço da foto principal. 3×3 células formam um 4:5
+   com a altura toda do conteúdo, a mesma área da capa vertical na home; as
+   demais linhas aparecem na rolagem. Se faltar largura, vale a da caixa 5:4.
+   Na grade a capa preenche a célula e perde o que passar de 4:5, como no
+   Instagram; ao abrir o trabalho, a foto aparece inteira. */
+#grid{
+  container-type:size;
+  --gg:clamp(3px, .3vw, 6px);                                  /* fio entre as células */
+  --gw:min(100cqw - 2 * var(--gut), 80cqh + .4 * var(--gg));  /* 3 linhas = altura toda */
+}
+
+.grid-scroll{
+  position:absolute;
+  inset:0;
+  overflow-x:hidden;
+  overflow-y:auto;
+  overscroll-behavior:contain;
+  scrollbar-width:none;
+  outline:none;
+}
+
+.grid-scroll::-webkit-scrollbar{display:none}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(3, minmax(0, 1fr));
+  gap:var(--gg);
+  width:var(--gw);
+  margin:0 auto;
+}
+
+.tile{
+  position:relative;
+  display:block;
+  aspect-ratio:4 / 5;
+  overflow:hidden;
+  background:rgba(0,0,0,.035);   /* enquanto a foto não chega */
+  transition:opacity .25s var(--ease);
+  -webkit-tap-highlight-color:transparent;
+}
+
+.tile img{
+  display:block;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  user-select:none;
+  -webkit-user-select:none;
+  -webkit-user-drag:none;
+  opacity:0;
+  transition:opacity .8s var(--ease-out);
+}
+
+.tile img.on{opacity:1}
+
+@media (hover:hover){
+  .tile:hover{opacity:.8}
+}
+
+.tile:focus-visible{outline:1.5px solid var(--ink);outline-offset:3px;z-index:1}
+
+/* Nome do trabalho sob o cursor, ao lado da grade (como o .cap ao lado da foto) */
+.grid-cap{
+  position:absolute;
+  left:calc(50% + var(--gw) / 2 + clamp(16px, 1.4vw, 26px));
+  bottom:clamp(28px, 4.5vh, 44px);
+  writing-mode:vertical-rl;
+  transform:rotate(180deg);
+  white-space:nowrap;
+  line-height:1;
+  pointer-events:none;
+  user-select:none;
+  -webkit-user-select:none;
+  opacity:0;
+  transition:opacity .3s var(--ease);
+}
+
+.grid-cap.on{opacity:1}
+
+/* ─── TRABALHO ───
    Feed vertical com encaixe: um trabalho por tela. Cada trabalho (.post) é um
    carrossel lateral (.track) com uma página (.pg) por foto. */
 #work{
   display:flex;
   flex-direction:column;
-}
-
-.section-text{
-  display:none;                  /* desktop: o menu já indica a seção */
-  font-size:11px;
-  font-weight:500;
-  text-transform:uppercase;
-  letter-spacing:.14em;
-  line-height:1.5;
-  opacity:.45;
 }
 
 .feed{
@@ -423,7 +473,10 @@ img.instant{transition:none}
 
   .wrapper{flex-direction:column}
 
-  /* ─── NAV → BARRA SUPERIOR ─── */
+  /* ─── NAV → BARRA SUPERIOR: o logo e os dois links, sempre à vista ───
+     Sem hambúrguer: com a grade fazendo o papel de índice, o menu tem só
+     "selected work" e "contact". Toque em "selected work" num trabalho volta
+     à grade; na grade, volta ao topo. */
   .nav{
     flex:none;
     width:100%;
@@ -441,38 +494,23 @@ img.instant{transition:none}
     font-size:26px;
   }
 
-  .hamburger{display:block}
-
-  .nav.menu-open .hamburger span:nth-child(1){transform:translateY(6.5px) rotate(45deg)}
-  .nav.menu-open .hamburger span:nth-child(2){opacity:0}
-  .nav.menu-open .hamburger span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg)}
-
-  /* Menu em tela cheia, abaixo da barra */
   .menu{
-    position:fixed;
-    top:64px;
-    left:0;
-    right:0;
-    bottom:0;
-    margin-top:0;
-    padding:28px var(--pad) 40px;
-    overflow-y:auto;
-    display:none;
-    z-index:100;
+    display:flex;
+    align-items:center;
+    gap:clamp(14px, 4.6vw, 24px);
+    margin:0;
   }
-
-  .nav.gray .menu{background:var(--gray)}
-  .nav.white .menu{background:#fff}
-  .nav.menu-open .menu{display:block;animation:fade .25s var(--ease)}
 
   .menu a{
-    font-size:17px;
-    padding:9px 0;
-    margin-bottom:2px;
+    font-size:13.5px;
+    line-height:1;
+    margin:0;
+    padding:25px 0;               /* área de toque na altura da barra */
+    opacity:.5;                   /* navegação principal: um pouco mais legível que no desktop */
   }
 
-  .submenu{margin:4px 0 14px 1px}
-  .submenu a{font-size:14.5px;padding:7px 0;margin-bottom:0}
+  .submenu,
+  .submenu.open{display:none}    /* a lista de trabalhos fica só no desktop */
 
   /* ─── CONTEÚDO ─── */
   .content{
@@ -493,12 +531,14 @@ img.instant{transition:none}
     width:calc(var(--h) * var(--r, .8));
   }
 
-  /* ─── SELECTED WORK: feed de posts em largura total; cada post é um
+  /* ─── GRADE: largura total, fio de 3 px (como o feed) ─── */
+  #grid{--gg:3px;--gw:100cqw}
+  .grid-cap{display:none}
+
+  /* ─── TRABALHO: feed de posts em largura total; cada post é um
      carrossel lateral (arrastar ou tocar). A altura do post segue a proporção
      da capa (--pr, do JS), limitada à altura da tela; todas as fotos aparecem
      inteiras, sem corte. ─── */
-  .section-text{display:block;flex-shrink:0;padding:14px var(--pad)}
-
   .feed{scroll-snap-type:none}
 
   .post{height:auto;padding:0}
@@ -551,6 +591,7 @@ img.instant{transition:none}
 /* tablet em pé: mesmo layout do celular, letra um pouco maior */
 @media (min-width: 769px) and (max-width: 1100px) and (orientation: portrait) {
   .logo{font-size:30px}
+  .menu a{font-size:15px}
   .cap-t{font-size:25px}
   .cap-n{font-size:10.5px}
 }
@@ -560,7 +601,10 @@ img.instant{transition:none}
   .page.active,
   .slide,
   .slide img,
-  .frame img{transition-duration:.01s;transition-delay:0s}
+  .frame img,
+  .tile,
+  .tile img,
+  .grid-cap{transition-duration:.01s;transition-delay:0s}
 }
 
 /* Conteúdo para buscadores e leitores de tela (gerado por tools/build_pages.py).
