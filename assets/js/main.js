@@ -5,17 +5,16 @@
   const MOBILE = matchMedia('(max-width: 768px), (max-width: 1100px) and (orientation: portrait)');
   const HOVER = matchMedia('(hover: hover)');
   const REDUCED = matchMedia('(prefers-reduced-motion: reduce)');
-  const PAGES = ['home', 'grid', 'work', 'contact', 'about'];
+  const PAGES = ['home', 'work', 'contact', 'about'];
   const $ = id => document.getElementById(id);
   const root = document.documentElement;
   const nav = $('nav'), content = $('content'), feed = $('feed');
-  const submenu = $('submenu'), homeBox = $('homeSlides');
-  const gridScroll = $('gridScroll'), gridList = $('gridList'), gridCap = $('gridCap');
+  const submenu = $('submenu'), hamburger = $('hamburger'), homeBox = $('homeSlides');
 
   // Manifest gerado por tools/publish.py (assets/projects.json):
   // { ext, sizes:{l,m,s}, work:[{slug,title,date,images:[{src,w,h}]}] }
   // Cada imagem existe em src-l.<ext> (2560), src-m.<ext> (1280) e src-s.<ext> (480).
-  // A primeira imagem de cada trabalho é a capa (grade, feed e home).
+  // A primeira imagem de cada trabalho é a capa (feed e home).
   let SIZES = {l: 2560, m: 1280, s: 480}, EXT = 'webp';
   const works = [], bySlug = {};
   let page = '';      // página visível
@@ -24,10 +23,10 @@
   history.scrollRestoration = 'manual';
 
   // ─── ENDEREÇOS ───
-  // /  ·  /trabalhos/ (grade)  ·  /trabalhos/<trabalho>/ (feed; foto n no hash: #n)  ·  /contato/  ·  /sobre/
+  // /  ·  /trabalhos/  ·  /trabalhos/<trabalho>/ (foto n no hash: #n)  ·  /contato/
   // Cada caminho existe como página estática (tools/build_pages.py), com o mesmo JS.
   const WORK = '/trabalhos/';
-  const ROUTE_PATH = {grid: WORK, contact: '/contato/', about: '/sobre/'};
+  const ROUTE_PATH = {work: WORK, contact: '/contato/', about: '/sobre/'};
   const pathOf = slug => slug ? `${WORK}${slug}/` : WORK;
   const here = () => location.pathname + location.hash;
   let TITLES = {};
@@ -46,15 +45,6 @@
   const sizes = img =>
     `(max-width: 768px) 100vw, (max-width: 1100px) and (orientation: portrait) 100vw, ` +
     `min(${(Math.min(ratio(img), 1.25) * 100).toFixed(1)}vh, 60vw)`;
-  // grade: célula 4:5 com 1/3 da tela (celular) ou da coluna (desktop). A foto
-  // preenche a célula, então uma capa mais larga que 4:5 aparece maior que ela.
-  const tileSizes = img => {
-    let f = Math.max(1, ratio(img) / .8);
-    f = (f < 1.02 ? 1 : f).toFixed(3);   // capa praticamente 4:5 (ex.: 2050×2560): conta como 4:5
-    return `(max-width: 768px) calc((100vw - 6px) / 3 * ${f}), ` +
-      `(max-width: 1100px) and (orientation: portrait) calc((100vw - 6px) / 3 * ${f}), ` +
-      `calc(min(20vw, 26.7vh) * ${f})`;
-  };
 
   function makeImg(img, alt){
     const el = new Image();
@@ -73,7 +63,7 @@
     if(!el || el._t) return;
     el._t = performance.now();
     if(high) el.fetchPriority = 'high';
-    el.sizes = el._sizes || sizes(el._img);
+    el.sizes = sizes(el._img);
     el.srcset = srcset(el._img);
     el.src = url(el._img, 'm');
     const show = () => {
@@ -107,7 +97,6 @@
         bySlug[w.slug] = w;
       });
       buildFeed();
-      buildGrid();
       buildHome();
     })
     .catch(err => {
@@ -143,11 +132,11 @@
   }
 
   // A home só baixa fotos quando está à vista: a capa atual e, depois que a
-  // página terminou de carregar, a próxima.
+  // página terminou de carregar, a próxima da home e a primeira capa do feed.
   function startHome(){
     if(!slides.length || slides[si]._img._t) return;
     load(slides[si]._img, true);
-    const later = () => load(slides[(si + 1) % slides.length]._img);
+    const later = () => { load(slides[(si + 1) % slides.length]._img); load(works[0].imgs[0]); };
     if(document.readyState === 'complete') setTimeout(later, 400);
     else addEventListener('load', later, {once: true});
   }
@@ -169,59 +158,6 @@
     slides[si].classList.add('active');
     load(slides[(si + 1) % slides.length]._img);
     scheduleHome();
-  }
-
-  // ─── GRADE: as capas em 3 colunas (células 4:5); o clique abre o trabalho ───
-  function buildGrid(){
-    const frag = document.createDocumentFragment();
-    works.forEach(w => {
-      const a = document.createElement('a');
-      a.className = 'tile';
-      a.href = pathOf(w.slug);
-      a.dataset.slug = w.slug;
-      a._img = makeImg(w.images[0], w.title);
-      a._img._sizes = tileSizes(w.images[0]);
-      a.appendChild(a._img);
-      frag.appendChild(a);
-      w.tile = a;
-    });
-    gridList.appendChild(frag);
-    if(page === 'grid') fillGrid();
-  }
-
-  // Baixa só as capas à vista e as de 1/4 de tela adiante (no desktop, a linha
-  // seguinte); nada enquanto a grade está escondida.
-  let gridRaf = 0;
-  function fillGrid(){
-    gridRaf = 0;
-    if(page !== 'grid' || !works.length) return;
-    const top = gridScroll.scrollTop, h = gridScroll.clientHeight;
-    works.forEach(w => {
-      const t = w.tile.offsetTop, b = t + w.tile.offsetHeight;
-      if(b > top - h / 4 && t < top + h * 1.25) load(w.tile._img, b > top && t < top + h);
-    });
-  }
-  gridScroll.addEventListener('scroll', () => { if(!gridRaf) gridRaf = requestAnimationFrame(fillGrid); }, {passive: true});
-
-  // Desktop: o nome do trabalho sob o cursor aparece ao lado da grade, na
-  // vertical, como o nome ao lado da foto no feed.
-  const capText = gridCap.firstElementChild;
-  function capOn(tile){
-    const w = tile && bySlug[tile.dataset.slug];
-    if(!w) return;                    // no fio entre as células: mantém o nome
-    capText.textContent = w.title;
-    gridCap.classList.add('on');
-  }
-  gridList.addEventListener('mouseover', e => capOn(e.target.closest('.tile')));
-  gridList.addEventListener('focusin', e => capOn(e.target.closest('.tile')));
-  gridList.addEventListener('mouseleave', () => gridCap.classList.remove('on'));
-  gridList.addEventListener('focusout', () => gridCap.classList.remove('on'));
-
-  // Volta à grade. Se o trabalho foi aberto a partir dela, usa o "voltar" do
-  // navegador: a grade reaparece onde estava e o histórico não acumula idas e vindas.
-  function toGrid(){
-    if(history.state && history.state.fromGrid) history.back();
-    else navigate(WORK);
   }
 
   // ─── FEED ───
@@ -363,6 +299,7 @@
   }
 
   // O endereço acompanha o feed (sem criar histórico): /trabalhos/<trabalho>/#<foto>.
+  // Em /trabalhos/, o primeiro trabalho na capa mantém o endereço da lista.
   // Espera a rolagem assentar (o Safari limita a frequência de replaceState).
   let urlT = 0;
   function syncURL(){
@@ -370,7 +307,8 @@
     urlT = setTimeout(() => {
       if(page !== 'work' || cur < 0) return;
       const w = works[cur];
-      const h = pathOf(w.slug) + (w.idx ? `#${w.idx + 1}` : '');
+      const onList = location.pathname === WORK;
+      const h = onList && cur === 0 && w.idx === 0 ? WORK : pathOf(w.slug) + (w.idx ? `#${w.idx + 1}` : '');
       if(here() !== h){ history.replaceState(history.state, '', h); setTitle(location.pathname); }
     }, 200);
   }
@@ -489,8 +427,7 @@
   });
 
   // ─── TECLADO ───
-  // ← → fotos do trabalho em foco · ↑ ↓ (PgUp/PgDn, espaço) trabalhos ·
-  // Esc volta à capa e, na capa, à grade. (Na grade, as setas rolam a página.)
+  // ← → fotos do trabalho em foco · ↑ ↓ (PgUp/PgDn, espaço) trabalhos · Esc volta à capa
   document.addEventListener('keydown', e => {
     if(page !== 'work' || cur < 0 || e.metaKey || e.ctrlKey || e.altKey) return;
     const w = works[cur], k = at(w), last = w.images.length - 1;
@@ -503,7 +440,7 @@
       case ' ': goWork(cur + (e.shiftKey ? -1 : 1)); break;
       case 'Home': goWork(0); break;
       case 'End': goWork(works.length - 1); break;
-      case 'Escape': k ? goPage(w, 0) : toGrid(); break;
+      case 'Escape': goPage(w, 0); break;
       default: ok = false;
     }
     if(ok) e.preventDefault();
@@ -515,35 +452,28 @@
     const first = !page;
     page = route;
     if(first) root.classList.add('no-anim');
-    const gray = route !== 'grid' && route !== 'work';
+    const gray = route !== 'work';
     nav.classList.toggle('gray', gray);
     nav.classList.toggle('white', !gray);
     content.classList.toggle('theme-gray', gray);
     content.classList.toggle('theme-white', !gray);
-    // "selected work" fica marcado na grade e dentro de um trabalho
-    const sect = route === 'work' ? 'grid' : route;
     document.querySelectorAll('.menu > a').forEach(a =>
-      a.classList.toggle('active', a.dataset.route === sect));
-    // desktop: a lista de trabalhos só aparece dentro de um trabalho (na grade, as capas são o índice)
+      a.classList.toggle('active', a.dataset.route === route));
     submenu.classList.toggle('open', route === 'work');
-    gridCap.classList.remove('on');
     PAGES.forEach(p => $(p).classList.toggle('active', p === route));
+    closeMenu();
     if(route === 'home') startHome();
-    if(route === 'grid'){
-      requestAnimationFrame(fillGrid);
-      if(HOVER.matches) gridScroll.focus({preventScroll: true});   // setas e espaço rolam a grade
-    }
     scheduleHome();
     if(first) requestAnimationFrame(() => requestAnimationFrame(() => root.classList.remove('no-anim')));
   }
 
-  // ─── ROTAS: / · /trabalhos/ (grade) · /trabalhos/<trabalho>/#<foto> · /contato/ · /sobre/ ───
+  // ─── ROTAS: / · /trabalhos/ · /trabalhos/<trabalho>/#<foto> · /contato/ ───
   // Links antigos com # (#work, #work/<trabalho>/<foto>, #ads/..., #contact, #home,
   // #people, #personal) são levados ao caminho novo (migrate); #bio vai para /sobre/.
   function parse(){
     const p = location.pathname.replace(/index\.html$/, '');
     const m = p.match(/^\/trabalhos\/(?:([^/]+)\/?)?$/);
-    if(m) return m[1] ? {route: 'work', slug: m[1], n: parseInt(location.hash.slice(1), 10) || 1} : {route: 'grid'};
+    if(m) return {route: 'work', slug: m[1] || '', n: parseInt(location.hash.slice(1), 10) || 1};
     if(/^\/contato\/?$/.test(p)) return {route: 'contact'};
     if(/^\/sobre\/?$/.test(p)) return {route: 'about'};
     const [r = '', slug = '', n = ''] = location.hash.replace(/^#\/?/, '').split('/');
@@ -577,20 +507,32 @@
       if(page !== 'work' || !works.length) return;
       const w = findWork(slug);
       if(w) reveal(w, n - 1);
-      else { history.replaceState(null, '', WORK); apply(); }   // trabalho que saiu do site: a grade
+      else if(cur < 0) reveal(works[0], 0);   // primeira visita: o primeiro trabalho
+      else { spy(); syncURL(); }
     });
   }
 
-  function navigate(to, state = null){
+  function navigate(to){
     if(here() === to){ apply(); return; }
-    history.pushState(state, '', to);
+    history.pushState(null, '', to);
     apply();
   }
 
   window.addEventListener('popstate', apply);
 
+  // ─── MENU DO CELULAR ───
+  function closeMenu(){
+    nav.classList.remove('menu-open');
+    hamburger.setAttribute('aria-expanded', 'false');
+  }
+  hamburger.addEventListener('click', e => {
+    e.stopPropagation();
+    hamburger.setAttribute('aria-expanded', String(nav.classList.toggle('menu-open')));
+  });
+
   // ─── LINKS ───
   document.addEventListener('click', e => {
+    if(nav.classList.contains('menu-open') && !e.target.closest('.menu, .hamburger')) closeMenu();
     const a = e.target.closest('a');
     if(!a || e.button || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
 
@@ -599,20 +541,18 @@
     const route = a.dataset.route;
     if(route){
       e.preventDefault();
-      if(route === 'grid' && page === 'grid')        // de novo na grade: volta ao topo
-        glide(gridScroll, 'scrollTop', 0, Math.min(900, 360 + gridScroll.scrollTop * .24));
-      else if(route === 'grid' && page === 'work') toGrid();
+      if(route === 'work' && page === 'work'){ closeMenu(); goWork(0); }   // de novo: volta ao início
       else navigate(ROUTE_PATH[route]);
       return;
     }
 
     const w = bySlug[a.dataset.slug];
-    if(w){                                       // capa na grade ou na home, trabalho no menu
+    if(w){                                       // trabalho no menu ou capa da home
       e.preventDefault();
       // a capa da home já está na tela: no feed ela aparece na hora, sem fade
       if(a.classList.contains('slide') && a._img.classList.contains('on')) w.imgs[0]._instant = true;
-      if(page === 'work') openWork(w);
-      else navigate(pathOf(w.slug), page === 'grid' ? {fromGrid: true} : null);
+      if(page === 'work'){ closeMenu(); openWork(w); }
+      else navigate(pathOf(w.slug));
     }
   });
 
@@ -626,7 +566,6 @@
     const turned = wasMobile !== MOBILE.matches;
     wasMobile = MOBILE.matches;
     if(cur >= 0 && (!MOBILE.matches || turned)){ stop(feed); feed.scrollTop = topOf(works[cur]); }
-    fillGrid();                    // com a grade à vista, mais capas podem ter entrado na tela
   }
   addEventListener('resize', () => { clearTimeout(rz); rz = setTimeout(realign, 150); });
   MOBILE.addEventListener('change', () => {

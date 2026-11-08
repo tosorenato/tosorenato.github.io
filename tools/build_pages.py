@@ -5,7 +5,7 @@ O site continua sendo um HTML + CSS + JS puros servidos pelo GitHub Pages. O que
 este script faz é dar uma URL real, com conteúdo no HTML, a cada página:
 
     /                      home
-    /trabalhos/            selected work (grade de capas)
+    /trabalhos/            selected work (feed)
     /trabalhos/<slug>/     um trabalho
     /contato/              contato
     /sobre/                sobre (a bio fica no index.html, em #about)
@@ -120,7 +120,7 @@ def build_pages(m):
             for w in works),
     })
 
-    # trabalhos (grade)
+    # trabalhos (feed)
     desc = f"Trabalhos selecionados de {NAME}, {ROLE}: still life, produto, publicidade, moda e retrato."
     pages.append({
         "path": "/trabalhos/", "kind": "work", "file": ROOT / "trabalhos/index.html",
